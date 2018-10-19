@@ -19,6 +19,7 @@
     <EntitySet Name="PHANQUYEN" EntityType="QlTourDuLichModel.Store.PHANQUYEN" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PHIEUNHAPTOUR" EntityType="QlTourDuLichModel.Store.PHIEUNHAPTOUR" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="QUANLINHOMNGUOIDUNG" EntityType="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="QlTourDuLichModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TOUR" EntityType="QlTourDuLichModel.Store.TOUR" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="QlTourDuLichModel.Store.FK_ChiTietHopDong_HOPDONG">
       <End Role="HOPDONG" EntitySet="HOPDONG" />
@@ -282,6 +283,16 @@
     <Property Name="MaNV" Type="varchar" MaxLength="10" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="TOUR">
     <Key>
       <PropertyRef Name="MaTour" />
@@ -299,6 +310,7 @@
     <Property Name="MaHDV" Type="int" />
     <Property Name="AnhDaiDien" Type="varchar" MaxLength="50" />
     <Property Name="SoLuongDuKhach" Type="int" />
+    <Property Name="GiaTour" Type="float" />
   </EntityType>
   <Association Name="FK_ChiTietHopDong_HOPDONG">
     <End Role="HOPDONG" Type="QlTourDuLichModel.Store.HOPDONG" Multiplicity="0..1" />

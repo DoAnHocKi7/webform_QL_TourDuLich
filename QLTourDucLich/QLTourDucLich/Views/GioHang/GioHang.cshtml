@@ -1,0 +1,12 @@
+﻿@using QLTourDucLich.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <h2> @item.matour</h2>
+
+}

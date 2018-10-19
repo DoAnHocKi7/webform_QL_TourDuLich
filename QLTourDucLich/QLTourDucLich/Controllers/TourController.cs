@@ -11,15 +11,20 @@ namespace QLTourDucLich.Controllers
     {
         //
         // GET: /Tour/
-        QlTourDuLichEntities ql = new QlTourDuLichEntities();
-
+        QlTourDuLichEntities1 ql = new QlTourDuLichEntities1();
+        
         public ActionResult HienThiTour()
         {
 
-
-
             return View(ql.TOURs.Take(8).ToList());
         }
+
+        public ViewResult ChiTietTour(string matour)
+        {
+            TOUR tour = ql.TOURs.SingleOrDefault(t => t.MaTour == matour);
+            return View(tour);
+        }
+              
 
     }
 }

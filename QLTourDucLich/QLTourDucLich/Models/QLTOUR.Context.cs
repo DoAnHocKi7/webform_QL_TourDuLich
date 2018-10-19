@@ -13,10 +13,10 @@ namespace QLTourDucLich.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QlTourDuLichEntities : DbContext
+    public partial class QlTourDuLichEntities1 : DbContext
     {
-        public QlTourDuLichEntities()
-            : base("name=QlTourDuLichEntities")
+        public QlTourDuLichEntities1()
+            : base("name=QlTourDuLichEntities1")
         {
         }
     
@@ -43,6 +43,7 @@ namespace QLTourDucLich.Models
         public DbSet<PHANQUYEN> PHANQUYENs { get; set; }
         public DbSet<PHIEUNHAPTOUR> PHIEUNHAPTOURs { get; set; }
         public DbSet<QUANLINHOMNGUOIDUNG> QUANLINHOMNGUOIDUNGs { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TOUR> TOURs { get; set; }
     }
 }
