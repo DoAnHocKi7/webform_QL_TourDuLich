@@ -1,0 +1,30 @@
+﻿@using QLTourDucLich.Models;
+@model List<TOUR>
+
+@foreach (var item in Model)
+{
+    <a href='#'>
+        <div class='col-sm-4 col-md-3'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <h4>@item.TenTour</h4>
+                 </div>
+                <div class='panel-body'>       
+                    <img  src="@Url.Content("~/Images/" + item.AnhDaiDien)"   width="200" height="150" >
+
+                </div>
+                
+                <div class='panel-footer'>@item.MoTa
+
+                </div>
+                
+            </div>
+        </div>
+    </a>
+}
+
+
+
+
+
+
