@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" id="mytour" href="#">
+                <a class="navbar-brand" id="mytour" href='@Url.Action("Index","TrangChu")'>
                     <img src="~/Images/mytour.png">
                 </a>
             </div>
@@ -85,6 +85,11 @@
                         <a href="#">
                             <img src="~/Images/thongbao.png" width="20" height="20" alt="Phản hồi cá nhân">
                         </a>
+                    </li>
+                    <li>
+                         <a href='@Url.Action("GioHang","GioHang")' >
+                        @Html.Action("GioHangPartial", "GioHang")
+                           </a>
                     </li>
                     
                         
@@ -206,8 +211,8 @@
                     <h5>
                         <b>KẾT NỐI VỚI MYTOUR.VN</b>
                     </h5>
-                    <img href="#" src="images/facebook_logos_PNG19761.png" width="25" height="25">
-                    <img href="#" src="images/unnamed.jpg" width="25" height="25">
+                    <img href='#' src="images/facebook_logos_PNG19761.png" width="25" height="25">
+                    <img href='#' src="images/unnamed.jpg" width="25" height="25">
                 </td>
             </tr>
         </tbody>

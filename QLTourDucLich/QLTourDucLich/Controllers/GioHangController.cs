@@ -55,15 +55,7 @@ namespace QLTourDucLich.Controllers
         public ActionResult CapNhapGioHang(string matour, FormCollection f)
         {
 
-            TOUR tour = ql.TOURs.SingleOrDefault(t => t.MaTour == matour);
-
-            if (tour == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-
-
-            }
+           
             List<GioHang> lstGioHang = LayGioHang();
             GioHang sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
@@ -72,9 +64,22 @@ namespace QLTourDucLich.Controllers
 
             }
 
-            return View("GioHang");
+            return RedirectToAction("GioHang");
 
 
+
+        }
+        public ActionResult XoaGioHang(string matour)
+        {
+
+            List<GioHang> lstGioHang = LayGioHang();
+            GioHang sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+            if (sanpham != null)
+            {
+                lstGioHang.RemoveAll(t => t.matour == matour);
+
+            }
+            return RedirectToAction("GioHang");
 
         }
         public ActionResult GioHang()
@@ -101,6 +106,31 @@ namespace QLTourDucLich.Controllers
 
             }
             return thanhtien;
+
+        }
+        public int Soluong()
+        {
+            int soluong = 0;
+            List<GioHang> lstGioHang = LayGioHang();
+            if (lstGioHang != null)
+            {
+                soluong = lstGioHang.Sum(t => t.soluong);
+
+
+            }
+            return soluong;
+
+        }
+        public ActionResult GioHangPartial()
+        {
+            if (Soluong() == 0)
+            {
+                return PartialView();
+
+            }
+            ViewBag.soluong = Soluong();
+            return PartialView();
+
 
         }
 

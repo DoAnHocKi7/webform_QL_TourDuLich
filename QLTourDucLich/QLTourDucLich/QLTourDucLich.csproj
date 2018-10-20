@@ -217,6 +217,7 @@
   <ItemGroup>
     <Content Include="Content\ChiTietTour.css" />
     <Content Include="Content\css_layout.css" />
+    <Content Include="Content\GioHang.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -273,12 +274,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\010_trash-2-512.png" />
+    <Content Include="Images\floppy-512.png" />
     <Content Include="Images\halong.jpg" />
     <Content Include="Images\hue.jpg" />
     <Content Include="Images\mytour.PNG" />
     <Content Include="Images\phanhoi.png" />
     <Content Include="Images\phuquoc.jpg" />
     <Content Include="Images\sapa.jpg" />
+    <Content Include="Images\shopping-512.png" />
     <Content Include="Images\thongbao.png" />
     <Content Include="Libary\lib\atooltip.jquery.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\.gitattributes" />
@@ -759,6 +763,7 @@
     <Content Include="Views\NguoiDung\NguoiDung.cshtml" />
     <Content Include="Views\Tour\ChiTietTour.cshtml" />
     <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

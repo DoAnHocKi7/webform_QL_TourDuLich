@@ -21,6 +21,7 @@ namespace QLTourDucLich.Controllers
 
         public ViewResult ChiTietTour(string matour)
         {
+            
             TOUR tour = ql.TOURs.SingleOrDefault(t => t.MaTour == matour);
             return View(tour);
         }
