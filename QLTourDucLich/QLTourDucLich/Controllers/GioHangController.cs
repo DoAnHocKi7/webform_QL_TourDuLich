@@ -16,19 +16,18 @@ namespace QLTourDucLich.Controllers
         {
             return View();
         }
+        // Lấy sản phẩm hiện tại có trong giỏ hàng
         public List<GioHang> LayGioHang()
         {
             List<GioHang> giohang = Session["GioHang"] as List<GioHang>;
             if (giohang == null)
             {
                 giohang = new List<GioHang>();
+                // vì đây session là biến toàn cục nên một lần gởi tạo là đủ 
                 Session["GioHang"] = giohang;
 
             }
-
             return giohang;
-
-
         }
         // vừa vào cứ bắt sự kiện thêm vào giỏ hàng chạy trước
         public ActionResult ThemGioHang(string matour, string strURL)
@@ -52,6 +51,8 @@ namespace QLTourDucLich.Controllers
             }
 
         }
+
+        // Cập nhập số lượng giỏ hàng
         public ActionResult CapNhapGioHang(string matour, FormCollection f)
         {
 
@@ -86,8 +87,8 @@ namespace QLTourDucLich.Controllers
         {
             if (Session["GioHang"] == null)
             {
+                //vẫn ở lại trang hiện tại 
                 return RedirectToAction("Index", "TrangChu");
-
 
             }
             List<GioHang> lstGioHang=LayGioHang();
@@ -95,6 +96,7 @@ namespace QLTourDucLich.Controllers
 
 
         }
+        //Tổng tiền của từng sản phẩm
         public float TongTien()
         {
             float thanhtien = 0;
@@ -108,6 +110,8 @@ namespace QLTourDucLich.Controllers
             return thanhtien;
 
         }
+
+        //Tổng số lượng có trong giỏ hàng
         public int Soluong()
         {
             int soluong = 0;
@@ -116,11 +120,11 @@ namespace QLTourDucLich.Controllers
             {
                 soluong = lstGioHang.Sum(t => t.soluong);
 
-
             }
             return soluong;
 
         }
+        // trả về số lượng trong giỏ hàng
         public ActionResult GioHangPartial()
         {
             if (Soluong() == 0)
