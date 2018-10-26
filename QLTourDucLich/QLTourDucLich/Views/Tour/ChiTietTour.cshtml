@@ -1,36 +1,41 @@
 ﻿@using QLTourDucLich.Models;
-@model TOUR
+@model List<ChiTietT>
 <link href="~/Content/ChiTietTour.css" rel="stylesheet" />
 @{
     ViewBag.Title = "ChiTietTour";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-<div class="container">
+
+@foreach (var item in Model)
+{
+    <div class="container">
     <div class="row">
         <div class="col-md-9 col-sm-12">
             <div class="page-header">
                 <h3 class="tittle-lg">
-                    @Model.TenTour
+                    @item.tentour
                 </h3>
 
             </div>
             <div>
                 @* url content dùng để trỏ đến thư mục *@
-                 <img  src="@Url.Content("~/Images/" + @Model.AnhDaiDien)"  width="845" height="500" >
+                 <img  src="@Url.Content("~/Images/" + @item.anhdaidien)"  width="845" height="500" >
             </div>
             
             <div class="tt_tour" >
                 <div class="col-sm-12 col-md-9">
-                     <div><label>Mã Tour:</label> @Model.MaTour</div>
-                     <div><label>Ngày Khởi Hành:</label>@String.Format("{0:MM/dd/yyyy}",@Model.NgayKhoiHanh)</div>
-                     <div><label>Ngày Kết Thúc:</label> @String.Format("{0:MM/dd/yyyy}",@Model.NgayKetThuc)</div>
+                     <div><label>Mã Tour:</label> @item.matour</div>
+                     <div><label>Ngày Khởi Hành:</label>@String.Format("{0:MM/dd/yyyy}",item.ngaykh)</div>
+                     <div><label>Ngày Kết Thúc:</label> @String.Format("{0:MM/dd/yyyy}",item.ngaykt)</div>
+                     <div><label>Nơi Đi:</label>@item.noidi</div>
+                     <div><label>Nơi Đến:</label> @item.noiden</div>
                  </div>   
                 <div class="col-md-3">
 
-                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @matour = @Model.MaTour, @strURL = Request.Url.ToString() }))
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @matour = @item.matour, @strURL = Request.Url.ToString() }))
                     {
-                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", @Model.GiaNguoiLon+@Model.GiaTreEm)</h4>
+                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", @item.giatour)</h4>
 
                         <input type="submit" class="btn btn-primary" />
                     }
@@ -61,3 +66,5 @@
 
     </div>
 </div>
+
+}

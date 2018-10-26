@@ -10,42 +10,39 @@ namespace QLTourDucLich.Models
         QlTourDuLichEntities ql = new QlTourDuLichEntities();
         public string matour { get; set; }
         public string tentour { get; set; }
-        public string hinhanh { get; set; }
+        public string hinhanh { get; set; } 
 
-        public float dongia { get; set; }
+        public decimal? dongia { get; set; }
 
         public int sltreem { get; set; }
-        public float dgtreem;      
+        public decimal? giatreem;      
        
         public int slnguoilon { get; set; }
-        public float dgnguoilon;
+        public decimal gianguoilon;
         public int soluong;
-        public float thanhtien
+        public decimal? thanhtien
         {
             get
             {
-                return dongia += dongia; 
+                return slnguoilon * dongia + sltreem * giatreem;
+
 
             }
         }
         public SPDaMua(string masp)
         {
-            matour = masp;
+            
             TOUR tour = ql.TOURs.Single(t => t.MaTour == masp);
-
-            KHACHSAN khachsan = ql.KHACHSANs.Single(t => t.MaKS == tour.MaKS);
+            matour = tour.MaTour;
             tentour = tour.TenTour;
             hinhanh = tour.AnhDaiDien;
+            giatreem = tour.GiaTreEm;
+            KHACHSAN khachsan = ql.KHACHSANs.Single(t => t.MaKS == tour.MaKS);
+            dongia = tour.GiaNguoiLon + khachsan.GiaTien;
             slnguoilon = 1;
-            sltreem = 1;
-
-            dgnguoilon = float.Parse(tour.GiaNguoiLon.ToString());
-            dgtreem = float.Parse(tour.GiaNguoiLon.ToString());
-
-            dongia = dgnguoilon * slnguoilon+dgtreem*sltreem+float.Parse(khachsan.GiaTien.ToString());
+            sltreem = 0;
             soluong = 1;
-            //dongia = float.Parse( tour.GiaTour.ToString());
-          //  dongia = float.Parse((tour.GiaNguoiLon + tour.GiaTreEm+khachsan.GiaTien).ToString());
+      
 
            
 

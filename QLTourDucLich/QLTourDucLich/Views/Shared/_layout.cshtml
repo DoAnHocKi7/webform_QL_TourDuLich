@@ -234,5 +234,17 @@
             </table>
         </div>
     </div>
+    <script>
+        $("#slnguoilon").keypress(function () {
+            var sl = $("#slnguoilon").text();
+            if (sl < 0)
+                alert("Số lượng nhập không được bé hơn một");
+            $("#slnguoilon").text= 1;
+
+        }
+        );
+
+
+</script>
 </body>
 </html>

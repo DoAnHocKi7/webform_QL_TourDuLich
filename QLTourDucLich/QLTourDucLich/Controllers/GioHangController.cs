@@ -47,30 +47,31 @@ namespace QLTourDucLich.Controllers
             }
             else
             {
-                sanpham.soluong++;
+                Response.Write("Sản Phẩm Đã Tồn Tại Trong Giỏ Hàng");
                 return Redirect(strURL);
             }
 
         }
 
         // Cập nhập số lượng giỏ hàng
-        //public ActionResult CapNhapGioHang(string matour, FormCollection f)
-        //{
-
-           
-        //    List<SPDaMua> lstGioHang = LayGioHang();
-        //    SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
-        //    if (sanpham != null)
-        //    {
-        //        sanpham.soluong = int.Parse(f["txtsoluong"].ToString());
-
-        //    }
-
-        //    return RedirectToAction("GioHang");
+        public ActionResult CapNhapGioHang(string matour, FormCollection f)
+        {
 
 
+            List<SPDaMua> lstGioHang = LayGioHang();
+            SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+            if (sanpham != null)
+            {
+                sanpham.slnguoilon = int.Parse(f["songuoilon"].ToString());
+                sanpham.sltreem = int.Parse(f["sotreem"].ToString());
 
-        //}
+            }
+
+            return RedirectToAction("GioHang");
+
+
+
+        }
         public ActionResult XoaGioHang(string matour)
         {
 
@@ -98,9 +99,9 @@ namespace QLTourDucLich.Controllers
 
         }
         //Tổng tiền của từng sản phẩm
-        public float TongTien()
+        public decimal? TongTien()
         {
-            float thanhtien = 0;
+            decimal? thanhtien = 0;
             List<SPDaMua> lstGioHang = Session["GioHang"] as List<SPDaMua>;
             if (lstGioHang != null)
             {

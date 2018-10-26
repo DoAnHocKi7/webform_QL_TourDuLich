@@ -138,6 +138,7 @@
     <Compile Include="Models\ChiTietHopDong.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChiTietT.cs" />
     <Compile Include="Models\CTPHIEUNHAP_TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -147,7 +148,6 @@
     <Compile Include="Models\DIADIEM.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DSTour.cs" />
     <Compile Include="Models\HANHTRINH.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -752,7 +752,9 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

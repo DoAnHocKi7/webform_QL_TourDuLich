@@ -1,6 +1,7 @@
 ﻿@using QLTourDucLich.Models
 @model List<SPDaMua>
 <link href="~/Content/GioHang.css" rel="stylesheet" />
+
 @{
     ViewBag.Title = "GioHang";
     Layout = "~/Views/Shared/_layout.cshtml";
@@ -29,13 +30,16 @@
                     <td>  <img  src="@Url.Content("~/Images/" + @item.hinhanh)"  width="100" height="80" ></td>
                     <td> @item.matour</td>
                     <td>@item.tentour</td>
-                    <td> @String.Format("{0:0,0 VNĐ}", @item.dongia)</td>
-                    <td>  
+                    <td style="color:blue"> @String.Format("{0:0,0 VNĐ}", @item.dongia)</td>
+                    <td style="padding:4px">  
                         @*Chỉnh Sữa Gio Hàng *@
                          @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { matour=item.matour }))
                         {
-                              <input name="txtsoluong"  class="soluong" value="@item.soluong" /> 
-                             <button type="submit"><img src="~/Images/floppy-512.png" width="20" height="20"  /> </button>
+                           <label>Người Lớn:</label>   <input name="songuoilon" id="slnguoilon"   value="@item.slnguoilon" /> <br />
+                             
+                           <div style="padding: 2px 0px 0px 32px;"><label>Trẻ Em</label>    <input name="sotreem"   value="@item.sltreem" /></div>  
+                          
+                            <div style="padding: 2px 0px 0px 150px;">  <button type="submit"><img src="~/Images/floppy-512.png" width="20" height="20"  /> </button></div>
                         }
                     </td>
                         
@@ -52,19 +56,19 @@
                
               
                   </tr>
-        
+                    
         </tbody>
 
       }
-
+     
   </table>
+       <div style="text-align:center">  <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div> 
   </div>
 
 
     </div>
 
     </div>
-
 
 
   
