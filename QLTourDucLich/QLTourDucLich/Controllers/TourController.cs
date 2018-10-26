@@ -11,7 +11,7 @@ namespace QLTourDucLich.Controllers
     {
         //
         // GET: /Tour/
-        QlTourDuLichEntities1 ql = new QlTourDuLichEntities1();
+        QlTourDuLichEntities ql = new QlTourDuLichEntities();
         
         public ActionResult HienThiTour()
         {

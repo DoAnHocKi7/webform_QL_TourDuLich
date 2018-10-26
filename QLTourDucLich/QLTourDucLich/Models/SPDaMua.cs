@@ -5,9 +5,9 @@ using System.Web;
 
 namespace QLTourDucLich.Models
 {
-    public class GioHang
+    public class SPDaMua
     {
-        QlTourDuLichEntities1 ql = new QlTourDuLichEntities1();
+        QlTourDuLichEntities ql = new QlTourDuLichEntities();
         public string matour { get; set; }
         public string tentour { get; set; }
         public string hinhanh { get; set; }
@@ -20,13 +20,17 @@ namespace QLTourDucLich.Models
                 return soluong * dongia;
             }
         }
-        public GioHang(string masp)
+        public SPDaMua(string masp)
         {
             matour = masp;
             TOUR tour = ql.TOURs.Single(t => t.MaTour == masp);
+
+            KHACHSAN khachsan = ql.KHACHSANs.Single(t => t.MaKS == tour.MaKS);
             tentour = tour.TenTour;
             hinhanh = tour.AnhDaiDien;
-            dongia = float.Parse( tour.GiaTour.ToString());
+            //dongia = float.Parse( tour.GiaTour.ToString());
+            dongia = float.Parse((tour.GiaNguoiLon + tour.GiaTreEm+khachsan.GiaTien).ToString());
+
             soluong = 1;
 
 

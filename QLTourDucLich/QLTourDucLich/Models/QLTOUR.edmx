@@ -24,7 +24,6 @@
           <EntitySet Name="PHANQUYEN" EntityType="QlTourDuLichModel.Store.PHANQUYEN" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PHIEUNHAPTOUR" EntityType="QlTourDuLichModel.Store.PHIEUNHAPTOUR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="QUANLINHOMNGUOIDUNG" EntityType="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="QlTourDuLichModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TOUR" EntityType="QlTourDuLichModel.Store.TOUR" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="QlTourDuLichModel.Store.FK_ChiTietHopDong_HOPDONG">
             <End Role="HOPDONG" EntitySet="HOPDONG" />
@@ -66,10 +65,6 @@
             <End Role="LOAIKHACHSAN" EntitySet="LOAIKHACHSAN" />
             <End Role="KHACHSAN" EntitySet="KHACHSAN" />
           </AssociationSet>
-          <AssociationSet Name="FK_ND_NND" Association="QlTourDuLichModel.Store.FK_ND_NND">
-            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
-            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-          </AssociationSet>
           <AssociationSet Name="FK_PNT_MANV" Association="QlTourDuLichModel.Store.FK_PNT_MANV">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
             <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOUR" />
@@ -82,12 +77,12 @@
             <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
             <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
           </AssociationSet>
-          <AssociationSet Name="FK_QLNND_ND" Association="QlTourDuLichModel.Store.FK_QLNND_ND">
-            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-            <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
-          </AssociationSet>
           <AssociationSet Name="FK_QLNND_NND" Association="QlTourDuLichModel.Store.FK_QLNND_NND">
             <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+            <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" Association="QlTourDuLichModel.Store.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
+            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
             <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
           </AssociationSet>
           <AssociationSet Name="FK_TOUR_HDV" Association="QlTourDuLichModel.Store.FK_TOUR_HDV">
@@ -251,7 +246,6 @@
           <Property Name="SDT" Type="varchar" MaxLength="11" />
           <Property Name="TrangThai" Type="int" />
           <Property Name="MatKhauCap2" Type="nvarchar" MaxLength="50" />
-          <Property Name="MaPhgBan" Type="int" />
         </EntityType>
         <EntityType Name="NHOMNGUOIDUNG">
           <Key>
@@ -263,12 +257,12 @@
         </EntityType>
         <EntityType Name="PHANQUYEN">
           <Key>
-            <PropertyRef Name="MaPQ" />
+            <PropertyRef Name="MaNhom" />
+            <PropertyRef Name="MaMH" />
           </Key>
-          <Property Name="MaPQ" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="MaNhom" Type="int" />
-          <Property Name="MaMH" Type="int" />
-          <Property Name="CoQuyen" Type="int" />
+          <Property Name="MaNhom" Type="int" Nullable="false" />
+          <Property Name="MaMH" Type="int" Nullable="false" />
+          <Property Name="CoQuyen" Type="bit" />
         </EntityType>
         <EntityType Name="PHIEUNHAPTOUR">
           <Key>
@@ -288,16 +282,6 @@
           <Property Name="MaNV" Type="varchar" MaxLength="10" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TOUR">
           <Key>
             <PropertyRef Name="MaTour" />
@@ -315,7 +299,6 @@
           <Property Name="MaHDV" Type="int" />
           <Property Name="AnhDaiDien" Type="varchar" MaxLength="50" />
           <Property Name="SoLuongDuKhach" Type="int" />
-          <Property Name="GiaTour" Type="float" />
         </EntityType>
         <Association Name="FK_ChiTietHopDong_HOPDONG">
           <End Role="HOPDONG" Type="QlTourDuLichModel.Store.HOPDONG" Multiplicity="0..1" />
@@ -437,18 +420,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ND_NND">
-          <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="0..1" />
-          <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHOMNGUOIDUNG">
-              <PropertyRef Name="MaNhom" />
-            </Principal>
-            <Dependent Role="NGUOIDUNG">
-              <PropertyRef Name="MaPhgBan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PNT_MANV">
           <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
           <End Role="PHIEUNHAPTOUR" Type="QlTourDuLichModel.Store.PHIEUNHAPTOUR" Multiplicity="*" />
@@ -462,7 +433,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PQ_MH">
-          <End Role="MANHINH" Type="QlTourDuLichModel.Store.MANHINH" Multiplicity="0..1" />
+          <End Role="MANHINH" Type="QlTourDuLichModel.Store.MANHINH" Multiplicity="1" />
           <End Role="PHANQUYEN" Type="QlTourDuLichModel.Store.PHANQUYEN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MANHINH">
@@ -474,7 +445,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PQ_MN">
-          <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="0..1" />
+          <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="1" />
           <End Role="PHANQUYEN" Type="QlTourDuLichModel.Store.PHANQUYEN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHOMNGUOIDUNG">
@@ -482,18 +453,6 @@
             </Principal>
             <Dependent Role="PHANQUYEN">
               <PropertyRef Name="MaNhom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_QLNND_ND">
-          <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
-          <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NGUOIDUNG">
-              <PropertyRef Name="MaNV" />
-            </Principal>
-            <Dependent Role="QUANLINHOMNGUOIDUNG">
-              <PropertyRef Name="MaNV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -506,6 +465,18 @@
             </Principal>
             <Dependent Role="QUANLINHOMNGUOIDUNG">
               <PropertyRef Name="MaNhom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
+          <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
+          <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOIDUNG">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="QUANLINHOMNGUOIDUNG">
+              <PropertyRef Name="MaNV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -574,7 +545,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QlTourDuLichModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="QlTourDuLichEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QlTourDuLichEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHopDongs" EntityType="QlTourDuLichModel.ChiTietHopDong" />
           <EntitySet Name="CTPHIEUNHAP_TOUR" EntityType="QlTourDuLichModel.CTPHIEUNHAP_TOUR" />
           <EntitySet Name="DIADANHs" EntityType="QlTourDuLichModel.DIADANH" />
@@ -593,7 +564,6 @@
           <EntitySet Name="PHANQUYENs" EntityType="QlTourDuLichModel.PHANQUYEN" />
           <EntitySet Name="PHIEUNHAPTOURs" EntityType="QlTourDuLichModel.PHIEUNHAPTOUR" />
           <EntitySet Name="QUANLINHOMNGUOIDUNGs" EntityType="QlTourDuLichModel.QUANLINHOMNGUOIDUNG" />
-          <EntitySet Name="sysdiagrams" EntityType="QlTourDuLichModel.sysdiagram" />
           <EntitySet Name="TOURs" EntityType="QlTourDuLichModel.TOUR" />
           <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="QlTourDuLichModel.FK_ChiTietHopDong_HOPDONG">
             <End Role="HOPDONG" EntitySet="HOPDONGs" />
@@ -659,15 +629,11 @@
             <End Role="MANHINH" EntitySet="MANHINHs" />
             <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
           </AssociationSet>
-          <AssociationSet Name="FK_ND_NND" Association="QlTourDuLichModel.FK_ND_NND">
-            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
-            <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
-          </AssociationSet>
           <AssociationSet Name="FK_PNT_MANV" Association="QlTourDuLichModel.FK_PNT_MANV">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
             <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOURs" />
           </AssociationSet>
-          <AssociationSet Name="FK_QLNND_ND" Association="QlTourDuLichModel.FK_QLNND_ND">
+          <AssociationSet Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" Association="QlTourDuLichModel.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNGs" />
             <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNGs" />
           </AssociationSet>
@@ -844,10 +810,8 @@
           <Property Name="SDT" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
           <Property Name="TrangThai" Type="Int32" />
           <Property Name="MatKhauCap2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="MaPhgBan" Type="Int32" />
-          <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="QlTourDuLichModel.FK_ND_NND" FromRole="NGUOIDUNG" ToRole="NHOMNGUOIDUNG" />
           <NavigationProperty Name="PHIEUNHAPTOURs" Relationship="QlTourDuLichModel.FK_PNT_MANV" FromRole="NGUOIDUNG" ToRole="PHIEUNHAPTOUR" />
-          <NavigationProperty Name="QUANLINHOMNGUOIDUNGs" Relationship="QlTourDuLichModel.FK_QLNND_ND" FromRole="NGUOIDUNG" ToRole="QUANLINHOMNGUOIDUNG" />
+          <NavigationProperty Name="QUANLINHOMNGUOIDUNGs" Relationship="QlTourDuLichModel.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" FromRole="NGUOIDUNG" ToRole="QUANLINHOMNGUOIDUNG" />
         </EntityType>
         <EntityType Name="NHOMNGUOIDUNG">
           <Key>
@@ -856,18 +820,17 @@
           <Property Name="MaNhom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenNhom" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="GhiChu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="NGUOIDUNGs" Relationship="QlTourDuLichModel.FK_ND_NND" FromRole="NHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
           <NavigationProperty Name="PHANQUYENs" Relationship="QlTourDuLichModel.FK_PQ_MN" FromRole="NHOMNGUOIDUNG" ToRole="PHANQUYEN" />
           <NavigationProperty Name="QUANLINHOMNGUOIDUNGs" Relationship="QlTourDuLichModel.FK_QLNND_NND" FromRole="NHOMNGUOIDUNG" ToRole="QUANLINHOMNGUOIDUNG" />
         </EntityType>
         <EntityType Name="PHANQUYEN">
           <Key>
-            <PropertyRef Name="MaPQ" />
+            <PropertyRef Name="MaNhom" />
+            <PropertyRef Name="MaMH" />
           </Key>
-          <Property Name="MaPQ" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="MaNhom" Type="Int32" />
-          <Property Name="MaMH" Type="Int32" />
-          <Property Name="CoQuyen" Type="Int32" />
+          <Property Name="MaNhom" Type="Int32" Nullable="false" />
+          <Property Name="MaMH" Type="Int32" Nullable="false" />
+          <Property Name="CoQuyen" Type="Boolean" />
           <NavigationProperty Name="MANHINH" Relationship="QlTourDuLichModel.FK_PQ_MH" FromRole="PHANQUYEN" ToRole="MANHINH" />
           <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="QlTourDuLichModel.FK_PQ_MN" FromRole="PHANQUYEN" ToRole="NHOMNGUOIDUNG" />
         </EntityType>
@@ -890,18 +853,8 @@
           <Property Name="MaNhom" Type="Int32" />
           <Property Name="MaNV" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="GhiChu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="NGUOIDUNG" Relationship="QlTourDuLichModel.FK_QLNND_ND" FromRole="QUANLINHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
+          <NavigationProperty Name="NGUOIDUNG" Relationship="QlTourDuLichModel.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" FromRole="QUANLINHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
           <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="QlTourDuLichModel.FK_QLNND_NND" FromRole="QUANLINHOMNGUOIDUNG" ToRole="NHOMNGUOIDUNG" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TOUR">
           <Key>
@@ -920,7 +873,6 @@
           <Property Name="MaHDV" Type="Int32" />
           <Property Name="AnhDaiDien" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="SoLuongDuKhach" Type="Int32" />
-          <Property Name="GiaTour" Type="Double" />
           <NavigationProperty Name="ChiTietHopDongs" Relationship="QlTourDuLichModel.FK_ChiTietHopDong_TOUR" FromRole="TOUR" ToRole="ChiTietHopDong" />
           <NavigationProperty Name="CTPHIEUNHAP_TOUR" Relationship="QlTourDuLichModel.FK_CTPHIEUNHAP_MaTour" FromRole="TOUR" ToRole="CTPHIEUNHAP_TOUR" />
           <NavigationProperty Name="HANHTRINH" Relationship="QlTourDuLichModel.FK_TOUR_HT" FromRole="TOUR" ToRole="HANHTRINH" />
@@ -1109,7 +1061,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PQ_MH">
-          <End Role="MANHINH" Type="QlTourDuLichModel.MANHINH" Multiplicity="0..1" />
+          <End Role="MANHINH" Type="QlTourDuLichModel.MANHINH" Multiplicity="1" />
           <End Role="PHANQUYEN" Type="QlTourDuLichModel.PHANQUYEN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MANHINH">
@@ -1117,18 +1069,6 @@
             </Principal>
             <Dependent Role="PHANQUYEN">
               <PropertyRef Name="MaMH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ND_NND">
-          <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.NHOMNGUOIDUNG" Multiplicity="0..1" />
-          <End Role="NGUOIDUNG" Type="QlTourDuLichModel.NGUOIDUNG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHOMNGUOIDUNG">
-              <PropertyRef Name="MaNhom" />
-            </Principal>
-            <Dependent Role="NGUOIDUNG">
-              <PropertyRef Name="MaPhgBan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1144,7 +1084,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_QLNND_ND">
+        <Association Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
           <End Role="NGUOIDUNG" Type="QlTourDuLichModel.NGUOIDUNG" Multiplicity="0..1" />
           <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1157,7 +1097,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PQ_MN">
-          <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.NHOMNGUOIDUNG" Multiplicity="0..1" />
+          <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.NHOMNGUOIDUNG" Multiplicity="1" />
           <End Role="PHANQUYEN" Type="QlTourDuLichModel.PHANQUYEN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHOMNGUOIDUNG">
@@ -1185,7 +1125,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QlTourDuLichModelStoreContainer" CdmEntityContainer="QlTourDuLichEntities1">
+        <EntityContainerMapping StorageEntityContainer="QlTourDuLichModelStoreContainer" CdmEntityContainer="QlTourDuLichEntities">
           <EntitySetMapping Name="ChiTietHopDongs">
             <EntityTypeMapping TypeName="QlTourDuLichModel.ChiTietHopDong">
               <MappingFragment StoreEntitySet="ChiTietHopDong">
@@ -1338,7 +1278,6 @@
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="MatKhauCap2" ColumnName="MatKhauCap2" />
-                <ScalarProperty Name="MaPhgBan" ColumnName="MaPhgBan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1354,7 +1293,6 @@
           <EntitySetMapping Name="PHANQUYENs">
             <EntityTypeMapping TypeName="QlTourDuLichModel.PHANQUYEN">
               <MappingFragment StoreEntitySet="PHANQUYEN">
-                <ScalarProperty Name="MaPQ" ColumnName="MaPQ" />
                 <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
                 <ScalarProperty Name="MaMH" ColumnName="MaMH" />
                 <ScalarProperty Name="CoQuyen" ColumnName="CoQuyen" />
@@ -1381,17 +1319,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QlTourDuLichModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TOURs">
             <EntityTypeMapping TypeName="QlTourDuLichModel.TOUR">
               <MappingFragment StoreEntitySet="TOUR">
@@ -1408,7 +1335,6 @@
                 <ScalarProperty Name="MaHDV" ColumnName="MaHDV" />
                 <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
                 <ScalarProperty Name="SoLuongDuKhach" ColumnName="SoLuongDuKhach" />
-                <ScalarProperty Name="GiaTour" ColumnName="GiaTour" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

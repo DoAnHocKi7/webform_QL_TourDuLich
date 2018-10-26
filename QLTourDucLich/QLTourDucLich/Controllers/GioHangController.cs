@@ -11,18 +11,19 @@ namespace QLTourDucLich.Controllers
     {
         //
         // GET: /GioHang/
-        QlTourDuLichEntities1 ql = new QlTourDuLichEntities1();
+        QlTourDuLichEntities ql = new QlTourDuLichEntities();
         public ActionResult Index()
         {
             return View();
         }
+        #region Gio Hang
         // Lấy sản phẩm hiện tại có trong giỏ hàng
-        public List<GioHang> LayGioHang()
+        public List<SPDaMua> LayGioHang()
         {
-            List<GioHang> giohang = Session["GioHang"] as List<GioHang>;
+            List<SPDaMua> giohang = Session["GioHang"] as List<SPDaMua>;
             if (giohang == null)
             {
-                giohang = new List<GioHang>();
+                giohang = new List<SPDaMua>();
                 // vì đây session là biến toàn cục nên một lần gởi tạo là đủ 
                 Session["GioHang"] = giohang;
 
@@ -34,12 +35,12 @@ namespace QLTourDucLich.Controllers
         {
             //TOUR tour = ql.TOURs.SingleOrDefault(t => t.MaTour == matour);
             // Lấy ra list giỏ hàng
-            List<GioHang> lstGioHang = LayGioHang();
+            List<SPDaMua> lstGioHang = LayGioHang();
             // Kiểm tra hàng này đã tồn tại trong list chưa
-            GioHang sanpham = lstGioHang.Find(t => t.matour == matour);
+            SPDaMua sanpham = lstGioHang.Find(t => t.matour == matour);
             if (sanpham == null)
             {
-                sanpham = new GioHang(matour);
+                sanpham = new SPDaMua(matour);
                 lstGioHang.Add(sanpham);
                 return Redirect(strURL);
 
@@ -57,8 +58,8 @@ namespace QLTourDucLich.Controllers
         {
 
            
-            List<GioHang> lstGioHang = LayGioHang();
-            GioHang sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+            List<SPDaMua> lstGioHang = LayGioHang();
+            SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
             {
                 sanpham.soluong = int.Parse(f["txtsoluong"].ToString());
@@ -73,8 +74,8 @@ namespace QLTourDucLich.Controllers
         public ActionResult XoaGioHang(string matour)
         {
 
-            List<GioHang> lstGioHang = LayGioHang();
-            GioHang sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+            List<SPDaMua> lstGioHang = LayGioHang();
+            SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
             {
                 lstGioHang.RemoveAll(t => t.matour == matour);
@@ -91,7 +92,7 @@ namespace QLTourDucLich.Controllers
                 return RedirectToAction("Index", "TrangChu");
 
             }
-            List<GioHang> lstGioHang=LayGioHang();
+            List<SPDaMua> lstGioHang=LayGioHang();
             return View(lstGioHang);
 
 
@@ -100,7 +101,7 @@ namespace QLTourDucLich.Controllers
         public float TongTien()
         {
             float thanhtien = 0;
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            List<SPDaMua> lstGioHang = Session["GioHang"] as List<SPDaMua>;
             if (lstGioHang != null)
             {
                 thanhtien = lstGioHang.Sum(t => t.thanhtien);
@@ -115,7 +116,7 @@ namespace QLTourDucLich.Controllers
         public int Soluong()
         {
             int soluong = 0;
-            List<GioHang> lstGioHang = LayGioHang();
+            List<SPDaMua> lstGioHang = LayGioHang();
             if (lstGioHang != null)
             {
                 soluong = lstGioHang.Sum(t => t.soluong);
@@ -137,6 +138,10 @@ namespace QLTourDucLich.Controllers
 
 
         }
+        #endregion
 
+        #region Dat Hang
+
+        #endregion
     }
 }

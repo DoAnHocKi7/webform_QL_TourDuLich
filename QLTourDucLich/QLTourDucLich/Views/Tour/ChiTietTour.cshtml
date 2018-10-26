@@ -30,7 +30,7 @@
 
                     @using (Html.BeginForm("ThemGioHang", "GioHang", new { @matour = @Model.MaTour, @strURL = Request.Url.ToString() }))
                     {
-                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", @Model.GiaTour)</h4>
+                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", @Model.GiaNguoiLon+@Model.GiaTreEm)</h4>
 
                         <input type="submit" class="btn btn-primary" />
                     }

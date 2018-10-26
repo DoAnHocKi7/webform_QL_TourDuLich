@@ -7,7 +7,7 @@ namespace QLTourDucLich.Models
 {
     public class DSTour
     {
-        public QlTourDuLichEntities1 ql;
+        public QlTourDuLichEntities ql;
         public string tentour { get; set; }
         public string tendiadiem { get; set; }
         public string hinhanh { get; set; }
@@ -15,7 +15,7 @@ namespace QLTourDucLich.Models
         public string anhdaidien { get; set; }
         public DSTour()
         {
-            ql = new QlTourDuLichEntities1();
+            ql = new QlTourDuLichEntities();
             var tour = (from t in ql.TOURs
                         join ht in ql.HANHTRINHs on t.MaHanhTrinh equals ht.MaHanhTrinh
                         join dd in ql.DIADIEMs on ht.NoiDen equals dd.MaDiaDiem

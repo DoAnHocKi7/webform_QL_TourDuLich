@@ -33,7 +33,6 @@ namespace QLTourDucLich.Models
         public Nullable<int> MaHDV { get; set; }
         public string AnhDaiDien { get; set; }
         public Nullable<int> SoLuongDuKhach { get; set; }
-        public Nullable<double> GiaTour { get; set; }
     
         public virtual ICollection<ChiTietHopDong> ChiTietHopDongs { get; set; }
         public virtual ICollection<CTPHIEUNHAP_TOUR> CTPHIEUNHAP_TOUR { get; set; }

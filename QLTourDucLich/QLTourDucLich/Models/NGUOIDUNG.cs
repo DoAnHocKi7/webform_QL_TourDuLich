@@ -30,9 +30,7 @@ namespace QLTourDucLich.Models
         public string SDT { get; set; }
         public Nullable<int> TrangThai { get; set; }
         public string MatKhauCap2 { get; set; }
-        public Nullable<int> MaPhgBan { get; set; }
     
-        public virtual NHOMNGUOIDUNG NHOMNGUOIDUNG { get; set; }
         public virtual ICollection<PHIEUNHAPTOUR> PHIEUNHAPTOURs { get; set; }
         public virtual ICollection<QUANLINHOMNGUOIDUNG> QUANLINHOMNGUOIDUNGs { get; set; }
     }

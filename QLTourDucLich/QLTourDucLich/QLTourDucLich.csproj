@@ -148,7 +148,6 @@
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DSTour.cs" />
-    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HANHTRINH.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -206,9 +205,7 @@
     <Compile Include="Models\QUANLINHOMNGUOIDUNG.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>QlTour.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\SPDaMua.cs" />
     <Compile Include="Models\TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
