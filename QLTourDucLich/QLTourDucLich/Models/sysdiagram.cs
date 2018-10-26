@@ -12,16 +12,12 @@ namespace QLTourDucLich.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietHopDong
+    public partial class sysdiagram
     {
-        public string MaCT_HopDong { get; set; }
-        public string MaHopDong { get; set; }
-        public string MaTour { get; set; }
-        public Nullable<int> SLTreEm { get; set; }
-        public Nullable<int> SLNguoiLon { get; set; }
-        public Nullable<decimal> ThanhTien { get; set; }
-    
-        public virtual HOPDONG HOPDONG { get; set; }
-        public virtual TOUR TOUR { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

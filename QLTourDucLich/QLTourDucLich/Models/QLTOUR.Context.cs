@@ -43,6 +43,7 @@ namespace QLTourDucLich.Models
         public DbSet<PHANQUYEN> PHANQUYENs { get; set; }
         public DbSet<PHIEUNHAPTOUR> PHIEUNHAPTOURs { get; set; }
         public DbSet<QUANLINHOMNGUOIDUNG> QUANLINHOMNGUOIDUNGs { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TOUR> TOURs { get; set; }
     }
 }

@@ -54,23 +54,23 @@ namespace QLTourDucLich.Controllers
         }
 
         // Cập nhập số lượng giỏ hàng
-        public ActionResult CapNhapGioHang(string matour, FormCollection f)
-        {
+        //public ActionResult CapNhapGioHang(string matour, FormCollection f)
+        //{
 
            
-            List<SPDaMua> lstGioHang = LayGioHang();
-            SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
-            if (sanpham != null)
-            {
-                sanpham.soluong = int.Parse(f["txtsoluong"].ToString());
+        //    List<SPDaMua> lstGioHang = LayGioHang();
+        //    SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+        //    if (sanpham != null)
+        //    {
+        //        sanpham.soluong = int.Parse(f["txtsoluong"].ToString());
 
-            }
+        //    }
 
-            return RedirectToAction("GioHang");
+        //    return RedirectToAction("GioHang");
 
 
 
-        }
+        //}
         public ActionResult XoaGioHang(string matour)
         {
 
@@ -88,7 +88,7 @@ namespace QLTourDucLich.Controllers
         {
             if (Session["GioHang"] == null)
             {
-                //vẫn ở lại trang hiện tại 
+                //nếu sản phẩm không có gì chuyển hướng đến index trang chủ 
                 return RedirectToAction("Index", "TrangChu");
 
             }

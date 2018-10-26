@@ -206,6 +206,9 @@
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SPDaMua.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>QlTour.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -756,7 +759,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_layout.cshtml" />
     <Content Include="Views\TrangChu\Index.cshtml" />
     <Content Include="Views\Tour\HienThiTour.cshtml" />

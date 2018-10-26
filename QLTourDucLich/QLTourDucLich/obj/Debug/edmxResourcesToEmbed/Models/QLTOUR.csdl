@@ -19,6 +19,7 @@
     <EntitySet Name="PHANQUYENs" EntityType="QlTourDuLichModel.PHANQUYEN" />
     <EntitySet Name="PHIEUNHAPTOURs" EntityType="QlTourDuLichModel.PHIEUNHAPTOUR" />
     <EntitySet Name="QUANLINHOMNGUOIDUNGs" EntityType="QlTourDuLichModel.QUANLINHOMNGUOIDUNG" />
+    <EntitySet Name="sysdiagrams" EntityType="QlTourDuLichModel.sysdiagram" />
     <EntitySet Name="TOURs" EntityType="QlTourDuLichModel.TOUR" />
     <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="QlTourDuLichModel.FK_ChiTietHopDong_HOPDONG">
       <End Role="HOPDONG" EntitySet="HOPDONGs" />
@@ -108,7 +109,8 @@
     <Property Name="MaCT_HopDong" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="MaHopDong" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="MaTour" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="SLTreEm" Type="Int32" />
+    <Property Name="SLNguoiLon" Type="Int32" />
     <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
     <NavigationProperty Name="HOPDONG" Relationship="QlTourDuLichModel.FK_ChiTietHopDong_HOPDONG" FromRole="ChiTietHopDong" ToRole="HOPDONG" />
     <NavigationProperty Name="TOUR" Relationship="QlTourDuLichModel.FK_ChiTietHopDong_TOUR" FromRole="ChiTietHopDong" ToRole="TOUR" />
@@ -117,9 +119,10 @@
     <Key>
       <PropertyRef Name="Ma_CTPNhap" />
     </Key>
+    <Property Name="SLTreEm" Type="Int32" />
     <Property Name="Ma_CTPNhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MaTour" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="SLNguoiLon" Type="Int32" />
     <Property Name="MaPNhap" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="PHIEUNHAPTOUR" Relationship="QlTourDuLichModel.FK_CTPHIEUNHAP_MaPN" FromRole="CTPHIEUNHAP_TOUR" ToRole="PHIEUNHAPTOUR" />
     <NavigationProperty Name="TOUR" Relationship="QlTourDuLichModel.FK_CTPHIEUNHAP_MaTour" FromRole="CTPHIEUNHAP_TOUR" ToRole="TOUR" />
@@ -162,8 +165,6 @@
     <Property Name="MaHD" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="MaKH" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="ThoiGianDat" Type="DateTime" Precision="3" />
-    <Property Name="SoNguoiLon" Type="Int32" />
-    <Property Name="SoTreEm" Type="Int32" />
     <Property Name="TinhTrang" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="GhiChu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" />
@@ -310,6 +311,16 @@
     <Property Name="GhiChu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="NGUOIDUNG" Relationship="QlTourDuLichModel.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" FromRole="QUANLINHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
     <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="QlTourDuLichModel.FK_QLNND_NND" FromRole="QUANLINHOMNGUOIDUNG" ToRole="NHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TOUR">
     <Key>
