@@ -3,7 +3,7 @@
 
 @foreach (var item in Model)
 {
-    <a href='#'>
+    <a href='@Url.Action("ChiTietTour","Tour",new {@matour=item.MaTour})'>
         <div class='col-sm-4 col-md-3'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>

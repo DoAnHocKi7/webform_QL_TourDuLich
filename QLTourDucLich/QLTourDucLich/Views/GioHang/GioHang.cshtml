@@ -1,0 +1,70 @@
+﻿@using QLTourDucLich.Models
+@model List<SPDaMua>
+<link href="~/Content/GioHang.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+
+    <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Mã Tour</th>
+        <th>Tên Tour</th>
+        <th>Đơn giá</th>
+        <th>Số Lượng</th>
+        <th>Thành Tiền</th>
+      </tr>
+    </thead>
+      @foreach (var item in Model)
+        {
+           <tbody>
+              
+                  <tr>
+                    <td>  <img  src="@Url.Content("~/Images/" + @item.hinhanh)"  width="100" height="80" ></td>
+                    <td> @item.matour</td>
+                    <td>@item.tentour</td>
+                    <td> @String.Format("{0:0,0 VNĐ}", @item.dongia)</td>
+                    <td>  
+                        @*Chỉnh Sữa Gio Hàng *@
+                         @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { matour=item.matour }))
+                        {
+                              <input name="txtsoluong"  class="soluong" value="@item.soluong" /> 
+                             <button type="submit"><img src="~/Images/floppy-512.png" width="20" height="20"  /> </button>
+                        }
+                    </td>
+                        
+                         
+                      @*Xóa Gio Hàng *@
+                    <td style="color:orange">  @String.Format("{0:0,0 VNĐ}", @item.thanhtien)
+                        <a href="@Url.Action("XoaGioHang", "GioHang", new { @matour = item.matour })">
+                            <img src="~/Images/010_trash-2-512.png" style="margin-left:20px" width="20" height="20"  />
+                        </a>
+
+                       
+                  
+                    </td>
+               
+              
+                  </tr>
+        
+        </tbody>
+
+      }
+
+  </table>
+  </div>
+
+
+    </div>
+
+    </div>
+
+
+
+  

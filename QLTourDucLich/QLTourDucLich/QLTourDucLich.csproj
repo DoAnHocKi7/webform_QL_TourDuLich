@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
@@ -135,82 +136,85 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTietHopDong.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CTPHIEUNHAP_TOUR.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DIADANH.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DIADIEM.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DSTour.cs" />
     <Compile Include="Models\HANHTRINH.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HOPDONG.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HUONGDANVIEN.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHACHHANG.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHACHSAN.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAIKHACHHANG.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAIKHACHSAN.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAITOUR.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MANHINH.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NGUOIDUNG.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NHOMNGUOIDUNG.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PHANQUYEN.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PHIEUNHAPTOUR.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLTOUR.Context.cs">
+    <Compile Include="Models\QlTour.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLTOUR.Context.tt</DependentUpon>
+      <DependentUpon>QlTour.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLTOUR.cs">
+    <Compile Include="Models\QlTour.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLTOUR.Designer.cs">
+    <Compile Include="Models\QlTour.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLTOUR.edmx</DependentUpon>
+      <DependentUpon>QlTour.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\QUANLINHOMNGUOIDUNG.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SPDaMua.cs" />
     <Compile Include="Models\TOUR.cs">
-      <DependentUpon>QLTOUR.tt</DependentUpon>
+      <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ChiTietTour.css" />
     <Content Include="Content\css_layout.css" />
+    <Content Include="Content\GioHang.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -267,16 +271,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="Models\QLTOUR.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLTOUR.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Content Include="Images\010_trash-2-512.png" />
+    <Content Include="Images\floppy-512.png" />
     <Content Include="Images\halong.jpg" />
     <Content Include="Images\hue.jpg" />
     <Content Include="Images\mytour.PNG" />
     <Content Include="Images\phanhoi.png" />
     <Content Include="Images\phuquoc.jpg" />
     <Content Include="Images\sapa.jpg" />
+    <Content Include="Images\shopping-512.png" />
     <Content Include="Images\thongbao.png" />
     <Content Include="Libary\lib\atooltip.jquery.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\.gitattributes" />
@@ -572,24 +575,10 @@
     <Content Include="Libary\lib\bootstrap-3.3.7\package.js" />
     <Content Include="Libary\lib\cufon-yui.js" />
     <Content Include="Libary\lib\jquery-1.5.2.js" />
-    <Content Include="Libary\lib\jquery-3.3.1.js" />
     <Content Include="Libary\lib\jquery.jqtransform.js" />
     <Content Include="Libary\lib\jquery.nivo.slider.pack.js" />
     <Content Include="Libary\lib\jquery.validate.min.js" />
     <Content Include="Libary\lib\tab_control.js" />
-    <Content Include="Models\QLTOUR.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLTOUR.edmx</DependentUpon>
-      <LastGenOutput>QLTOUR.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\QLTOUR.edmx.diagram">
-      <DependentUpon>QLTOUR.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\QLTOUR.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLTOUR.edmx</DependentUpon>
-      <LastGenOutput>QLTOUR.cs</LastGenOutput>
-    </Content>
     <Content Include="Libary\lib\.vscode\launch.json" />
     <Content Include="Libary\lib\bootstrap-3.3.7\.editorconfig" />
     <Content Include="Libary\lib\bootstrap-3.3.7\.hound.yml" />
@@ -723,9 +712,30 @@
     <Content Include="Libary\lib\bootstrap-3.3.7\package.json" />
     <Content Include="Libary\lib\bootstrap-3.3.7\README.md" />
     <Content Include="Libary\lib\bootstrap-3.3.7\_config.yml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <EntityDeploy Include="Models\QlTour.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QlTour.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QlTour.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QlTour.edmx</DependentUpon>
+      <LastGenOutput>QlTour.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QlTour.edmx.diagram">
+      <DependentUpon>QlTour.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\QlTour.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QlTour.edmx</DependentUpon>
+      <LastGenOutput>QlTour.cs</LastGenOutput>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
@@ -751,6 +761,9 @@
     <Content Include="Views\TrangChu\Index.cshtml" />
     <Content Include="Views\Tour\HienThiTour.cshtml" />
     <Content Include="Views\NguoiDung\NguoiDung.cshtml" />
+    <Content Include="Views\Tour\ChiTietTour.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

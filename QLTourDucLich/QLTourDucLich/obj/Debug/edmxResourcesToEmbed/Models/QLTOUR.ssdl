@@ -60,10 +60,6 @@
       <End Role="LOAIKHACHSAN" EntitySet="LOAIKHACHSAN" />
       <End Role="KHACHSAN" EntitySet="KHACHSAN" />
     </AssociationSet>
-    <AssociationSet Name="FK_ND_NND" Association="QlTourDuLichModel.Store.FK_ND_NND">
-      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
-      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-    </AssociationSet>
     <AssociationSet Name="FK_PNT_MANV" Association="QlTourDuLichModel.Store.FK_PNT_MANV">
       <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
       <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOUR" />
@@ -76,12 +72,12 @@
       <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
       <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
     </AssociationSet>
-    <AssociationSet Name="FK_QLNND_ND" Association="QlTourDuLichModel.Store.FK_QLNND_ND">
-      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-      <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
-    </AssociationSet>
     <AssociationSet Name="FK_QLNND_NND" Association="QlTourDuLichModel.Store.FK_QLNND_NND">
       <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+      <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" Association="QlTourDuLichModel.Store.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
       <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
     </AssociationSet>
     <AssociationSet Name="FK_TOUR_HDV" Association="QlTourDuLichModel.Store.FK_TOUR_HDV">
@@ -245,7 +241,6 @@
     <Property Name="SDT" Type="varchar" MaxLength="11" />
     <Property Name="TrangThai" Type="int" />
     <Property Name="MatKhauCap2" Type="nvarchar" MaxLength="50" />
-    <Property Name="MaPhgBan" Type="int" />
   </EntityType>
   <EntityType Name="NHOMNGUOIDUNG">
     <Key>
@@ -257,12 +252,12 @@
   </EntityType>
   <EntityType Name="PHANQUYEN">
     <Key>
-      <PropertyRef Name="MaPQ" />
+      <PropertyRef Name="MaNhom" />
+      <PropertyRef Name="MaMH" />
     </Key>
-    <Property Name="MaPQ" Type="varchar" Nullable="false" MaxLength="10" />
-    <Property Name="MaNhom" Type="int" />
-    <Property Name="MaMH" Type="int" />
-    <Property Name="CoQuyen" Type="int" />
+    <Property Name="MaNhom" Type="int" Nullable="false" />
+    <Property Name="MaMH" Type="int" Nullable="false" />
+    <Property Name="CoQuyen" Type="bit" />
   </EntityType>
   <EntityType Name="PHIEUNHAPTOUR">
     <Key>
@@ -420,18 +415,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ND_NND">
-    <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="0..1" />
-    <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NHOMNGUOIDUNG">
-        <PropertyRef Name="MaNhom" />
-      </Principal>
-      <Dependent Role="NGUOIDUNG">
-        <PropertyRef Name="MaPhgBan" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PNT_MANV">
     <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
     <End Role="PHIEUNHAPTOUR" Type="QlTourDuLichModel.Store.PHIEUNHAPTOUR" Multiplicity="*" />
@@ -445,7 +428,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PQ_MH">
-    <End Role="MANHINH" Type="QlTourDuLichModel.Store.MANHINH" Multiplicity="0..1" />
+    <End Role="MANHINH" Type="QlTourDuLichModel.Store.MANHINH" Multiplicity="1" />
     <End Role="PHANQUYEN" Type="QlTourDuLichModel.Store.PHANQUYEN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MANHINH">
@@ -457,7 +440,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PQ_MN">
-    <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="0..1" />
+    <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="1" />
     <End Role="PHANQUYEN" Type="QlTourDuLichModel.Store.PHANQUYEN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NHOMNGUOIDUNG">
@@ -465,18 +448,6 @@
       </Principal>
       <Dependent Role="PHANQUYEN">
         <PropertyRef Name="MaNhom" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_QLNND_ND">
-    <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
-    <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NGUOIDUNG">
-        <PropertyRef Name="MaNV" />
-      </Principal>
-      <Dependent Role="QUANLINHOMNGUOIDUNG">
-        <PropertyRef Name="MaNV" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -489,6 +460,18 @@
       </Principal>
       <Dependent Role="QUANLINHOMNGUOIDUNG">
         <PropertyRef Name="MaNhom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
+    <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
+    <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOIDUNG">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="QUANLINHOMNGUOIDUNG">
+        <PropertyRef Name="MaNV" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

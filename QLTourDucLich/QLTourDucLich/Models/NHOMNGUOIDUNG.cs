@@ -16,7 +16,6 @@ namespace QLTourDucLich.Models
     {
         public NHOMNGUOIDUNG()
         {
-            this.NGUOIDUNGs = new HashSet<NGUOIDUNG>();
             this.PHANQUYENs = new HashSet<PHANQUYEN>();
             this.QUANLINHOMNGUOIDUNGs = new HashSet<QUANLINHOMNGUOIDUNG>();
         }
@@ -25,7 +24,6 @@ namespace QLTourDucLich.Models
         public string TenNhom { get; set; }
         public string GhiChu { get; set; }
     
-        public virtual ICollection<NGUOIDUNG> NGUOIDUNGs { get; set; }
         public virtual ICollection<PHANQUYEN> PHANQUYENs { get; set; }
         public virtual ICollection<QUANLINHOMNGUOIDUNG> QUANLINHOMNGUOIDUNGs { get; set; }
     }

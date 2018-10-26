@@ -7,27 +7,32 @@ namespace QLTourDucLich.Models
 {
     public class DSTour
     {
-       public QlTourDuLichEntities ql;
-        public string TenTour { get; set; }
-        public string TenDiaDiem { get; set; }
-        public string HinhAnh { get; set; }
-        public  DSTour()
+        public QlTourDuLichEntities ql;
+        public string tentour { get; set; }
+        public string tendiadiem { get; set; }
+        public string hinhanh { get; set; }
+        public string matour { get; set; }
+        public string anhdaidien { get; set; }
+        public DSTour()
         {
             ql = new QlTourDuLichEntities();
             var tour = (from t in ql.TOURs
                         join ht in ql.HANHTRINHs on t.MaHanhTrinh equals ht.MaHanhTrinh
                         join dd in ql.DIADIEMs on ht.NoiDen equals dd.MaDiaDiem
-                        //   where t.LOAITOUR=="1"
+               
 
                         select new
                         {
-                            TenTour = t.TenTour,
-                            HinhAnh = t.AnhDaiDien,
-                            TenDiaDiem = dd.TenDiaDiem
-                        }).Take(1);
-            
+
+                            tentour = t.TenTour,
+                            hinhanh = t.AnhDaiDien,
+                            tendiadiem = dd.TenDiaDiem
+                            
+                        }).Take(4);
 
 
+
+            // }
         }
     }
 }

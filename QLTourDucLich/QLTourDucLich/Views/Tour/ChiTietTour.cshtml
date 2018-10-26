@@ -1,0 +1,62 @@
+﻿@using QLTourDucLich.Models;
+@model TOUR
+<link href="~/Content/ChiTietTour.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "ChiTietTour";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-sm-12">
+            <div class="page-header">
+                <h3 class="tittle-lg">
+                    @Model.TenTour
+                </h3>
+
+            </div>
+            <div>
+                @* url content dùng để trỏ đến thư mục *@
+                 <img  src="@Url.Content("~/Images/" + @Model.AnhDaiDien)"  width="845" height="500" >
+            </div>
+            
+            <div class="tt_tour" >
+                <div class="col-sm-12 col-md-9">
+                     <div><label>Mã Tour:</label> @Model.MaTour</div>
+                     <div><label>Ngày Khởi Hành:</label>@String.Format("{0:MM/dd/yyyy}",@Model.NgayKhoiHanh)</div>
+                     <div><label>Ngày Kết Thúc:</label> @String.Format("{0:MM/dd/yyyy}",@Model.NgayKetThuc)</div>
+                 </div>   
+                <div class="col-md-3">
+
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @matour = @Model.MaTour, @strURL = Request.Url.ToString() }))
+                    {
+                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", @Model.GiaNguoiLon+@Model.GiaTreEm)</h4>
+
+                        <input type="submit" class="btn btn-primary" />
+                    }
+                </div>
+            </div>
+
+                   <div class="box">
+                    <div class="box-header" >
+                        <div class="box-title">
+                           <label> GÍA BAO GỒM:</label> <i class="fa fa-chevron-up pull-right"></i>
+                        </div>
+                    </div>
+                    <div class="box-body" style="display: block;">
+                        <p><span style="text-decoration: underline;"><strong>DỊCH VỤ BAO GỒM:</strong></span><br><br>•&nbsp; Xe đưa đón tại khách sạn.<br>•&nbsp; Hướng dẫn viên thuyết minh trên xe và phiên dịch tiếng Anh trong đêm hội (với đoàn khách nước ngoài)<br>•&nbsp; Rượu cần và thịt nướng.<br><br><span style="text-decoration: underline;"><strong>KHÔNG BAO GỒM:</strong></span><br><br>•&nbsp; Các chi phí cá nhân.<br>•&nbsp; Thuế giá trị gia tăng (VAT).</p>
+                    </div>
+                </div>
+   
+         
+         
+           
+        </div>
+        <div class="col-md-3 col-sm-0">
+            fdfd
+        </div>
+       
+
+
+    </div>
+</div>

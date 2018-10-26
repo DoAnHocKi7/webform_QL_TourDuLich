@@ -14,10 +14,9 @@ namespace QLTourDucLich.Models
     
     public partial class PHANQUYEN
     {
-        public string MaPQ { get; set; }
-        public Nullable<int> MaNhom { get; set; }
-        public Nullable<int> MaMH { get; set; }
-        public Nullable<int> CoQuyen { get; set; }
+        public int MaNhom { get; set; }
+        public int MaMH { get; set; }
+        public Nullable<bool> CoQuyen { get; set; }
     
         public virtual MANHINH MANHINH { get; set; }
         public virtual NHOMNGUOIDUNG NHOMNGUOIDUNG { get; set; }
