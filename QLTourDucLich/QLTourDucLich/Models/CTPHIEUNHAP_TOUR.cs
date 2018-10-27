@@ -14,9 +14,10 @@ namespace QLTourDucLich.Models
     
     public partial class CTPHIEUNHAP_TOUR
     {
+        public Nullable<int> SLTreEm { get; set; }
         public int Ma_CTPNhap { get; set; }
         public string MaTour { get; set; }
-        public Nullable<int> SoLuong { get; set; }
+        public Nullable<int> SLNguoiLon { get; set; }
         public string MaPNhap { get; set; }
     
         public virtual PHIEUNHAPTOUR PHIEUNHAPTOUR { get; set; }

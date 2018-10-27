@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/QuanTriVien/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model QLTourDucLich.Areas.QuanTriVien.ViewModel.LoginViewModel
+
+<h2>Login</h2>
+@Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username", @name = "loginname", @type = "text", @autofocus = "" })
