@@ -1,0 +1,20 @@
+﻿.booking .box {
+    border-color:#cbd3db;
+}
+.box {
+    border:1px solid #cbd3db;
+    display:inline-block;
+    border-radius:4px;
+    width:100%;
+}
+.box-blue .box-header {
+    background:#00adef;
+    border-bottom:1px solid #cbd3db;
+}
+
+
+.box .box-body, .box .box-footer, .box .box-header {
+    padding: 13px 15px;
+}
+
+

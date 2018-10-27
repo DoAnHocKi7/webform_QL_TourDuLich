@@ -141,8 +141,47 @@ namespace QLTourDucLich.Controllers
         }
         #endregion
 
+     
         #region Dat Hang
+        public ActionResult DatHang(FormCollection f)
+        {
+            Random rd = new Random();
+            int ma=rd.Next(2000);
+       
+            List<SPDaMua> spdm = LayGioHang();
+            
+            KHACHHANG kh = new KHACHHANG();
+            kh.MaKH = ma.ToString();
+            kh.TenKH = f["customer_name"].ToString();
+            kh.SDTKH=f["customer_phone"].ToString();
+            kh.Email = f["customer_email"].ToString();
+            kh.DCKH = f["customer_address"].ToString();
+            ql.KHACHHANGs.Add(kh);
+            ql.SaveChanges();
+            HOPDONG hd = new HOPDONG();
+            hd.MaHD = rd.Next(1000).ToString();
+            hd.MaKH = kh.MaKH;
+            hd.ThoiGianDat = DateTime.Now;
+            hd.TongTien = TongTien();
+            ql.HOPDONGs.Add(hd);
+            ql.SaveChanges();
+            foreach (var item in spdm)
+            {
+                ChiTietHopDong ctHD = new ChiTietHopDong();
+                ctHD.MaCT_HopDong = rd.Next(1000).ToString();
+                ctHD.MaHopDong = hd.MaHD;
+                ctHD.MaTour = item.matour;
+                ctHD.SLNguoiLon = item.slnguoilon;
+                ctHD.SLTreEm = item.sltreem;
+                ctHD.ThanhTien = item.thanhtien;
+                ql.ChiTietHopDongs.Add(ctHD);
+                
 
+            }
+            ql.SaveChanges();
+
+            return View();
+        }
         #endregion
     }
 }

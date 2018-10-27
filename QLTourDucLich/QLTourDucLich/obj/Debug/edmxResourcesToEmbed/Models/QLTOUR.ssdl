@@ -186,6 +186,7 @@
     <Property Name="DCKH" Type="nvarchar" MaxLength="100" />
     <Property Name="MaLoaiKH" Type="varchar" MaxLength="10" />
     <Property Name="TenDoanhNghiep" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="KHACHSAN">
     <Key>

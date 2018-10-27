@@ -201,6 +201,7 @@
     <Property Name="DCKH" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="MaLoaiKH" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="TenDoanhNghiep" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="HOPDONGs" Relationship="QlTourDuLichModel.FK_HD_MaKH" FromRole="KHACHHANG" ToRole="HOPDONG" />
     <NavigationProperty Name="LOAIKHACHHANG" Relationship="QlTourDuLichModel.PK_KH_LOAI" FromRole="KHACHHANG" ToRole="LOAIKHACHHANG" />
   </EntityType>

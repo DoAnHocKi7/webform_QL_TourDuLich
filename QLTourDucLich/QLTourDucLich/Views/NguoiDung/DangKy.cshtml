@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1 mg-t-40 mg-bt-40">
+                <!-- NEW -->
+                <div class="box">
+              
+                        <form method="POST" action="">
+                            
+                            <h3 class="title"><b>đăng ký bằng email</b></h3>
+                            <div class="form-group">
+                                <label>
+                                    Email<small class="red">*</small>
+                                </label>
+                                <input type="text" class="ip-email form-control" name="email" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    Mật khẩu<small class="red">*</small>
+                                </label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    Xác nhận lại mật khẩu<small class="red">*</small>
+                                </label>
+                                <input type="password" class="form-control" name="re_password">
+                            </div>
+                            <div class="form-group text-center mg-bt-20">
+                                <p class="help-block" style="font-size: 10px">Chọn đăng ký là bạn đã đồng ý với các <a href="/news/135157-dieu-kien-va-dieu-khoan.html">Điều khoản dịch vụ</a> của Mytour.vn</p>
+                                <button type="submit" class="events-tracking btn btn-block-center btn-blue" data-category="Sign up" data-action="Signup" data-label="">Đăng ký</button>
+                            </div>
+                            <input type="hidden" name="_token" value="8AIROlzSxJxszF5FsBNC46HWXJKti88UmOersmko">
+                            <input type="hidden" id="referer_link" name="referer_link" value="https://mytour.vn/">
+                        </form>
+                        
+                        <div class="title-lg mg-bt-20" style="padding-bottom: 0">
+                        </div>
+
+                        <div class="sign-up-footer">
+                            <p><b>Đã có tài khoản Mytour.vn?</b></p>
+                            <a class="btn btn-login btn-show-login" href="javascript:;" mytour-ext="ajax-modal" modal-name="modal-login">Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-5 col-md-offset-1 mg-t-40 mg-bt-40">
+                                <div class="box benefit">
+                    <p class="special"><b>Lợi ích khi tạo tài khoản</b></p>
+                    <p><i class="fa fa-check-circle green-dark-1"></i>Đặt phòng với giá giảm đến 40%.</p>
+                    <p><i class="fa fa-check-circle green-dark-1"></i>Tích lũy điểm thưởng Vpoint với mỗi đơn phòng.</p>
+                    <p><i class="fa fa-check-circle green-dark-1"></i>Nhận ưu đãi đặc biệt chỉ dành cho thành viên.</p>
+
+                </div>
+            </div>
+
+    </div>
+
+
+
+
+</div>

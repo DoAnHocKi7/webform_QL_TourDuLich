@@ -91,6 +91,7 @@
           <ScalarProperty Name="DCKH" ColumnName="DCKH" />
           <ScalarProperty Name="MaLoaiKH" ColumnName="MaLoaiKH" />
           <ScalarProperty Name="TenDoanhNghiep" ColumnName="TenDoanhNghiep" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

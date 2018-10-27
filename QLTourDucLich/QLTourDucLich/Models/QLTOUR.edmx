@@ -191,6 +191,7 @@
           <Property Name="DCKH" Type="nvarchar" MaxLength="100" />
           <Property Name="MaLoaiKH" Type="varchar" MaxLength="10" />
           <Property Name="TenDoanhNghiep" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="KHACHSAN">
           <Key>
@@ -757,6 +758,7 @@
           <Property Name="DCKH" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="MaLoaiKH" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="TenDoanhNghiep" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="HOPDONGs" Relationship="QlTourDuLichModel.FK_HD_MaKH" FromRole="KHACHHANG" ToRole="HOPDONG" />
           <NavigationProperty Name="LOAIKHACHHANG" Relationship="QlTourDuLichModel.PK_KH_LOAI" FromRole="KHACHHANG" ToRole="LOAIKHACHHANG" />
         </EntityType>
@@ -1238,6 +1240,7 @@
                 <ScalarProperty Name="DCKH" ColumnName="DCKH" />
                 <ScalarProperty Name="MaLoaiKH" ColumnName="MaLoaiKH" />
                 <ScalarProperty Name="TenDoanhNghiep" ColumnName="TenDoanhNghiep" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
