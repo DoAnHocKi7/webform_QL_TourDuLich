@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QLTourDucLich.ViewModel
 {
-    public   class KHACHHANGViewModel:KHACHHANG
+    public   class KHACHHANGViewModel
     {
         public string MaKH { get; set; }
 
