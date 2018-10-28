@@ -27,16 +27,24 @@ namespace QLTourDucLich.Controllers
         public ActionResult DangKy(KHACHHANGViewModel KH)
         {
             Random rd = new Random();
+            KH.MaKH = rd.Next(1000).ToString();
             if (ModelState.IsValid)
             {
-                KH = new KHACHHANGViewModel();
-                KH.MaKH = rd.Next(1000).ToString();
 
-                ql.KHACHHANGs.Add(KH);
-                ql.SaveChanges();
+
+                try
+                {
+                    ql.KHACHHANGs.Add(KH);
+                    ql.SaveChanges();
+                }
+                catch
+                {
+
+                }
+             
 
             }
-
+            
             return View();
         }
 

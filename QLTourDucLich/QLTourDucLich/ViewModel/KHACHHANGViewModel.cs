@@ -9,6 +9,8 @@ namespace QLTourDucLich.ViewModel
 {
     public   class KHACHHANGViewModel:KHACHHANG
     {
+        public string MaKH { get; set; }
+
         [Display(Name="Tên Khách Hàng:")]
         [Required(ErrorMessage="{0} Không được để trống")]
         public string TenKH { get; set; }
@@ -19,6 +21,7 @@ namespace QLTourDucLich.ViewModel
         [Required(ErrorMessage = "{0} Không được để trống")]
         [DisplayFormat(DataFormatString="{0:dd/MM/yyyy}")]
         public DateTime NgaySinh { get; set; }
+
         [Display(Name = "Email:")]
         [Required(ErrorMessage = "{0} Không được để trống")]
         [DataType(DataType.EmailAddress)]
