@@ -214,10 +214,12 @@
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\KHACHHANGViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ChiTietTour.css" />
     <Content Include="Content\css_layout.css" />
+    <Content Include="Content\DangKy.css" />
     <Content Include="Content\GioHang.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
