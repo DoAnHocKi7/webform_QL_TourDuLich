@@ -279,11 +279,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\010_trash-2-512.png" />
+    <Content Include="Images\cantho.jpg" />
+    <Content Include="Images\danang.jpg" />
     <Content Include="Images\floppy-512.png" />
     <Content Include="Images\halong.jpg" />
     <Content Include="Images\hue.jpg" />
+    <Content Include="Images\langchai.jpg" />
     <Content Include="Images\mytour.PNG" />
     <Content Include="Images\phanhoi.png" />
+    <Content Include="Images\phanthiet.jpg" />
     <Content Include="Images\phuquoc.jpg" />
     <Content Include="Images\sapa.jpg" />
     <Content Include="Images\shopping-512.png" />
