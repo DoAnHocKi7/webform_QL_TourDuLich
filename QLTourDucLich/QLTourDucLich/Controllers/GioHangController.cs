@@ -87,13 +87,12 @@ namespace QLTourDucLich.Controllers
         }
         public ActionResult GioHang()
         {
-            if (Session["GioHang"] == null)
-            {
-                //nếu sản phẩm không có gì chuyển hướng đến index trang chủ 
-                return RedirectToAction("Index", "TrangChu");
-
-            }
+            
             List<SPDaMua> lstGioHang=LayGioHang();
+            if (lstGioHang == null)
+            {
+                RedirectToAction("Index", "TrangChu");
+            }
             return View(lstGioHang);
 
 
@@ -147,6 +146,8 @@ namespace QLTourDucLich.Controllers
         {
             Random rd = new Random();
             int ma=rd.Next(2000);
+
+          
        
             List<SPDaMua> spdm = LayGioHang();
             

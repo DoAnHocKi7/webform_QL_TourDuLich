@@ -8,7 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>_layout</title>
-        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
     <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.css" />
@@ -98,11 +98,21 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
-                                    <a href="@Url.Action("DangKy","NguoiDung")" class="dropdown-item">Đăng ký</a><br>
-                                    <a href="@Url.Action("DangNhap","NguoiDung")"  class="dropdown-item">Đăng nhập</a>
-                                    <hr>
-                                    <hr>
-                                    <a class="dropdown-item" href="#">Khách sạn yêu thích</a>
+                                    @if (Session["TaiKhoan"] == null)
+                                    {
+                                        <a href="@Url.Action("DangKy", "NguoiDung")" class="dropdown-item">Đăng ký</a><br>
+                                        <a href="@Url.Action("DangNhap", "NguoiDung")"  class="dropdown-item">Đăng nhập</a>
+                                        <hr>
+                                        <hr>
+                                        <a class="dropdown-item" href="#">Khách sạn yêu thích</a>
+                                    }
+                                    else
+                                    {
+                                        <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6> 
+                                       <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
+                                    }
+
+
                                 </div>
                             </div>
                         </li>
@@ -239,12 +249,12 @@
             var sl = $("#slnguoilon").text();
             if (sl < 0)
                 alert("Số lượng nhập không được bé hơn một");
-            $("#slnguoilon").text= 1;
+            $("#slnguoilon").text = 1;
 
         }
         );
 
 
-</script>
+    </script>
 </body>
 </html>

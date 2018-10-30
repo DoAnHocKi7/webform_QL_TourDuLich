@@ -49,6 +49,10 @@ namespace QLTourDucLich.Controllers
                     };
                   ql.KHACHHANGs.Add(khachhang);
                   ql.SaveChanges();
+                  ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Ký Thành  Công";
+                  Session["TaiKhoan"] = khachhang.TenKH;
+                  return RedirectToAction("Index", "TrangChu");
+
                 }
                 catch
                 {
@@ -78,9 +82,13 @@ namespace QLTourDucLich.Controllers
             if (kh != null)
             {
                 ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Nhập Thành Công";
-                Session["TaiKhoan"] = kh;
+                Session["TaiKhoan"] = kh.TenKH;
                 return RedirectToAction("Index", "TrangChu");
 
+            }
+            else
+            {
+                ViewBag.ThongBao = "Đăng Nhập Thất Bại";
             }
             return View();
 
@@ -91,6 +99,11 @@ namespace QLTourDucLich.Controllers
 
 
         #endregion
+        public ActionResult DangXuat()
+        {
+            Session["TaiKhoan"] = null;
+            return RedirectToAction("Index", "TrangChu");
+        }  
 
 
     }
