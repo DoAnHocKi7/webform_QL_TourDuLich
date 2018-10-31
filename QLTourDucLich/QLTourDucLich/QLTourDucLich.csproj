@@ -135,8 +135,10 @@
     <Compile Include="Areas\QuanTriVien\Controllers\AdminController.cs" />
     <Compile Include="Areas\QuanTriVien\QuanTriVienAreaRegistration.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\DiaDiemQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\KhachSanQueries.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\TourQueries.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\DiaDiemViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\KhachSanViewModel.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\LoginViewModel.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\TourViewModel.cs" />
     <Compile Include="Constants\MessegeConstants.cs" />

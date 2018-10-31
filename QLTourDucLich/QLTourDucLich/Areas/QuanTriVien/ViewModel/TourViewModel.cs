@@ -104,9 +104,13 @@ namespace QLTourDucLich.Areas.QuanTriVien.ViewModel
 
     public class ChinhSuaTourViewModel
     {
+        [DisplayName("Khách sạn")]
+        public string KhachSan { get; set; }
+
         public TourViewModel Tour { get; set; }
 
         public List<SelectListItem> DiemDis { get; set; } = DiaDiemQueries.LoadDiaDiem();
 
+        public List<SelectListItem> KhachSans { get; set; } = KhachSanQueries.LayDsKhachSan();
     }
 }

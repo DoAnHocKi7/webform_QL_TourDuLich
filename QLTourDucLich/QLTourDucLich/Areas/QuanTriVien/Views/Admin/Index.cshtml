@@ -18,10 +18,19 @@
         {
             <table>
                 <tr>
-                    <td>@Html.LabelFor(m => m.Tour.MaTour)</td>
+                    <td>@Html.LabelFor(m => m.Tour.LoaiTour)</td>
                     <td>
-                        @Html.TextBoxFor(m => m.Tour.MaTour, new { @class = "form-control", @name = "MaTour", @type = "text", @autofocus = "" })
-                        @Html.ValidationMessageFor(model => model.Tour.MaTour, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Tour.LoaiTour, new { @class = "form-control", @name = "MaTour", @type = "text", @autofocus = "" })
+                        @Html.ValidationMessageFor(model => model.Tour.LoaiTour, "", new { @class = "text-danger" })
+                    </td>
+                    <td>@Html.LabelFor(m => m.Tour.TenTour)</td>
+                    <td>@Html.TextBoxFor(m => m.Tour.TenTour)</td>
+                    <td>@Html.LabelFor(m => m.Tour.DiemDi)</td>
+                    <td>@Html.DropDownListFor(model => model.Tour.DiemDi, new SelectList(Model.DiemDis, "Value", "Text"), "-Select Day-")</td>
+                    <td>@Html.LabelFor(m => m.Tour.GiaNguoiLon)</td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Tour.GiaNguoiLon)
+                        @Html.ValidationMessageFor(model => model.Tour.GiaNguoiLon, "", new { @class = "text-danger" })
                     </td>
                 </tr>
 
@@ -30,13 +39,19 @@
                     <td>
                         @Html.TextBoxFor(m => m.Tour.NgayKH, new { @Value = DateTime.Now.ToShortDateString(), id = "datepicker2", @class = "form-control" })
                     </td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(m => m.Tour.DiemDi)</td>
+                    <td>@Html.LabelFor(m => m.KhachSan)</td>
+                    <td>@Html.DropDownListFor(m => m.KhachSan, new SelectList(Model.KhachSans, "value", "Text"))</td>
+                    <td>@Html.LabelFor(m => m.Tour.DiemDen)</td>
+                    <td>@Html.DropDownListFor(model => model.Tour.DiemDen, new SelectList(Model.DiemDis, "Value", "Text"), "-Select Day-")</td>
+                    <td>@Html.LabelFor(m=>m.Tour.GiaTreEm)</td>
                     <td>
-                        @Html.DropDownListFor(model => model.Tour.DiemDen, new SelectList(Model.DiemDis, "Value", "Text"), "-Select Day-")
+                        @Html.TextBoxFor(m => m.Tour.GiaTreEm)
+                        @Html.ValidationMessageFor(model => model.Tour.GiaTreEm, "", new { @class = "text-danger" })
                     </td>
+
                 </tr>
+                    
+
             </table>
             <input name="them" value="Thêm" type="submit" />
 
