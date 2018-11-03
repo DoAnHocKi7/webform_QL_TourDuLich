@@ -62,7 +62,16 @@
       }
      
   </table>
-       <a href="@Url.Action("NhapThongTin","ThongTinKhachHang")"><div style="text-align:center"> <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div> </a>
+        @if(Session["GioHang"]!=null && Session["Login"]==null)
+        {
+
+                <a href="@Url.Action("NhapThongTin","ThongTinKhachHang")"><div style="text-align:center"> <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div> </a>
+        }
+       @if (Session["GioHang"] != null && Session["Login"] != null)
+       {
+           <a href="@Url.Action("DaCoThongTin","GioHang")"><div style="text-align:center"> <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div> </a>
+       }
+        
   </div>
 
 

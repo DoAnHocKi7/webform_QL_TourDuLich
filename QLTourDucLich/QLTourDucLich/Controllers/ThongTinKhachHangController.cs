@@ -17,16 +17,14 @@ namespace QLTourDucLich.Controllers
         }
         public ActionResult NhapThongTin()
         {
-            if (Session["GioHang"] == null)
+            if(Session["GioHang"]==null)
             {
-                //nếu sản phẩm không có gì chuyển hướng đến index trang chủ 
-                return RedirectToAction("Index", "TrangChu");
+                RedirectToAction("Index", "TrangChu");
 
             }
-            else
-            {
+           
                 return View();
-            }
+            
           
         }
 

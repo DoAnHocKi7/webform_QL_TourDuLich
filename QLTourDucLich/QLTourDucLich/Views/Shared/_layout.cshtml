@@ -93,28 +93,38 @@
                             </a>
                         </li>
                         <li>
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">TÀI KHOẢN<span class="caret"> </span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
+                       
+                                    <div class="dropdown">
+                                
+                               
+                               
                                     @if (Session["TaiKhoan"] == null)
                                     {
+                                        <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">TÀI KHOẢN<span class="caret"> </span>
+                                         </a>
+                                        <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
                                         <a href="@Url.Action("DangKy", "NguoiDung")" class="dropdown-item">Đăng ký</a><br>
                                         <a href="@Url.Action("DangNhap", "NguoiDung")"  class="dropdown-item">Đăng nhập</a>
                                         <hr>
                                         <hr>
                                         <a class="dropdown-item" href="#">Khách sạn yêu thích</a>
+                                            </div>
                                     }
                                     else
                                     {
-                                        <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6> 
-                                       <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
+                                        <a href="#" class="dropdown-toggle" id="has_login" role="button" data-toggle="dropdown" aria-expanded="false"><img style="width:25px;height:25px" src="~/Images/account.png" /> 
+                                         </a>
+                                        <div class="dropdown-menu" aria-labelledby="has_login" id="dropdown-dn">
+                                                    <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6> 
+                                                   <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
+                                         </div>
                                     }
 
 
                                 </div>
                             </div>
+                      
+                        
                         </li>
 
                     </ul>

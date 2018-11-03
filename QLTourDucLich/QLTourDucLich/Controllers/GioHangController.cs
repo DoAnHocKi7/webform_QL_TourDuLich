@@ -20,6 +20,8 @@ namespace QLTourDucLich.Controllers
         // Lấy sản phẩm hiện tại có trong giỏ hàng
         public List<SPDaMua> LayGioHang()
         {
+            //gán bằng cái list sao đó ép kiểu session về list 
+            // ép về cái list để đếm số lượng sản phẩm trong mảng
             List<SPDaMua> giohang = Session["GioHang"] as List<SPDaMua>;
             if (giohang == null)
             {
@@ -33,23 +35,24 @@ namespace QLTourDucLich.Controllers
         // vừa vào cứ bắt sự kiện thêm vào giỏ hàng chạy trước
         public ActionResult ThemGioHang(string matour, string strURL)
         {
-            //TOUR tour = ql.TOURs.SingleOrDefault(t => t.MaTour == matour);
-            // Lấy ra list giỏ hàng
+          
             List<SPDaMua> lstGioHang = LayGioHang();
             // Kiểm tra hàng này đã tồn tại trong list chưa
             SPDaMua sanpham = lstGioHang.Find(t => t.matour == matour);
             if (sanpham == null)
             {
                 sanpham = new SPDaMua(matour);
-                lstGioHang.Add(sanpham);
-                return Redirect(strURL);
+                lstGioHang.Add(sanpham);   
+               
 
             }
             else
             {
                 Response.Write("Sản Phẩm Đã Tồn Tại Trong Giỏ Hàng");
-                return Redirect(strURL);
+               // return Redirect(strURL);
             }
+
+            return RedirectToAction("Index","TrangChu");
 
         }
 
@@ -82,18 +85,25 @@ namespace QLTourDucLich.Controllers
                 lstGioHang.RemoveAll(t => t.matour == matour);
 
             }
+            if (lstGioHang.Count == 0)
+            {
+                RedirectToAction("Index", "TrangChu");
+            }
             return RedirectToAction("GioHang");
 
         }
         public ActionResult GioHang()
         {
-            
-            List<SPDaMua> lstGioHang=LayGioHang();
-            if (lstGioHang == null)
+            if (Session["GioHang"] == null)
             {
                 RedirectToAction("Index", "TrangChu");
             }
-            return View(lstGioHang);
+           
+
+            List<SPDaMua> lstGioHang=LayGioHang();
+            
+             return View(lstGioHang);
+      
 
 
         }
@@ -125,6 +135,7 @@ namespace QLTourDucLich.Controllers
             return soluong;
 
         }
+
         // trả về số lượng trong giỏ hàng
         public ActionResult GioHangPartial()
         {
@@ -142,46 +153,110 @@ namespace QLTourDucLich.Controllers
 
      
         #region Dat Hang
+        // sử dụng được cho tất cả các hàm
+        HOPDONG hd;
         public ActionResult DatHang(FormCollection f)
         {
-            Random rd = new Random();
-            int ma=rd.Next(2000);
-
-          
-       
-            List<SPDaMua> spdm = LayGioHang();
-            
-            KHACHHANG kh = new KHACHHANG();
-            kh.MaKH = ma.ToString();
-            kh.TenKH = f["customer_name"].ToString();
-            kh.SDTKH=f["customer_phone"].ToString();
-            kh.Email = f["customer_email"].ToString();
-            kh.DCKH = f["customer_address"].ToString();
-            ql.KHACHHANGs.Add(kh);
-            ql.SaveChanges();
-            HOPDONG hd = new HOPDONG();
-            hd.MaHD = rd.Next(1000).ToString();
-            hd.MaKH = kh.MaKH;
-            hd.ThoiGianDat = DateTime.Now;
-            hd.TongTien = TongTien();
-            ql.HOPDONGs.Add(hd);
-            ql.SaveChanges();
-            foreach (var item in spdm)
+        
+            try
             {
-                ChiTietHopDong ctHD = new ChiTietHopDong();
-                ctHD.MaCT_HopDong = rd.Next(1000).ToString();
-                ctHD.MaHopDong = hd.MaHD;
-                ctHD.MaTour = item.matour;
-                ctHD.SLNguoiLon = item.slnguoilon;
-                ctHD.SLTreEm = item.sltreem;
-                ctHD.ThanhTien = item.thanhtien;
-                ql.ChiTietHopDongs.Add(ctHD);
-                
+                Random rd = new Random();
+                int ma = rd.Next(2000);
+
+                 hd = new HOPDONG();
+
+                List<SPDaMua> spdm = LayGioHang();
+                // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
+                KHACHHANG kh = new KHACHHANG();
+                kh.MaKH = ma.ToString();
+                kh.TenKH = f["customer_name"].ToString();
+                kh.SDTKH = f["customer_phone"].ToString();
+                kh.Email = f["customer_email"].ToString();
+                kh.DCKH = f["customer_address"].ToString();
+                ql.KHACHHANGs.Add(kh);
+                ql.SaveChanges();
+               
+                hd.MaHD = rd.Next(2000).ToString();
+                hd.MaKH = kh.MaKH;
+                hd.ThoiGianDat = DateTime.Now;
+                hd.TongTien = TongTien();
+                ql.HOPDONGs.Add(hd);
+                ql.SaveChanges();
+                foreach (var item in spdm)
+                {
+                    ChiTietHopDong ctHD = new ChiTietHopDong();
+                    ctHD.MaCT_HopDong = rd.Next(2000).ToString();
+                    ctHD.MaHopDong = hd.MaHD;
+                    ctHD.MaTour = item.matour;
+                    ctHD.SLNguoiLon = item.slnguoilon;
+                    ctHD.SLTreEm = item.sltreem;
+                    ctHD.ThanhTien = item.thanhtien;
+                    ql.ChiTietHopDongs.Add(ctHD);
+
+
+                }
+                ql.SaveChanges();
+               
+                spdm.Clear();
+             
+              
 
             }
-            ql.SaveChanges();
+            catch
+            {
 
-            return View();
+            }
+            return View(hd);
+        }
+
+
+        public ActionResult DaCoThongTin()
+        {
+            try
+            {
+                Random rd = new Random();
+                int ma = rd.Next(2000);
+
+                hd = new HOPDONG();
+
+                List<SPDaMua> spdm = LayGioHang();
+                // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
+                KHACHHANG kh = (KHACHHANG)Session["Login"];
+               
+
+                hd.MaHD = rd.Next(2000).ToString();
+                hd.MaKH = kh.MaKH;
+                hd.ThoiGianDat = DateTime.Now;
+                hd.TongTien =TongTien()- (TongTien()*Convert.ToDecimal(0.05));
+                ql.HOPDONGs.Add(hd);
+                ql.SaveChanges();
+                foreach (var item in spdm)
+                {
+                    ChiTietHopDong ctHD = new ChiTietHopDong();
+                    ctHD.MaCT_HopDong = rd.Next(2000).ToString();
+                    ctHD.MaHopDong = hd.MaHD;
+                    ctHD.MaTour = item.matour;
+                    ctHD.SLNguoiLon = item.slnguoilon;
+                    ctHD.SLTreEm = item.sltreem;
+                    ctHD.ThanhTien = item.thanhtien;
+                    ql.ChiTietHopDongs.Add(ctHD);
+
+
+                }
+                ql.SaveChanges();
+
+                spdm.Clear();
+
+
+
+            }
+            catch
+            {
+
+            }
+            return View(hd);
+
+
         }
         #endregion
     }

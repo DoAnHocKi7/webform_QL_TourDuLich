@@ -83,6 +83,7 @@ namespace QLTourDucLich.Controllers
             {
                 ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Nhập Thành Công";
                 Session["TaiKhoan"] = kh.TenKH;
+                Session["Login"] = kh;
                 return RedirectToAction("Index", "TrangChu");
 
             }
