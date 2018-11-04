@@ -21,23 +21,27 @@
                         <div class="form-group">
                             <label>Họ và tên <small class="red">*</small></label>
                             <input type="text" id="customer_name" class="form-control info_customer_book" name="customer_name" value="">
+                            <label class="error_name" style="display:none" ></label>
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại <small class="red">*</small></label>
                             <input type="text" id="customer_phone" class="form-control info_customer_book" name="customer_phone" value="">
+                             <label class="error_phone" style="display:none" ></label>
                         </div>
                         <div class="form-group">
                             <label>Email <small class="red">*</small></label>
                             <input type="text" id="customer_email" class="form-control info_customer_book" name="customer_email" value="">
+                             <label class="error_email" style="display:none" ></label>
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
                             <input type="text" id="customer_address" class="form-control info_customer_book" name="customer_address" value="">
+                            <label class="error_diachi" style="display:none" ></label>
                         </div>
 
                         <div class="form-group">
 
-                            <input style="background-color: #5cb85c; border-color: #4cae4c; color: #fff;" class="form-control" type="submit" value="Đặt Hàng" />
+                            <input style="background-color: #5cb85c; border-color: #4cae4c; color: #fff;" id="btn_click_dh" class="form-control" type="submit" value="Đặt Hàng" />
 
                         </div>
 
@@ -47,6 +51,29 @@
         }
         <!-- /.box -->
     </div>
+    <script type="text/javascript">
+        var loi = 0;
+        $("#btn_click_dh").click(function () {
+            if ($("#customer_name").val() == "") {
+                $(".error_name").css("diplay", "block");
+                $(".error_name").text("Tên Khách Hàng Không Được Để Trống");
+                loi++;
+
+            }
+
+            if (loi == 0) 
+                return true;
+            return false;
+            
+
+            
+
+        }
+ 
+            );
+     
+
+    </script>
 
 </div>
 

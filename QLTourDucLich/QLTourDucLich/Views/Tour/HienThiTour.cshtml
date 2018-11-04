@@ -1,8 +1,10 @@
 ﻿@using QLTourDucLich.Models;
-@model List<TOUR>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TOUR>
 
 @foreach (var item in Model)
 {
+    @* gởi kiểu querystring *@
     <a href='@Url.Action("ChiTietTour","Tour",new {@matour=item.MaTour})'>
         <div class='col-sm-4 col-md-3'>
             <div class='panel panel-primary'>
@@ -22,6 +24,13 @@
         </div>
     </a>
 }
+<div class="pagination" style="margin-left: 400px">    
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)    
+            of @Model.PageCount   
+            @Html.PagedListPager(Model, page => Url.Action("HienThiTour", new { page=page }))
+           
+            
+ </div>   
 
 
 

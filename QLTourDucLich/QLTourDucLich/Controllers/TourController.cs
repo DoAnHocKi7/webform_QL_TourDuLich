@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLTourDucLich.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace QLTourDucLich.Controllers
 {
@@ -13,11 +15,7 @@ namespace QLTourDucLich.Controllers
         // GET: /Tour/
         QlTourDuLichEntities ql = new QlTourDuLichEntities();
         
-        public ActionResult HienThiTour()
-        {
-
-            return View(ql.TOURs.Take(8).ToList());
-        }
+      
 
         public ViewResult ChiTietTour(string matour)
         {

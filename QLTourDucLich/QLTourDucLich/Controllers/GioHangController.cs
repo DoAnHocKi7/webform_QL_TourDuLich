@@ -126,7 +126,7 @@ namespace QLTourDucLich.Controllers
         public int Soluong()
         {
             int soluong = 0;
-            List<SPDaMua> lstGioHang = LayGioHang();
+            List<SPDaMua> lstGioHang = Session["GioHang"] as List<SPDaMua>;
             if (lstGioHang != null)
             {
                 soluong = lstGioHang.Sum(t => t.soluong);
