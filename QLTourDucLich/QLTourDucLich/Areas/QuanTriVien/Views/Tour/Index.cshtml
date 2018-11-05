@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QuanTriVien/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using PagedList.Mvc
+@using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour
+@{
+    @model PagedList.IPagedList<TourViewModel>
+}
+
+
+
+<div>
+    <h2>Thao tác các tour du lịch</h2>
+    <p>
+        @Html.ActionLink("Tạo tour mới", "ThemTour")
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Tour</th>
+                <th>Tên tour</th>
+                <th>Khách sạn</th>
+                <th>Giờ đi</th>
+                <th>Giờ đến</th>
+                <th>Nơi đi</th>
+                <th>Nơi đến</th>
+                <th>Giá trẻ em</th>
+                <th>Giá người lớn</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TourViewModel item in Model)
+            {
+                <tr>
+                    <td>@item.MaTour</td>
+                    <td>@item.TenTour</td>
+                    <td>@item.TenKhachSan</td>
+                    <td>@item.NgayKH.Value.ToShortDateString()</td>
+                    <td>@item.NgayKT.Value.ToShortDateString()</td>
+                    <td>@item.DiemDi</td>
+                    <td>@item.DiemDen</td>
+                    <td>@item.GiaTreEm</td>
+                    <td>@item.GiaNguoiLon</td>
+                    <td>
+                        @Html.ActionLink("Chỉnh sửa", "SuaTour", new { /* id=item.PrimaryKey */id = item.MaTour }) |
+                        @*@Html.ActionLink("Chi Tiết", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @Html.ActionLink("Xóa", "XoaTour", new {  id=item.MaTour  })
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<div id="container" style="margin-left: 20px">
+    <div class="pagination" style="margin-left: 400px">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>
+
+@if (TempData["KetQua"] != null)
+{
+    <script>
+        alert("Thao tác @Html.Raw(TempData["KetQua"])");
+    </script>
+}
+

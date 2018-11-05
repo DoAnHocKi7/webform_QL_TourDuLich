@@ -91,6 +91,7 @@
           <ScalarProperty Name="DCKH" ColumnName="DCKH" />
           <ScalarProperty Name="MaLoaiKH" ColumnName="MaLoaiKH" />
           <ScalarProperty Name="TenDoanhNghiep" ColumnName="TenDoanhNghiep" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -221,6 +222,19 @@
           <ScalarProperty Name="MaHDV" ColumnName="MaHDV" />
           <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
           <ScalarProperty Name="SoLuongDuKhach" ColumnName="SoLuongDuKhach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TourViews">
+      <EntityTypeMapping TypeName="QlTourDuLichModel.TourView">
+        <MappingFragment StoreEntitySet="TourView">
+          <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+          <ScalarProperty Name="TenTour" ColumnName="TenTour" />
+          <ScalarProperty Name="GiaNguoiLon" ColumnName="GiaNguoiLon" />
+          <ScalarProperty Name="GiaTreEm" ColumnName="GiaTreEm" />
+          <ScalarProperty Name="NoiDi" ColumnName="NoiDi" />
+          <ScalarProperty Name="NoiDen" ColumnName="NoiDen" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

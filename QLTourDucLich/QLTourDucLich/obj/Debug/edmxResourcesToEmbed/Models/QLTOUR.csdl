@@ -99,6 +99,7 @@
     <Property Name="DCKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="MaLoaiKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="TenDoanhNghiep" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="HOPDONGs" Relationship="Self.FK_HD_MaKH" FromRole="KHACHHANG" ToRole="HOPDONG" />
     <NavigationProperty Name="LOAIKHACHHANG" Relationship="Self.PK_KH_LOAI" FromRole="KHACHHANG" ToRole="LOAIKHACHHANG" />
   </EntityType>
@@ -243,6 +244,18 @@
     <NavigationProperty Name="HUONGDANVIEN" Relationship="Self.FK_TOUR_HDV" FromRole="TOUR" ToRole="HUONGDANVIEN" />
     <NavigationProperty Name="KHACHSAN" Relationship="Self.FK_TOUR_KHACHSAN" FromRole="TOUR" ToRole="KHACHSAN" />
     <NavigationProperty Name="LOAITOUR" Relationship="Self.FK_TOUR_LOAI" FromRole="TOUR" ToRole="LOAITOUR" />
+  </EntityType>
+  <EntityType Name="TourView">
+    <Key>
+      <PropertyRef Name="MaTour" />
+    </Key>
+    <Property Name="MaTour" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenTour" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GiaNguoiLon" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="GiaTreEm" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="NoiDi" Type="Int32" />
+    <Property Name="NoiDen" Type="Int32" />
+    <Property Name="MoTa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_ChiTietHopDong_HOPDONG">
     <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="0..1" />
@@ -505,6 +518,7 @@
     <EntitySet Name="QUANLINHOMNGUOIDUNGs" EntityType="Self.QUANLINHOMNGUOIDUNG" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="TOURs" EntityType="Self.TOUR" />
+    <EntitySet Name="TourViews" EntityType="Self.TourView" />
     <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="Self.FK_ChiTietHopDong_HOPDONG">
       <End Role="HOPDONG" EntitySet="HOPDONGs" />
       <End Role="ChiTietHopDong" EntitySet="ChiTietHopDongs" />

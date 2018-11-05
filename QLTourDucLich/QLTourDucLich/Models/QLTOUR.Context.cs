@@ -45,5 +45,6 @@ namespace QLTourDucLich.Models
         public DbSet<QUANLINHOMNGUOIDUNG> QUANLINHOMNGUOIDUNGs { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TOUR> TOURs { get; set; }
+        public DbSet<TourView> TourViews { get; set; }
     }
 }

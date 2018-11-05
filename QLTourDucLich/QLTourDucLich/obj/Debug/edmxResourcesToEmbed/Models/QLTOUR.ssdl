@@ -84,6 +84,7 @@
     <Property Name="DCKH" Type="nvarchar" MaxLength="100" />
     <Property Name="MaLoaiKH" Type="varchar" MaxLength="10" />
     <Property Name="TenDoanhNghiep" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="KHACHSAN">
     <Key>
@@ -203,6 +204,20 @@
     <Property Name="MaHDV" Type="int" />
     <Property Name="AnhDaiDien" Type="varchar" MaxLength="50" />
     <Property Name="SoLuongDuKhach" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QlTourDuLich.dbo.TourView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TourView">
+    <Key>
+      <PropertyRef Name="MaTour" />
+    </Key>
+    <Property Name="MaTour" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenTour" Type="nvarchar" MaxLength="100" />
+    <Property Name="GiaNguoiLon" Type="money" />
+    <Property Name="GiaTreEm" Type="money" />
+    <Property Name="NoiDi" Type="int" />
+    <Property Name="NoiDen" Type="int" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <Association Name="FK_ChiTietHopDong_HOPDONG">
     <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="0..1" />
@@ -465,6 +480,17 @@
     <EntitySet Name="QUANLINHOMNGUOIDUNG" EntityType="Self.QUANLINHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TOUR" EntityType="Self.TOUR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourView" EntityType="Self.TourView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[TourView].[MaTour] AS [MaTour], 
+[TourView].[TenTour] AS [TenTour], 
+[TourView].[GiaNguoiLon] AS [GiaNguoiLon], 
+[TourView].[GiaTreEm] AS [GiaTreEm], 
+[TourView].[NoiDi] AS [NoiDi], 
+[TourView].[NoiDen] AS [NoiDen], 
+[TourView].[MoTa] AS [MoTa]
+FROM [dbo].[TourView] AS [TourView]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="Self.FK_ChiTietHopDong_HOPDONG">
       <End Role="HOPDONG" EntitySet="HOPDONG" />
       <End Role="ChiTietHopDong" EntitySet="ChiTietHopDong" />

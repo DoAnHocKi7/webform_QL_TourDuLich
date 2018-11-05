@@ -1,5 +1,5 @@
-﻿using QLTourDucLich.Areas.QuanTriVien.Queries;
-using QLTourDucLich.Areas.QuanTriVien.ViewModel;
+﻿using QLTourDucLich.Areas.QuanTriVien.ViewModel;
+using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +14,12 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
         // GET: /QuanTriVien/Admin/
         public ActionResult Index()
         {
-            ChinhSuaTourViewModel model = new ChinhSuaTourViewModel();
+            ThaoTacTourViewModel model = new ThaoTacTourViewModel();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(ChinhSuaTourViewModel model)
+        public ActionResult Index(ThaoTacTourViewModel model)
         {
             return View(model);
         }
@@ -29,5 +29,6 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
 
             return View(model);
         }
+
     }
 }
