@@ -1,4 +1,4 @@
-﻿@{
+﻿    @{
     Layout = null;
 }
 
@@ -8,13 +8,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>_layout</title>
+
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
-    <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/font-awesome.min.css">
     <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.css" />
     <script src="~/Libary/lib/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
-    <link href="~/Content/css_layout.css" rel="stylesheet" />
-
+    <link type="text/css" href="~/Content/css_layout.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/tab_control.css" rel="stylesheet" />
     <style>
         .container {
             padding-top: 15px;
@@ -122,16 +123,18 @@
 
 
                                 </div>
+                            </li>
+                              </ul>
                             </div>
                       
                         
-                        </li>
+                       
 
-                    </ul>
+              
                 </div>
             </div>
         </div>
-    </div>
+    
     @RenderBody()
     <div class="container">
         <div class="row">
@@ -252,16 +255,57 @@
             </table>
         </div>
     </div>
+     <script src="~/Libary/lib/tab_control.js"></script>
+    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+     <script type="text/javascript" src="/Libary/lib/bootstrap-datepicker.min.js"></script>
     <script>
-        $("#slnguoilon").keypress(function () {
-            var sl = $("#slnguoilon").text();
-            if (sl < 0)
-                alert("Số lượng nhập không được bé hơn một");
-            $("#slnguoilon").text = 1;
+        $(document).ready(function () {
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'dd/mm/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            });
+        });
 
-        }
-        );
-
+        jQuery(document).ready(function () {
+            // This button will increment the value
+            $('[data-quantity="plus"]').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                // If is not undefined
+                if (!isNaN(currentVal)) {
+                    // Increment
+                    $('input[name=' + fieldName + ']').val(currentVal + 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name=' + fieldName + ']').val(0);
+                }
+            });
+            // This button will decrement the value till 0
+            $('[data-quantity="minus"]').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                // If it isn't undefined or its greater than 0
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    // Decrement one
+                    $('input[name=' + fieldName + ']').val(currentVal - 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name=' + fieldName + ']').val(0);
+                }
+            });
+        });
 
     </script>
 </body>

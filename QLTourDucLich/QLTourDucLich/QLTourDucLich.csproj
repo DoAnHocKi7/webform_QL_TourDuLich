@@ -223,14 +223,18 @@
     <Compile Include="ViewModel\KHACHHANGViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\ChiTietTour.css" />
     <Content Include="Content\css_layout.css" />
     <Content Include="Content\DangKy.css" />
     <Content Include="Content\DatHangThanhCong.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\GioHang.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PhanTrang.css" />
+    <Content Include="Content\tab_control.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -286,10 +290,13 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\ThongTinKhachHang.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\010_trash-2-512.png" />
     <Content Include="Images\account.png" />
+    <Content Include="Images\animate.PNG" />
+    <Content Include="Images\animate1.PNG" />
     <Content Include="Images\cantho.jpg" />
     <Content Include="Images\danang.jpg" />
     <Content Include="Images\floppy-512.png" />
@@ -302,6 +309,8 @@
     <Content Include="Images\phuquoc.jpg" />
     <Content Include="Images\sapa.jpg" />
     <Content Include="Images\shopping-512.png" />
+    <Content Include="Images\tabs.gif" />
+    <Content Include="Images\tabs_active.gif" />
     <Content Include="Images\thongbao.png" />
     <Content Include="Libary\lib\atooltip.jquery.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\.gitattributes" />
@@ -595,6 +604,7 @@
     <Content Include="Libary\lib\bootstrap-3.3.7\js\tooltip.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\js\transition.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\package.js" />
+    <Content Include="Libary\lib\bootstrap-datepicker.min.js" />
     <Content Include="Libary\lib\cufon-yui.js" />
     <Content Include="Libary\lib\jquery-1.5.2.js" />
     <Content Include="Libary\lib\jquery.jqtransform.js" />
@@ -751,6 +761,11 @@
       <DependentUpon>QlTour.edmx</DependentUpon>
       <LastGenOutput>QlTour.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
