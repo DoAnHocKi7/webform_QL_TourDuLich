@@ -15,6 +15,7 @@ namespace QLTourDucLich.Controllers
         {
             return View();
         }
+
         public ActionResult NhapThongTin()
         {
             if(Session["GioHang"]==null)

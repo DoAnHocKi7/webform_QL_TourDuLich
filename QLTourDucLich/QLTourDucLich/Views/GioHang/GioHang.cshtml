@@ -10,74 +10,114 @@
 <div class="container">
     <div class="row">
 
-    <div class="table-responsive">          
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Mã Tour</th>
-        <th>Tên Tour</th>
-        <th>Đơn giá</th>
-        <th>Số Lượng</th>
-        <th>Thành Tiền</th>
-      </tr>
-    </thead>
-      @foreach (var item in Model)
-        {
-           <tbody>
-              
-                  <tr>
-                    <td>  <img  src="@Url.Content("~/Images/" + @item.hinhanh)"  width="100" height="80" ></td>
-                    <td> @item.matour</td>
-                    <td>@item.tentour</td>
-                    <td style="color:blue"> @String.Format("{0:0,0 VNĐ}", @item.dongia)</td>
-                    <td style="padding:4px">  
-                        @*Chỉnh Sữa Gio Hàng *@
-                         @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { matour=item.matour }))
-                        {
-                           <label>Người Lớn:</label>   <input name="songuoilon" id="slnguoilon"   value="@item.slnguoilon" /> <br />
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mã Tour</th>
+                        <th>Tên Tour</th>
+                        <th>Đơn giá</th>
+                        <th>Số Lượng</th>
+                        <th>Thành Tiền</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <img  src="@Url.Content("~/Images/" + @item.hinhanh)"  width="100" height="80" ></td>
+                            <td>@item.matour</td>
+                            <td>@item.tentour</td>
+                            <td style="color: blue">@String.Format("{0:0,0 VNĐ}", @item.dongia)</td>
+                            <td style="padding: 4px">
+                                @*Chỉnh Sữa Gio Hàng *@
+                                @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { matour = item.matour }))
+                                {
+                                    <label>Người Lớn:</label>   <input name="songuoilon" id="slnguoilon"   value="@item.slnguoilon" onkeypress="return chanchu(event);"  /> <br />
                              
-                           <div style="padding: 2px 0px 0px 32px;"><label>Trẻ Em</label>    <input name="sotreem"   value="@item.sltreem" /></div>  
+                                    <div style="padding: 2px 0px 0px 32px;">
+                                        <label>Trẻ Em</label>
+                                        <input name="sotreem"   value="@item.sltreem" onkeypress="return chanchu(event);" /></div>  
                           
-                            <div style="padding: 2px 0px 0px 150px;">  <button type="submit"><img src="~/Images/floppy-512.png" width="20" height="20"  /> </button></div>
-                        }
-                    </td>
-                        
-                         
-                      @*Xóa Gio Hàng *@
-                    <td style="color:orange">  @String.Format("{0:0,0 VNĐ}", @item.thanhtien)
-                        <a href="@Url.Action("XoaGioHang", "GioHang", new { @matour = item.matour })">
-                            <img src="~/Images/010_trash-2-512.png" style="margin-left:20px" width="20" height="20"  />
-                        </a>
+                                    <div style="padding: 2px 0px 0px 150px;">
+                                        <button type="submit">
+                                            <img src="~/Images/floppy-512.png" width="20" height="20" />
+                                        </button>
+                                    </div>
+                                }
+                            </td>
 
-                       
-                  
-                    </td>
-               
-              
-                  </tr>
-                    
-        </tbody>
 
-      }
-     
-  </table>
-        @if(Session["GioHang"]!=null && Session["Login"]==null)
-        {
+                            @*Xóa Gio Hàng *@
+                            <td style="color: orange">@String.Format("{0:0,0 VNĐ}", @item.thanhtien)
+                                <a href="@Url.Action("XoaGioHang", "GioHang", new { @matour = item.matour })">
+                                    <img src="~/Images/010_trash-2-512.png" style="margin-left: 20px" width="20" height="20" />
+                                </a>
 
-                <a href="@Url.Action("NhapThongTin","ThongTinKhachHang")"><div style="text-align:center"> <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div> </a>
+
+
+                            </td>
+
+
+                        </tr>
+
+                    </tbody>
+
+                }
+
+            </table>
+            @if (Session["GioHang"] != null && Session["Login"] == null)
+            {
+
+                <a href="@Url.Action("NhapThongTin", "ThongTinKhachHang")">
+                    <div style="text-align: center">
+                        <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div>
+                </a>
+            }
+            @if (Session["GioHang"] != null && Session["Login"] != null)
+            {
+                <a href="@Url.Action("DaCoThongTin", "GioHang")">
+                    <div style="text-align: center">
+                        <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div>
+                </a>
+            }
+
+        </div>
+
+
+    </div>
+
+</div>
+<script>
+    function chanchu(e) {
+        var keyword = null;
+        if (window.event) {
+            keyword = window.event.keyCode;
+        } else {
+            keyword = e.which; //NON IE;
         }
-       @if (Session["GioHang"] != null && Session["Login"] != null)
-       {
-           <a href="@Url.Action("DaCoThongTin","GioHang")"><div style="text-align:center"> <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div> </a>
-       }
-        
-  </div>
+
+        if (keyword < 48 || keyword > 57) {
+            if (keyword == 48 || keyword == 127) {
+                return;
+            }
+            return false;
+        }
+    }
+
+    var txt_songuoilon = $("#slnguoilon").val();
+    $("#slnguoilon").keyup(function () {
+        if ($(this).val() < txt_songuoilon) {
+            alert("Số lượng nhập vào phải lớn hơn 1");
+            $("#slnguoilon").val(1);
+        }
+       
+
+    });
 
 
-    </div>
+</script>
 
-    </div>
-
-
-  
