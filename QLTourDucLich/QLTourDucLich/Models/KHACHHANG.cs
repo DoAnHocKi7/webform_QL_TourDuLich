@@ -20,6 +20,8 @@ namespace QLTourDucLich.Models
         }
     
         public string MaKH { get; set; }
+
+        
         public string TenKH { get; set; }
         public Nullable<System.DateTime> NgSinh { get; set; }
         public Nullable<int> GioiTinh { get; set; }
@@ -28,6 +30,7 @@ namespace QLTourDucLich.Models
         public string DCKH { get; set; }
         public string MaLoaiKH { get; set; }
         public string TenDoanhNghiep { get; set; }
+        public string Password { get; set; }
     
         public virtual ICollection<HOPDONG> HOPDONGs { get; set; }
         public virtual LOAIKHACHHANG LOAIKHACHHANG { get; set; }

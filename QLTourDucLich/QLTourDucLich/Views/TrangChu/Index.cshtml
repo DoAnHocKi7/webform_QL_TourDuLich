@@ -1,12 +1,198 @@
-﻿@{
+﻿@using QLTourDucLich.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TOUR>
+<link href="~/Content/PhanTrang.css" rel="stylesheet" />
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
+<!-- <div class="left-content pull-left"> -->
+        <div class="container-fluid">
+
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="images/animate.png" alt="Los Angeles">
+                    </div>
+
+                    <div class="item">
+                        <img src="images/animate1.png" alt="Chicago">
+                    </div>
+
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+<div class="section-tab">
+    <div class="nav-btn-tab">
+        <button class="tablinks active" data-val="tab-A">Tour</button>
+        <button class="tablinks" data-val="tab-C">Khách sạn</button>
+    </div>
+    <div id="tab-A" class="tabcontent" style="display: block;">
+        <div class="radio">
+            <div class="form-group">
+                @using (Html.BeginForm("TimKiemTour", "TimKiem", FormMethod.Post))              
+                {
+                    
+                    <div class="place">
+                        <input type="text" name="Tendiadiem" id="" placeholder="Tên Địa Điểm..." required="True">
+
+                    </div>
+                    <div style="overflow: hidden;" class="date-time">
+                        <div class="input-group" style="width: 100%; float: right;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control" id="date" name="ngaydi" placeholder="Ngày đi" type="text" style="float: right; width: 100%;" required="True">
+                        </div>
+                    </div>
+                    <div style="overflow: hidden;" class="date-time">
+                        <div class="input-group" style="width: 100%; float: right;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control" id="date" name="ngayden" placeholder="Ngày đến" type="text" style="float: right; width: 100%;" required="True">
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit">
+                            <span>Tìm kiếm</span>
+                        </button>
+                    </div>
+               }
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div id="tab-C" class="tabcontent last-content" style="display: none;">
+        <div class="radio">
+            <div class="form-group">
+                <form action="" method="post">
+                    <div class="place">
+                        <input type="text" name="" id="" placeholder="Nơi đi..."></div>
+                    <div class="place">
+                        <input type="text" name="" id="" placeholder="Nơi đến..."></div>
+                    <div style="overflow: hidden;" class="date-time">
+                        <div class="input-group" style="width: 100%; float: right;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control" id="date" name="date" placeholder="Ngày đi" type="text" style="float: right; width: 100%;">
+                        </div>
+                    </div>
+                    <div style="overflow: hidden;" class="date-time">
+                        <div class="input-group" style="width: 100%; float: right;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input class="form-control" id="date" name="date" placeholder="Ngày đến" type="text" style="float: right; width: 100%;">
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <div class="input-group plus-minus-input">
+                            <div class="input-group-button">
+                                <button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <input class="input-group-field" type="number" name="quantity" value="0">
+                            <div class="input-group-button">
+                                <button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit">
+                            <span>Tìm kiếm</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- </div> -->
+</div>
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 title-sm">
+                <h4 class="text-uppercase">
+                    Tour Du Lịch Phổ Bidến Nhất Hiện Nay
+                </h4>
+            </div>
+        </div>
+    </div>
+
+
+
 <div class="container">
     <div class="row">
+        @foreach (var item in Model)
+        {
+@* gởi kiểu querystring *@
+            <a href='@Url.Action("ChiTietTour", "Tour", new { @matour = item.MaTour })'>
+                <div class='col-sm-4 col-md-3'>
+                    <div class='panel panel-primary'>
+                        <div class='panel-heading'>
+                            <h4>@item.TenTour</h4>
+                        </div>
+                        <div class='panel-body' style="text-align: center">
+                            <img  src="@Url.Content("~/Images/" + item.AnhDaiDien)"   width="200" height="150" >
+                        </div>
 
-            @Html.Action("HienThiTour", "Tour")
+                        <div class='panel-footer'>@item.MoTa
+
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+        }
+        <div class="container">
+            <div class="row">
+                <div class="pagination">
+                    <span style="color: blue">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   </span>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
 
 
     </div>

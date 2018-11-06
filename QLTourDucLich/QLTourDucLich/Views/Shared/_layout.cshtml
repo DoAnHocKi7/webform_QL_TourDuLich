@@ -1,4 +1,4 @@
-﻿@{
+﻿    @{
     Layout = null;
 }
 
@@ -8,13 +8,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>_layout</title>
-        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
-    <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="~/Content/font-awesome.min.css">
     <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.css" />
     <script src="~/Libary/lib/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
-    <link href="~/Content/css_layout.css" rel="stylesheet" />
-
+    <link type="text/css" href="~/Content/css_layout.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/tab_control.css" rel="stylesheet" />
     <style>
         .container {
             padding-top: 15px;
@@ -93,25 +94,47 @@
                             </a>
                         </li>
                         <li>
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">TÀI KHOẢN<span class="caret"> </span>
-                                </a>
+                       
+                                    <div class="dropdown">
+                                
+                               
+                               
+                                    @if (Session["TaiKhoan"] == null)
+                                    {
+                                        <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">TÀI KHOẢN<span class="caret"> </span>
+                                         </a>
+                                        <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
+                                        <a href="@Url.Action("DangKy", "NguoiDung")" class="dropdown-item">Đăng ký</a><br>
+                                        <a href="@Url.Action("DangNhap", "NguoiDung")"  class="dropdown-item">Đăng nhập</a>
+                                        <hr>
+                                        <hr>
+                                        <a class="dropdown-item" href="#">Khách sạn yêu thích</a>
+                                            </div>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="dropdown-toggle" id="has_login" role="button" data-toggle="dropdown" aria-expanded="false"><img style="width:25px;height:25px" src="~/Images/account.png" /> 
+                                         </a>
+                                        <div class="dropdown-menu" aria-labelledby="has_login" id="dropdown-dn">
+                                                    <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6> 
+                                                   <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
+                                         </div>
+                                    }
 
-                                <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
-                                    <a href="dangkitaikhoan.php" class="dropdown-item">Đăng ký</a><br>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
-                                    <hr>
-                                    <hr>
-                                    <a class="dropdown-item" href="#">Khách sạn yêu thích</a>
+
                                 </div>
+                            </li>
+                              </ul>
                             </div>
-                        </li>
+                      
+                        
+                       
 
-                    </ul>
+              
                 </div>
             </div>
         </div>
-    </div>
+    
     @RenderBody()
     <div class="container">
         <div class="row">
@@ -193,7 +216,7 @@
                             <p>Quy định về xác nhận thông tin đặt phòng</p>
                             <p>Chính sách về hủy đặt phòng và hoàn trả tiền</p>
                             <p>Chính sách bảo mật thông tin</p>
-                            <img src="images/dathongbao.png" width="150" height="100">
+                   
                             <p>Đã thông báo Bộ Công Thương</p>
                             <h5>
                                 <b>QUY ĐỊNH CHO SÀN GDTMĐT - DỊCH VỤ ĐẶT PHÒNG VÀ </b>
@@ -205,7 +228,7 @@
                             <p>Chính sách bảo mật</p>
                             <p>Quy trình giải quyết tranh chấp, khiếu nại</p>
                             <p>Đã đăng ký Bộ Công Thương</p>
-                            <img src="images/dadangky.png" width="150" height="100">
+                            
                         </td>
                         <td width="20%">
                             <p>A B C D E F G H I J K L M N O P Q R</p>
@@ -221,18 +244,84 @@
                             <h5>
                                 <b>TẢI MOBILE APP: MYTOUR.VN</b>
                             </h5>
-                            <img src="images/google-play.png" width="150" height="70">
-                            <img src="images/Available_on_the_App_Store_(black).png" width="150" height="70">
+
                             <h5>
                                 <b>KẾT NỐI VỚI MYTOUR.VN</b>
                             </h5>
-                            <img href='#' src="images/facebook_logos_PNG19761.png" width="25" height="25">
-                            <img href='#' src="images/unnamed.jpg" width="25" height="25">
+                            
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+     <script src="~/Libary/lib/tab_control.js"></script>
+    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+     <script type="text/javascript" src="/Libary/lib/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var date_input = $('input[name="ngaydi"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'dd/mm/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            });
+
+
+        });
+        $(document).ready(function () {
+            var date_input = $('input[name="ngayden"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'dd/mm/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            });
+
+
+        });
+
+        jQuery(document).ready(function () {
+            // This button will increment the value
+            $('[data-quantity="plus"]').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                // If is not undefined
+                if (!isNaN(currentVal)) {
+                    // Increment
+                    $('input[name=' + fieldName + ']').val(currentVal + 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name=' + fieldName + ']').val(0);
+                }
+            });
+            // This button will decrement the value till 0
+            $('[data-quantity="minus"]').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+                // If it isn't undefined or its greater than 0
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    // Decrement one
+                    $('input[name=' + fieldName + ']').val(currentVal - 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name=' + fieldName + ']').val(0);
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>

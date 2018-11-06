@@ -1,8 +1,11 @@
-﻿using System;
+﻿using QLTourDucLich.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace QLTourDucLich.Controllers
 {
@@ -10,11 +13,18 @@ namespace QLTourDucLich.Controllers
     {
         //
         // GET: /TrangChu/
-
-        public ActionResult Index()
+        QlTourDuLichEntities ql = new QlTourDuLichEntities();
+        public ActionResult Index(int? page)
         {
-            return View();
+            int pageSize = 8;
+
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+
+
+            return View(ql.TOURs.ToList().OrderBy(t => t.GiaNguoiLon).ToPagedList(pageIndex, pageSize));
         }
+        
 
     }
 }

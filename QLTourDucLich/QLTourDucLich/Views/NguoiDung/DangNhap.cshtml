@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+<link href="~/Content/Login.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="Login col-md-3">
+             <h3 style="margin: 5px 5px 5px 80px;color:seagreen">Đăng Nhập</h3>
+
+                @using (Html.BeginForm())
+                {
+                    <span class="txtEmail">Email:</span>
+                    @Html.TextBox("txtEmail");
+                    <br />
+                    <br />
+                    <span>Mật Khẩu:</span>
+                    <input type="password" name="txtMatKhau" />
+                   
+                    <br />
+                    <button type="sumbit" class="btn btn-success" style="margin: 5px 5px 5px 100px">Đăng Nhập</button>
+
+
+                }
+        </div>
+       
+
+    </div>
+
+</div>
+

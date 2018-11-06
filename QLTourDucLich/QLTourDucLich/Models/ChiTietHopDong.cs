@@ -17,7 +17,8 @@ namespace QLTourDucLich.Models
         public string MaCT_HopDong { get; set; }
         public string MaHopDong { get; set; }
         public string MaTour { get; set; }
-        public Nullable<int> SoLuong { get; set; }
+        public Nullable<int> SLTreEm { get; set; }
+        public Nullable<int> SLNguoiLon { get; set; }
         public Nullable<decimal> ThanhTien { get; set; }
     
         public virtual HOPDONG HOPDONG { get; set; }

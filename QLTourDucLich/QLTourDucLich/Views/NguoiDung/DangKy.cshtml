@@ -1,0 +1,87 @@
+﻿@model QLTourDucLich.ViewModel.KHACHHANGViewModel
+
+<link href="~/Content/DangKy.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 tt_nguoidung">
+                  @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+         <legend><h3 style="color:blue">Đăng Ký Thành Viên</h3> </legend>
+
+        <div class="editor-label ">
+            @Html.LabelFor(model => model.TenKH)
+        </div>
+        <div class="editor-field ">
+            @Html.EditorFor(model => model.TenKH)
+            @Html.ValidationMessageFor(model => model.TenKH)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.NgaySinh)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NgaySinh)
+            @Html.ValidationMessageFor(model => model.NgaySinh)
+        </div>
+
+       
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MatKhau)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MatKhau)
+            @Html.ValidationMessageFor(model => model.MatKhau)
+        </div>
+
+          <div class="editor-label">
+            @Html.LabelFor(model => model.Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+
+        <button type="sumbit" class="btn btn-success" style="margin:5px 5px 5px 40px">Đăng Kí</button>
+
+
+
+
+
+
+    </fieldset>
+    
+    }
+    <div>
+        @Html.ActionLink("Quay Lại Trang Chủ","Index","TrangChu")
+    </div>
+        </div>
+           <div class="col-md-3">
+          
+
+        </div>
+
+        <div class="col-md-4">
+            www
+
+        </div>
+  
+
+    </div>
+</div>

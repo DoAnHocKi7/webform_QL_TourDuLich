@@ -19,6 +19,7 @@
     <EntitySet Name="PHANQUYEN" EntityType="QlTourDuLichModel.Store.PHANQUYEN" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PHIEUNHAPTOUR" EntityType="QlTourDuLichModel.Store.PHIEUNHAPTOUR" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="QUANLINHOMNGUOIDUNG" EntityType="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="QlTourDuLichModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TOUR" EntityType="QlTourDuLichModel.Store.TOUR" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="QlTourDuLichModel.Store.FK_ChiTietHopDong_HOPDONG">
       <End Role="HOPDONG" EntitySet="HOPDONG" />
@@ -108,16 +109,18 @@
     <Property Name="MaCT_HopDong" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="MaHopDong" Type="varchar" MaxLength="10" />
     <Property Name="MaTour" Type="varchar" MaxLength="10" />
-    <Property Name="SoLuong" Type="int" />
+    <Property Name="SLTreEm" Type="int" />
+    <Property Name="SLNguoiLon" Type="int" />
     <Property Name="ThanhTien" Type="money" />
   </EntityType>
   <EntityType Name="CTPHIEUNHAP_TOUR">
     <Key>
       <PropertyRef Name="Ma_CTPNhap" />
     </Key>
+    <Property Name="SLTreEm" Type="int" />
     <Property Name="Ma_CTPNhap" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="MaTour" Type="varchar" MaxLength="10" />
-    <Property Name="SoLuong" Type="int" />
+    <Property Name="SLNguoiLon" Type="int" />
     <Property Name="MaPNhap" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="DIADANH">
@@ -150,8 +153,6 @@
     <Property Name="MaHD" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="MaKH" Type="varchar" MaxLength="10" />
     <Property Name="ThoiGianDat" Type="datetime" />
-    <Property Name="SoNguoiLon" Type="int" />
-    <Property Name="SoTreEm" Type="int" />
     <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
     <Property Name="TongTien" Type="money" />
@@ -185,6 +186,7 @@
     <Property Name="DCKH" Type="nvarchar" MaxLength="100" />
     <Property Name="MaLoaiKH" Type="varchar" MaxLength="10" />
     <Property Name="TenDoanhNghiep" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="KHACHSAN">
     <Key>
@@ -276,6 +278,16 @@
     <Property Name="MaNhom" Type="int" />
     <Property Name="MaNV" Type="varchar" MaxLength="10" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TOUR">
     <Key>

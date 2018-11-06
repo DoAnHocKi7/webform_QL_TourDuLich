@@ -22,8 +22,6 @@ namespace QLTourDucLich.Models
         public string MaHD { get; set; }
         public string MaKH { get; set; }
         public Nullable<System.DateTime> ThoiGianDat { get; set; }
-        public Nullable<int> SoNguoiLon { get; set; }
-        public Nullable<int> SoTreEm { get; set; }
         public string TinhTrang { get; set; }
         public string GhiChu { get; set; }
         public Nullable<decimal> TongTien { get; set; }
