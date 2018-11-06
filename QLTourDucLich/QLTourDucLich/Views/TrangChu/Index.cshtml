@@ -52,48 +52,36 @@
     <div id="tab-A" class="tabcontent" style="display: block;">
         <div class="radio">
             <div class="form-group">
-                <form action="" method="post">
+                @using (Html.BeginForm("TimKiemTour", "TimKiem", FormMethod.Post))              
+                {
+                    
                     <div class="place">
-                        <input type="text" name="" id="" placeholder="Nơi đi..."></div>
-                    <div class="place">
-                        <input type="text" name="" id="" placeholder="Nơi đến..."></div>
-                    <div style="overflow: hidden;" class="date-time">
-                        <div class="input-group" style="width: 100%; float: right;">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <input class="form-control" id="date" name="date" placeholder="Ngày đi" type="text" style="float: right; width: 100%;">
-                        </div>
+                        <input type="text" name="Tendiadiem" id="" placeholder="Tên Địa Điểm..." required="True">
+
                     </div>
                     <div style="overflow: hidden;" class="date-time">
                         <div class="input-group" style="width: 100%; float: right;">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input class="form-control" id="date" name="date" placeholder="Ngày đến" type="text" style="float: right; width: 100%;">
+                            <input class="form-control" id="date" name="ngaydi" placeholder="Ngày đi" type="text" style="float: right; width: 100%;" required="True">
                         </div>
                     </div>
-                    <div class="quantity">
-                        <div class="input-group plus-minus-input">
-                            <div class="input-group-button">
-                                <button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
-                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                </button>
+                    <div style="overflow: hidden;" class="date-time">
+                        <div class="input-group" style="width: 100%; float: right;">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
                             </div>
-                            <input class="input-group-field" type="number" name="quantity" value="0">
-                            <div class="input-group-button">
-                                <button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                            <input class="form-control" id="date" name="ngayden" placeholder="Ngày đến" type="text" style="float: right; width: 100%;" required="True">
                         </div>
                     </div>
+
                     <div class="form-submit">
                         <button type="submit">
                             <span>Tìm kiếm</span>
                         </button>
                     </div>
-                </form>
+               }
             </div>
 
 
@@ -157,7 +145,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 title-sm">
                 <h4 class="text-uppercase">
-                    Tour Du Lịch Phổ Biến Nhất Hiện Nay
+                    Tour Du Lịch Phổ Bidến Nhất Hiện Nay
                 </h4>
             </div>
         </div>
