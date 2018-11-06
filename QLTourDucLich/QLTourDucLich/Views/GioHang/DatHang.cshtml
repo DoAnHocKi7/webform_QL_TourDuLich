@@ -1,0 +1,57 @@
+﻿@using QLTourDucLich.Models
+@model HOPDONG
+<link href="~/Content/DatHangThanhCong.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+          <div class="col-xs-12">
+                <div class="page-header mg-t-40">
+                    <h1 class="title-lg text-center">
+                        Đặt tour thành công
+                    </h1>
+                    <p>
+                        Quý khách đã đặt tour thành công.
+                        <br>
+                        Mytour sẽ liên hệ với quý khách trong vòng <strong>30</strong> phút (T2-CN:08:00 - 23:00) và gửi thông tin chi tiết tới địa chỉ email . Trường hợp quý khác muốn xác nhận ngay, vui lòng liên hệ với Mytour theo Hotline: Hà Nội: <strong>024 7109 9999</strong>, Hồ Chí Minh: <strong>028 7109 9998</strong>
+                    </p>
+                </div>
+            </div>
+        <div class="col-xs-12">
+                <div class="box box-df-mb">
+                    <div class="box-header">
+                        Mã đặt tour: <strong class="text-sm blue">@Model.MaHD</strong>
+                    </div>
+                    <div class="box-body row">
+                        <div class="col-sm-6">
+                            <div class="info-pay-hotel">
+                                <h4 class="title-sm">
+                                    <strong>Thông tin đặt Tour</strong>
+                                </h4>
+                                <dl class="dl-horizontal dl-left">
+                                    <dt>Mã Khách Hàng:</dt>
+                                    <dd>@Model.MaKH</dd>
+                                    <dt>Thời gian đặt:</dt>
+                                    <dd><span style="color:blue">@String.Format("{0:MM/dd/yyyy}",@Model.ThoiGianDat)</span></dd>
+                                    <dt>Tổng Tiền:</dt>
+                                    <dd><span style="color:red">@String.Format("{0:0,0 vnđ}", Model.TongTien)</span> </dd>
+                                    
+                                </dl>
+                            </div>
+                            <!-- /.info-pay-hotel -->
+
+                            <!-- /.info-pay-user -->
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+
+</div>

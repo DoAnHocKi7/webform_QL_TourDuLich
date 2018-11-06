@@ -53,6 +53,10 @@ C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bi
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.WebPages.Razor.xml
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.dll
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.pdb
+C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\PagedList.dll
+C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\PagedList.Mvc.dll
+C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\PagedList.xml
+C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\PagedList.Mvc.xml
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csprojResolveAssemblyReference.cache
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\QLTourDucLich.dll.config
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\QLTourDucLich.dll

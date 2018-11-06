@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+<<<<<<< HEAD
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -53,6 +54,14 @@
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.6.3\lib\net40\Rotativa.dll</HintPath>
     </Reference>
+=======
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+>>>>>>> master
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -160,6 +169,8 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\ThongTinKhachHangController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,6 +179,7 @@
     <Compile Include="Models\ChiTietHopDong.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChiTietT.cs" />
     <Compile Include="Models\CTPHIEUNHAP_TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -177,7 +189,6 @@
     <Compile Include="Models\DIADIEM.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DSTour.cs" />
     <Compile Include="Models\HANHTRINH.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -242,12 +253,18 @@
     <Compile Include="Models\TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Models\TourView.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Models\TourDTO.cs" />
+>>>>>>> master
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\KHACHHANGViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="Areas\QuanTriVien\Scripts\Tour\CRUDTour.js" />
     <Content Include="Content\Admin\admin-layout.css" />
     <Content Include="Content\Admin\admin.css" />
@@ -275,6 +292,20 @@
     <Content Include="Content\themes\base\datepicker.css" />
     <Content Include="Content\themes\base\dialog.css" />
     <Content Include="Content\themes\base\draggable.css" />
+=======
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\ChiTietTour.css" />
+    <Content Include="Content\css_layout.css" />
+    <Content Include="Content\DangKy.css" />
+    <Content Include="Content\DatHangThanhCong.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\GioHang.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PhanTrang.css" />
+    <Content Include="Content\tab_control.css" />
+>>>>>>> master
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -295,6 +326,7 @@
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\themes\base\jquery-ui.css" />
+<<<<<<< HEAD
     <Content Include="Content\themes\base\jquery-ui.min.css" />
     <Content Include="Content\themes\base\menu.css" />
     <Content Include="Content\themes\base\progressbar.css" />
@@ -313,18 +345,70 @@
     <Content Include="fonts\ecoicons\ecoicons.svg" />
     <Content Include="fonts\ecoicons\license.txt" />
     <Content Include="fonts\ecoicons\Read Me.txt" />
+=======
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\ThongTinKhachHang.css" />
+>>>>>>> master
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\010_trash-2-512.png" />
+    <Content Include="Images\account.png" />
+    <Content Include="Images\animate.PNG" />
+    <Content Include="Images\animate1.PNG" />
+    <Content Include="Images\cantho.jpg" />
+    <Content Include="Images\danang.jpg" />
     <Content Include="Images\floppy-512.png" />
     <Content Include="Images\halong.jpg" />
     <Content Include="Images\hue.jpg" />
+    <Content Include="Images\langchai.jpg" />
     <Content Include="Images\mytour.PNG" />
     <Content Include="Images\phanhoi.png" />
+    <Content Include="Images\phanthiet.jpg" />
     <Content Include="Images\phuquoc.jpg" />
     <Content Include="Images\sapa.jpg" />
     <Content Include="Images\shopping-512.png" />
+    <Content Include="Images\tabs.gif" />
+    <Content Include="Images\tabs_active.gif" />
     <Content Include="Images\thongbao.png" />
     <Content Include="Libary\lib\atooltip.jquery.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\.gitattributes" />
@@ -618,6 +702,7 @@
     <Content Include="Libary\lib\bootstrap-3.3.7\js\tooltip.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\js\transition.js" />
     <Content Include="Libary\lib\bootstrap-3.3.7\package.js" />
+    <Content Include="Libary\lib\bootstrap-datepicker.min.js" />
     <Content Include="Libary\lib\cufon-yui.js" />
     <Content Include="Libary\lib\jquery-1.5.2.js" />
     <Content Include="Libary\lib\jquery.jqtransform.js" />
@@ -778,6 +863,7 @@
       <DependentUpon>QlTour.edmx</DependentUpon>
       <LastGenOutput>QlTour.cs</LastGenOutput>
     </Content>
+<<<<<<< HEAD
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -814,13 +900,19 @@
     <Content Include="Areas\QuanTriVien\Views\Shared\_TourCRUDPartial.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="fonts\FontAwesome.otf" />
+=======
+>>>>>>> master
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+<<<<<<< HEAD
     <Content Include="Areas\QuanTriVien\Views\ThongKe\Index.cshtml" />
     <Content Include="Areas\QuanTriVien\Views\Admin\Unauthorized.cshtml" />
     <Content Include="Areas\QuanTriVien\Views\TaiKhoan\DangNhap.cshtml" />
+=======
+    <Content Include="fonts\FontAwesome.otf" />
+>>>>>>> master
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Admin\classie.js" />
     <Content Include="Scripts\Admin\gnmenu.js" />
@@ -852,21 +944,25 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_layout.cshtml" />
     <Content Include="Views\TrangChu\Index.cshtml" />
     <Content Include="Views\Tour\HienThiTour.cshtml" />
-    <Content Include="Views\NguoiDung\NguoiDung.cshtml" />
     <Content Include="Views\Tour\ChiTietTour.cshtml" />
     <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+<<<<<<< HEAD
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -876,6 +972,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+=======
+    <Content Include="Views\ThongTinKhachHang\NhapThongTin.cshtml" />
+    <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\NguoiDung\DangKy.cshtml" />
+    <Content Include="Views\NguoiDung\DangNhap.cshtml" />
+    <Content Include="Views\GioHang\DaCoThongTin.cshtml" />
+    <Content Include="Views\TimKiem\TimKiemTour.cshtml" />
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
       <Diagram DiagramId="856d4187cdca40f7a48d56567c2aeed9" Name="Diagram1">
+=======
+      <Diagram DiagramId="f15f463544634d1d94d0e27f9a0c7fe8" Name="Diagram1">
+>>>>>>> master
         <EntityTypeShape EntityType="QlTourDuLichModel.ChiTietHopDong" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QlTourDuLichModel.CTPHIEUNHAP_TOUR" Width="1.5" PointX="12.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QlTourDuLichModel.DIADANH" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
@@ -25,7 +29,10 @@
         <EntityTypeShape EntityType="QlTourDuLichModel.QUANLINHOMNGUOIDUNG" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QlTourDuLichModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QlTourDuLichModel.TOUR" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+<<<<<<< HEAD
         <EntityTypeShape EntityType="QlTourDuLichModel.TourView" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+=======
+>>>>>>> master
         <AssociationConnector Association="QlTourDuLichModel.FK_ChiTietHopDong_HOPDONG" ManuallyRouted="false" />
         <AssociationConnector Association="QlTourDuLichModel.FK_ChiTietHopDong_TOUR" ManuallyRouted="false" />
         <AssociationConnector Association="QlTourDuLichModel.FK_CTPHIEUNHAP_MaPN" ManuallyRouted="false" />

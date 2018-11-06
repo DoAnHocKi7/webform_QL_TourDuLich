@@ -62,6 +62,7 @@ C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Te
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug\QLTourDucLich.Tests.csprojResolveAssemblyReference.cache
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug\QLTourDucLich.Tests.dll
 C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug\QLTourDucLich.Tests.pdb
+<<<<<<< HEAD
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\QLTourDucLich.Tests.dll.config
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\QLTourDucLich.Tests.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\QLTourDucLich.Tests.pdb
@@ -107,3 +108,7 @@ D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\PagedList.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\Rotativa.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\PagedList.xml
+=======
+C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\PagedList.dll
+C:\Users\quangduyvo\Desktop\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\PagedList.xml
+>>>>>>> master

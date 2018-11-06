@@ -1,0 +1,28 @@
+﻿.box {
+    border: 1px solid #cbd3db;
+    display: inline-block;
+    
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom:20px;
+}
+ .box .box-header {
+    padding: 13px 15px;
+}
+    .box .box-header {
+        border-bottom: 1px solid #cbd3db;
+        background: #d3e8f0;
+    }
+
+    .box .box-body {
+    padding: 13px 15px;
+}
+.dl-horizontal dt {
+    float: left;
+    width: 160px;
+    overflow: hidden;
+    clear: left;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
