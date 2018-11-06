@@ -10,9 +10,11 @@ using PagedList;
 using Rotativa;
 using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour;
 using QLTourDucLich.Areas.QuanTriVien.Queries.Thong_Ke;
+using QLTourDucLich.Areas.QuanTriVien.Queries.TaiKhoan;
 
 namespace QLTourDucLich.Areas.QuanTriVien.Controllers
 {
+    [CustomAuthorizeAttribute]
     public class TourController : Controller
     {
         //
@@ -82,7 +84,6 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
             TempData["KetQua"] = "thêm hành trình này thành công";
             return RedirectToAction("Them");
         }
-
 
         //
         // GET: /QuanTriVien/Default1/Edit/5

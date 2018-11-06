@@ -27,7 +27,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour
         [DisplayName("Loại Tour")]
         public string LoaiTour { get; set; }
 
-        [Required(ErrorMessage = MessegeConstants.TRUONGBATBUOC)]
+        [Required(ErrorMessage = Constants.Constants.TRUONGBATBUOC)]
         [DisplayName("Mã Tour")]
         public string MaTour { get; set; }
 
@@ -46,11 +46,11 @@ namespace QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour
         [DisplayName("Nơi đến")]
         public string DiemDen { get; set; }
 
-        [Required(ErrorMessage = MessegeConstants.TRUONGBATBUOC)]
+        [Required(ErrorMessage = Constants.Constants.TRUONGBATBUOC)]
         [DisplayName("Giá trẻ em")]
         public decimal? GiaTreEm { get; set; }
 
-        [Required(ErrorMessage = MessegeConstants.TRUONGBATBUOC)]
+        [Required(ErrorMessage = Constants.Constants.TRUONGBATBUOC)]
         [DisplayName("Giá người lớn")]
         public decimal? GiaNguoiLon { get; set; }
 
