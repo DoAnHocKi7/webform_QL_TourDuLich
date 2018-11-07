@@ -1,0 +1,6 @@
+﻿@media screen and (min-width: 400px) and (max-width: 767px) {
+    #form-action-tour .form-group{
+        width: 45%;
+        float: left;
+    }
+}

@@ -48,6 +48,9 @@
     <Reference Include="PagedList.Mvc">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -60,6 +63,24 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -96,31 +117,11 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Providers">
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -136,6 +137,25 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\QuanTriVien\Controllers\TaiKhoanController.cs" />
+    <Compile Include="Areas\QuanTriVien\Controllers\ThongKeController.cs" />
+    <Compile Include="Areas\QuanTriVien\Controllers\TourDuLichController.cs" />
+    <Compile Include="Areas\QuanTriVien\QuanTriVienAreaRegistration.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\TaiKhoan\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\TaiKhoan\TaiKhoanQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\Thong Ke\ThongKeQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\Tour\DiaDiemQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\Tour\HanhTrinhQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\Tour\KhachSanQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\Tour\NhanVienQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\Tour\TourQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\TaiKhoan\DangNhapViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\ThongKe\ThongKeViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\DiaDiemViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\HanhTrinhViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\KhachSanViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\TourViewModel.cs" />
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ThongTinKhachHangController.cs" />
@@ -227,6 +247,13 @@
     <Compile Include="ViewModel\KHACHHANGViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\QuanTriVien\Scripts\Tour\CRUDTour.js" />
+    <Content Include="Areas\QuanTriVien\Views\Shared\New Text Document.html" />
+    <Content Include="Content\Admin\admin-layout.css" />
+    <Content Include="Content\Admin\admin.css" />
+    <Content Include="Content\Admin\component.css" />
+    <Content Include="Content\Admin\demo.css" />
+    <Content Include="Content\Admin\normalize.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\ChiTietTour.css" />
     <Content Include="Content\css_layout.css" />
@@ -235,6 +262,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\GioHang.css" />
+    <Content Include="Content\hopdong.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PhanTrang.css" />
@@ -770,7 +798,20 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Areas\QuanTriVien\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Admin\Login.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Admin\Unauthorized.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Shared\_TourCRUDPartial.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\TaiKhoan\DangNhap.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\ThongKe\Index.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Tour\Index.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Tour\SuaTour.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Tour\ThemTour.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\Web.config" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -814,10 +855,11 @@
     <Content Include="Views\NguoiDung\DangNhap.cshtml" />
     <Content Include="Views\GioHang\DaCoThongTin.cshtml" />
     <Content Include="Views\TimKiem\TimKiemTour.cshtml" />
+    <Content Include="Views\GioHang\XemHoaDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Constants\" />
+    <Folder Include="Areas\QuanTriVien\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

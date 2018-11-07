@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLTourDucLich.Models;
+using Rotativa;
 
 namespace QLTourDucLich.Controllers
 {
@@ -43,8 +44,6 @@ namespace QLTourDucLich.Controllers
             {
                 sanpham = new SPDaMua(matour);
                 lstGioHang.Add(sanpham);   
-               
-
             }
             else
             {
@@ -59,8 +58,6 @@ namespace QLTourDucLich.Controllers
         // Cập nhập số lượng giỏ hàng
         public ActionResult CapNhapGioHang(string matour, FormCollection f)
         {
-
-
             List<SPDaMua> lstGioHang = LayGioHang();
             SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
@@ -69,11 +66,7 @@ namespace QLTourDucLich.Controllers
                 sanpham.sltreem = int.Parse(f["sotreem"].ToString());
 
             }
-
             return RedirectToAction("GioHang");
-
-
-
         }
         public ActionResult XoaGioHang(string matour)
         {
@@ -103,10 +96,7 @@ namespace QLTourDucLich.Controllers
             List<SPDaMua> lstGioHang=LayGioHang();
             
              return View(lstGioHang);
-      
-
-
-        }
+             }
         //Tổng tiền của từng sản phẩm
         public decimal? TongTien()
         {
@@ -146,12 +136,9 @@ namespace QLTourDucLich.Controllers
             }
             ViewBag.soluong = Soluong();
             return PartialView();
-
-
         }
         #endregion
-
-     
+        
         #region Dat Hang
         // sử dụng được cho tất cả các hàm
         HOPDONG hd;
@@ -259,5 +246,17 @@ namespace QLTourDucLich.Controllers
 
         }
         #endregion
+
+        public ActionResult XemHoaDon()
+        {
+            List<SPDaMua> model = LayGioHang();
+            return View(model);
+        }
+
+        public ActionResult InHoaDonPDF()
+        {
+            return new ActionAsPdf("XemHoaDon");
+        }
+
     }
 }

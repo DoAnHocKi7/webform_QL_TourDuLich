@@ -1,0 +1,47 @@
+﻿@{
+                /**/
+
+                Layout = null;
+}
+@using QLTourDucLich.Areas.QuanTriVien.ViewModel.TaiKhoan
+@model DangNhapViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng nhập</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.css" />
+    <script src="~/Libary/lib/bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+
+
+</head>
+<body>
+    <div class="container">
+        <div style="width: 60%;margin:auto">
+            @using (Html.BeginForm("DangNhap", "TaiKhoan", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 100px;" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group col-12 col-sm-6 col-md-6">
+                    @Html.LabelFor(m => m.Username)
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Username)
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @required = true })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div style="width:100%" class="form-group col-12 col-sm-6 col-md-12">
+                    <input name="edit" value="Đăng nhập" type="submit" style="display: block;float: right;" class="btn btn-primary info" id="login" />
+                </div>
+            }
+        </div>
+        
+    </div>
+
+</body>
+</html>

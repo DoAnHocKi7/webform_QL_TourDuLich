@@ -99,3 +99,6 @@ D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTou
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csproj.CopyComplete
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.pdb
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\Rotativa.dll
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.Helpers.dll
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.Helpers.xml
