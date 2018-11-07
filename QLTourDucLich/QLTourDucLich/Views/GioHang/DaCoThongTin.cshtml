@@ -35,17 +35,24 @@
                                     <dt>Mã Khách Hàng:</dt>
                                     <dd>@Model.MaKH</dd>
                                     <dt>Thời gian đặt:</dt>
-                                    <dd><span style="color:blue">@String.Format("{0:MM/dd/yyyy}",@Model.ThoiGianDat)</span></dd>
+                                    <dd><span style="color:blue">@String.Format("{0:MM/dd/yyyy}", @Model.ThoiGianDat)</span></dd>
                                     <dt>Tổng Tiền:</dt>
                                     <dd><span style="color:red">@String.Format("{0:0,0 vnđ}", Model.TongTien)</span> </dd>
-                                    
+
                                 </dl>
                             </div>
                             <!-- /.info-pay-hotel -->
-
                             <!-- /.info-pay-user -->
                         </div>
-                
+                        <div>
+                            <p>
+                                @Html.ActionLink("Xem hóa đơn", "XemHoaDon", "GioHang")
+                            </p>
+                            <p>
+                                @Html.ActionLink("In hóa đơn", "InHoaDonPDF", "GioHang")
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -805,9 +805,9 @@
     <Content Include="Areas\QuanTriVien\Views\Shared\_TourCRUDPartial.cshtml" />
     <Content Include="Areas\QuanTriVien\Views\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Areas\QuanTriVien\Views\ThongKe\Index.cshtml" />
-    <Content Include="Areas\QuanTriVien\Views\Tour\Index.cshtml" />
-    <Content Include="Areas\QuanTriVien\Views\Tour\SuaTour.cshtml" />
-    <Content Include="Areas\QuanTriVien\Views\Tour\ThemTour.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\TourDuLich\Index.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\TourDuLich\SuaTour.cshtml" />
+    <Content Include="Areas\QuanTriVien\Views\TourDuLich\ThemTour.cshtml" />
     <Content Include="Areas\QuanTriVien\Views\Web.config" />
     <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

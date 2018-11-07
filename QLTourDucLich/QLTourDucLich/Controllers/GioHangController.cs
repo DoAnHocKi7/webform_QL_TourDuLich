@@ -10,6 +10,9 @@ namespace QLTourDucLich.Controllers
 {
     public class GioHangController : Controller
     {
+        public static List<SPDaMua> GIOHANG;
+
+        public static KHACHHANG CUSOTMER;
         //
         // GET: /GioHang/
         QlTourDuLichEntities ql = new QlTourDuLichEntities();
@@ -36,22 +39,22 @@ namespace QLTourDucLich.Controllers
         // vừa vào cứ bắt sự kiện thêm vào giỏ hàng chạy trước
         public ActionResult ThemGioHang(string matour, string strURL)
         {
-          
+
             List<SPDaMua> lstGioHang = LayGioHang();
             // Kiểm tra hàng này đã tồn tại trong list chưa
             SPDaMua sanpham = lstGioHang.Find(t => t.matour == matour);
             if (sanpham == null)
             {
                 sanpham = new SPDaMua(matour);
-                lstGioHang.Add(sanpham);   
+                lstGioHang.Add(sanpham);
             }
             else
             {
                 Response.Write("Sản Phẩm Đã Tồn Tại Trong Giỏ Hàng");
-               // return Redirect(strURL);
+                // return Redirect(strURL);
             }
 
-            return RedirectToAction("Index","TrangChu");
+            return RedirectToAction("Index", "TrangChu");
 
         }
 
@@ -91,12 +94,12 @@ namespace QLTourDucLich.Controllers
             {
                 RedirectToAction("Index", "TrangChu");
             }
-           
 
-            List<SPDaMua> lstGioHang=LayGioHang();
-            
-             return View(lstGioHang);
-             }
+
+            List<SPDaMua> lstGioHang = LayGioHang();
+            GIOHANG = LayGioHang();
+            return View(lstGioHang);
+        }
         //Tổng tiền của từng sản phẩm
         public decimal? TongTien()
         {
@@ -138,19 +141,19 @@ namespace QLTourDucLich.Controllers
             return PartialView();
         }
         #endregion
-        
+
         #region Dat Hang
         // sử dụng được cho tất cả các hàm
         HOPDONG hd;
         public ActionResult DatHang(FormCollection f)
         {
-        
+
             try
             {
                 Random rd = new Random();
                 int ma = rd.Next(2000);
 
-                 hd = new HOPDONG();
+                hd = new HOPDONG();
 
                 List<SPDaMua> spdm = LayGioHang();
                 // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
@@ -162,7 +165,6 @@ namespace QLTourDucLich.Controllers
                 kh.DCKH = f["customer_address"].ToString();
                 ql.KHACHHANGs.Add(kh);
                 ql.SaveChanges();
-               
                 hd.MaHD = rd.Next(2000).ToString();
                 hd.MaKH = kh.MaKH;
                 hd.ThoiGianDat = DateTime.Now;
@@ -183,11 +185,8 @@ namespace QLTourDucLich.Controllers
 
                 }
                 ql.SaveChanges();
-               
-                spdm.Clear();
-             
-              
 
+                Session.Remove("GioHang");
             }
             catch
             {
@@ -209,12 +208,13 @@ namespace QLTourDucLich.Controllers
                 List<SPDaMua> spdm = LayGioHang();
                 // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
                 KHACHHANG kh = (KHACHHANG)Session["Login"];
-               
+                CUSOTMER = kh;
+
 
                 hd.MaHD = rd.Next(2000).ToString();
                 hd.MaKH = kh.MaKH;
                 hd.ThoiGianDat = DateTime.Now;
-                hd.TongTien =TongTien()- (TongTien()*Convert.ToDecimal(0.05));
+                hd.TongTien = TongTien() - (TongTien() * Convert.ToDecimal(0.05));
                 ql.HOPDONGs.Add(hd);
                 ql.SaveChanges();
                 foreach (var item in spdm)
@@ -227,35 +227,27 @@ namespace QLTourDucLich.Controllers
                     ctHD.SLTreEm = item.sltreem;
                     ctHD.ThanhTien = item.thanhtien;
                     ql.ChiTietHopDongs.Add(ctHD);
-
-
                 }
                 ql.SaveChanges();
-
-                spdm.Clear();
-
-
-
+                Session.Remove("GioHang");
             }
             catch
             {
 
             }
             return View(hd);
-
-
         }
         #endregion
 
         public ActionResult XemHoaDon()
         {
-            List<SPDaMua> model = LayGioHang();
-            return View(model);
+            ViewBag.KhachHang = CUSOTMER;
+            return View(GIOHANG);
         }
 
         public ActionResult InHoaDonPDF()
         {
-            return new ActionAsPdf("XemHoaDon");
+            return new Rotativa.ActionAsPdf("XemHoaDon");
         }
 
     }

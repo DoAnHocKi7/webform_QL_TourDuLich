@@ -34,7 +34,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
                     Response.Cookies[Constants.Constants.LOGIN].Value = model.Username;
                     Response.Cookies[Constants.Constants.LOGIN][Constants.Constants.DANGNHAPLANCUOI] = DateTime.Now.ToString();
                     Response.Cookies[Constants.Constants.LOGIN].Expires = DateTime.Now.AddDays(15);
-                    return RedirectToAction("Index", "Tour");
+                    return RedirectToAction("Index", "TourDuLich");
                 }
             }
             return View(model);
