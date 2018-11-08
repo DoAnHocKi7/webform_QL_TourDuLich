@@ -7,7 +7,7 @@
 @model QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour.ThaoTacTourViewModel
 
 <div class="container">
-    @using (Html.BeginForm("ThemHanhTrinh", "Tour", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 100px;" }))
+    @using (Html.BeginForm("ThemHanhTrinh", "TourDuLiCh", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 100px;" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -30,7 +30,7 @@
         <h2>Basic Table</h2>
     </p>
 
-    @using (Html.BeginForm("ThemTour", "Tour", FormMethod.Post, new { @class = "row" }))
+    @using (Html.BeginForm("ThemTour", "TourDuLich", FormMethod.Post, new { @class = "row" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)

@@ -21,18 +21,19 @@
 <body>
     <div class="container">
         <div style="width: 60%;margin:auto">
+            <h3 style="color:blue">Đăng nhập vào miền quản trị viên</h3>
             @using (Html.BeginForm("DangNhap", "TaiKhoan", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 100px;" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
                 <div class="form-group col-12 col-sm-6 col-md-6">
                     @Html.LabelFor(m => m.Username)
-                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @required = true })
                     @Html.ValidationMessageFor(m => m.Username)
                 </div>
                 <div class="form-group col-12 col-sm-6 col-md-6">
                     @Html.LabelFor(m => m.Password)
-                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @required = true })
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @required = true, placeholder = "Password", @type = "password" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 <div style="width:100%" class="form-group col-12 col-sm-6 col-md-12">

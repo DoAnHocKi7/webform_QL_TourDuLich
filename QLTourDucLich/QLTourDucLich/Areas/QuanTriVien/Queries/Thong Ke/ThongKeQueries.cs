@@ -38,7 +38,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.Queries.Thong_Ke
             return null;
         }
 
-        public static List<ThongKeTheoTourViewModel> ThongKe(int thang, int nam)
+        public static List<ThongKeTheoTourViewModel> ThongKeTheoTG(int thang, int nam)
         {
             QlTourDuLichEntities entity = new QlTourDuLichEntities();
             try
