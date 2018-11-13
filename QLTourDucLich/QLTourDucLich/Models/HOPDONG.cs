@@ -14,17 +14,19 @@ namespace QLTourDucLich.Models
     
     public partial class HOPDONG
     {
+        public HOPDONG()
+        {
+            this.ChiTietHopDongs = new HashSet<ChiTietHopDong>();
+        }
+    
         public string MaHD { get; set; }
         public string MaKH { get; set; }
         public Nullable<System.DateTime> ThoiGianDat { get; set; }
         public string TinhTrang { get; set; }
         public string GhiChu { get; set; }
-        public string MaTour { get; set; }
-        public Nullable<int> SLTreEm { get; set; }
-        public Nullable<int> SLNguoiLon { get; set; }
         public Nullable<decimal> TongTien { get; set; }
     
+        public virtual ICollection<ChiTietHopDong> ChiTietHopDongs { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
-        public virtual TOUR TOUR { get; set; }
     }
 }

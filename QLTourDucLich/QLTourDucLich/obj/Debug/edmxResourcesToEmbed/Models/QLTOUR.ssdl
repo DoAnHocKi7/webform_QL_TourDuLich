@@ -1,11 +1,124 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QlTourDuLichModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="QlTourDuLichModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="QlTourDuLichModelStoreContainer">
+    <EntitySet Name="ChiTietHopDong" EntityType="QlTourDuLichModel.Store.ChiTietHopDong" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CTPHIEUNHAP_TOUR" EntityType="QlTourDuLichModel.Store.CTPHIEUNHAP_TOUR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DIADANH" EntityType="QlTourDuLichModel.Store.DIADANH" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DIADIEM" EntityType="QlTourDuLichModel.Store.DIADIEM" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HANHTRINH" EntityType="QlTourDuLichModel.Store.HANHTRINH" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HOPDONG" EntityType="QlTourDuLichModel.Store.HOPDONG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HUONGDANVIEN" EntityType="QlTourDuLichModel.Store.HUONGDANVIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHACHHANG" EntityType="QlTourDuLichModel.Store.KHACHHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KHACHSAN" EntityType="QlTourDuLichModel.Store.KHACHSAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAIKHACHHANG" EntityType="QlTourDuLichModel.Store.LOAIKHACHHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAIKHACHSAN" EntityType="QlTourDuLichModel.Store.LOAIKHACHSAN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LOAITOUR" EntityType="QlTourDuLichModel.Store.LOAITOUR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MANHINH" EntityType="QlTourDuLichModel.Store.MANHINH" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NGUOIDUNG" EntityType="QlTourDuLichModel.Store.NGUOIDUNG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NHOMNGUOIDUNG" EntityType="QlTourDuLichModel.Store.NHOMNGUOIDUNG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PHANQUYEN" EntityType="QlTourDuLichModel.Store.PHANQUYEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PHIEUNHAPTOUR" EntityType="QlTourDuLichModel.Store.PHIEUNHAPTOUR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QUANLINHOMNGUOIDUNG" EntityType="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="QlTourDuLichModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TOUR" EntityType="QlTourDuLichModel.Store.TOUR" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ChiTietHopDong_HOPDONG" Association="QlTourDuLichModel.Store.FK_ChiTietHopDong_HOPDONG">
+      <End Role="HOPDONG" EntitySet="HOPDONG" />
+      <End Role="ChiTietHopDong" EntitySet="ChiTietHopDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietHopDong_TOUR" Association="QlTourDuLichModel.Store.FK_ChiTietHopDong_TOUR">
+      <End Role="TOUR" EntitySet="TOUR" />
+      <End Role="ChiTietHopDong" EntitySet="ChiTietHopDong" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTPHIEUNHAP_MaPN" Association="QlTourDuLichModel.Store.FK_CTPHIEUNHAP_MaPN">
+      <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOUR" />
+      <End Role="CTPHIEUNHAP_TOUR" EntitySet="CTPHIEUNHAP_TOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTPHIEUNHAP_MaTour" Association="QlTourDuLichModel.Store.FK_CTPHIEUNHAP_MaTour">
+      <End Role="TOUR" EntitySet="TOUR" />
+      <End Role="CTPHIEUNHAP_TOUR" EntitySet="CTPHIEUNHAP_TOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DIADIEM_DIADANH" Association="QlTourDuLichModel.Store.FK_DIADIEM_DIADANH">
+      <End Role="DIADANH" EntitySet="DIADANH" />
+      <End Role="DIADIEM" EntitySet="DIADIEM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HD_MaKH" Association="QlTourDuLichModel.Store.FK_HD_MaKH">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="HOPDONG" EntitySet="HOPDONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HT_NDen" Association="QlTourDuLichModel.Store.FK_HT_NDen">
+      <End Role="DIADIEM" EntitySet="DIADIEM" />
+      <End Role="HANHTRINH" EntitySet="HANHTRINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HT_NDi" Association="QlTourDuLichModel.Store.FK_HT_NDi">
+      <End Role="DIADIEM" EntitySet="DIADIEM" />
+      <End Role="HANHTRINH" EntitySet="HANHTRINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KS_DD" Association="QlTourDuLichModel.Store.FK_KS_DD">
+      <End Role="DIADIEM" EntitySet="DIADIEM" />
+      <End Role="KHACHSAN" EntitySet="KHACHSAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KS_LKS" Association="QlTourDuLichModel.Store.FK_KS_LKS">
+      <End Role="LOAIKHACHSAN" EntitySet="LOAIKHACHSAN" />
+      <End Role="KHACHSAN" EntitySet="KHACHSAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PNT_MANV" Association="QlTourDuLichModel.Store.FK_PNT_MANV">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+      <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PQ_MH" Association="QlTourDuLichModel.Store.FK_PQ_MH">
+      <End Role="MANHINH" EntitySet="MANHINH" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PQ_MN" Association="QlTourDuLichModel.Store.FK_PQ_MN">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLNND_NND" Association="QlTourDuLichModel.Store.FK_QLNND_NND">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
+      <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" Association="QlTourDuLichModel.Store.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
+      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
+      <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TOUR_HDV" Association="QlTourDuLichModel.Store.FK_TOUR_HDV">
+      <End Role="HUONGDANVIEN" EntitySet="HUONGDANVIEN" />
+      <End Role="TOUR" EntitySet="TOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TOUR_HT" Association="QlTourDuLichModel.Store.FK_TOUR_HT">
+      <End Role="HANHTRINH" EntitySet="HANHTRINH" />
+      <End Role="TOUR" EntitySet="TOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TOUR_KHACHSAN" Association="QlTourDuLichModel.Store.FK_TOUR_KHACHSAN">
+      <End Role="KHACHSAN" EntitySet="KHACHSAN" />
+      <End Role="TOUR" EntitySet="TOUR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TOUR_LOAI" Association="QlTourDuLichModel.Store.FK_TOUR_LOAI">
+      <End Role="LOAITOUR" EntitySet="LOAITOUR" />
+      <End Role="TOUR" EntitySet="TOUR" />
+    </AssociationSet>
+    <AssociationSet Name="PK_KH_LOAI" Association="QlTourDuLichModel.Store.PK_KH_LOAI">
+      <End Role="LOAIKHACHHANG" EntitySet="LOAIKHACHHANG" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChiTietHopDong">
+    <Key>
+      <PropertyRef Name="MaCT_HopDong" />
+    </Key>
+    <Property Name="MaCT_HopDong" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MaHopDong" Type="varchar" MaxLength="10" />
+    <Property Name="MaTour" Type="varchar" MaxLength="10" />
+    <Property Name="SLTreEm" Type="int" />
+    <Property Name="SLNguoiLon" Type="int" />
+    <Property Name="ThanhTien" Type="money" />
+  </EntityType>
   <EntityType Name="CTPHIEUNHAP_TOUR">
     <Key>
       <PropertyRef Name="Ma_CTPNhap" />
     </Key>
     <Property Name="SLTreEm" Type="int" />
-    <Property Name="Ma_CTPNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ma_CTPNhap" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="MaTour" Type="varchar" MaxLength="10" />
     <Property Name="SLNguoiLon" Type="int" />
     <Property Name="MaPNhap" Type="varchar" MaxLength="10" />
@@ -14,22 +127,22 @@
     <Key>
       <PropertyRef Name="MaDiaDanh" />
     </Key>
-    <Property Name="MaDiaDanh" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="TenDiaDanh" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaDiaDanh" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenDiaDanh" Type="nvarchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="DIADIEM">
     <Key>
       <PropertyRef Name="MaDiaDiem" />
     </Key>
-    <Property Name="MaDiaDiem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenDiaDiem" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaDiaDiem" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenDiaDiem" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="MaDiaDanh" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="HANHTRINH">
     <Key>
       <PropertyRef Name="MaHanhTrinh" />
     </Key>
-    <Property Name="MaHanhTrinh" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="MaHanhTrinh" Type="varchar" Nullable="false" MaxLength="11" />
     <Property Name="NoiDi" Type="int" />
     <Property Name="NoiDen" Type="int" />
   </EntityType>
@@ -37,21 +150,18 @@
     <Key>
       <PropertyRef Name="MaHD" />
     </Key>
-    <Property Name="MaHD" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaHD" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="MaKH" Type="varchar" MaxLength="10" />
     <Property Name="ThoiGianDat" Type="datetime" />
     <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
-    <Property Name="MaTour" Type="varchar" MaxLength="10" />
-    <Property Name="SLTreEm" Type="int" />
-    <Property Name="SLNguoiLon" Type="int" />
     <Property Name="TongTien" Type="money" />
   </EntityType>
   <EntityType Name="HUONGDANVIEN">
     <Key>
       <PropertyRef Name="MaHDV" />
     </Key>
-    <Property Name="MaHDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHDV" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TenHDV" Type="nvarchar" MaxLength="50" />
     <Property Name="SDT" Type="nvarchar" MaxLength="12" />
     <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
@@ -67,7 +177,7 @@
     <Key>
       <PropertyRef Name="MaKH" />
     </Key>
-    <Property Name="MaKH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaKH" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="TenKH" Type="nvarchar" MaxLength="100" />
     <Property Name="NgSinh" Type="datetime" />
     <Property Name="GioiTinh" Type="int" />
@@ -82,7 +192,7 @@
     <Key>
       <PropertyRef Name="MaKS" />
     </Key>
-    <Property Name="MaKS" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaKS" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="TenKS" Type="nvarchar" MaxLength="50" />
     <Property Name="MaLoaiKS" Type="varchar" MaxLength="10" />
     <Property Name="MaDiaDiem" Type="int" />
@@ -92,7 +202,7 @@
     <Key>
       <PropertyRef Name="MaLoaiKH" />
     </Key>
-    <Property Name="MaLoaiKH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaLoaiKH" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="TenLoaiKH" Type="nvarchar" MaxLength="50" />
     <Property Name="UuDai" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
@@ -101,21 +211,21 @@
     <Key>
       <PropertyRef Name="MaLoaiKS" />
     </Key>
-    <Property Name="MaLoaiKS" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaLoaiKS" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="TenLoaiKS" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="LOAITOUR">
     <Key>
       <PropertyRef Name="MaLoaiTour" />
     </Key>
-    <Property Name="MaLoaiTour" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="TenLoaiTour" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaLoaiTour" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenLoaiTour" Type="nvarchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="MANHINH">
     <Key>
       <PropertyRef Name="MaMH" />
     </Key>
-    <Property Name="MaMH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaMH" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TenMH" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -123,7 +233,7 @@
     <Key>
       <PropertyRef Name="MaNV" />
     </Key>
-    <Property Name="MaNV" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaNV" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="TenDangNhap" Type="varchar" MaxLength="30" />
     <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
     <Property Name="NgaySinh" Type="datetime" />
@@ -138,7 +248,7 @@
     <Key>
       <PropertyRef Name="MaNhom" />
     </Key>
-    <Property Name="MaNhom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNhom" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TenNhom" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -155,7 +265,7 @@
     <Key>
       <PropertyRef Name="MaPN" />
     </Key>
-    <Property Name="MaPN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaPN" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="TenPN" Type="nvarchar" MaxLength="50" />
     <Property Name="Ngaynhap" Type="date" />
     <Property Name="MaNV" Type="varchar" MaxLength="10" />
@@ -164,7 +274,7 @@
     <Key>
       <PropertyRef Name="MaQlNguoiDung" />
     </Key>
-    <Property Name="MaQlNguoiDung" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaQlNguoiDung" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="MaNhom" Type="int" />
     <Property Name="MaNV" Type="varchar" MaxLength="10" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
@@ -173,9 +283,9 @@
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
@@ -183,7 +293,7 @@
     <Key>
       <PropertyRef Name="MaTour" />
     </Key>
-    <Property Name="MaTour" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaTour" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="MaKS" Type="varchar" MaxLength="10" />
     <Property Name="TenTour" Type="nvarchar" MaxLength="100" />
     <Property Name="NgayKhoiHanh" Type="datetime" />
@@ -197,9 +307,33 @@
     <Property Name="AnhDaiDien" Type="varchar" MaxLength="50" />
     <Property Name="SoLuongDuKhach" Type="int" />
   </EntityType>
+  <Association Name="FK_ChiTietHopDong_HOPDONG">
+    <End Role="HOPDONG" Type="QlTourDuLichModel.Store.HOPDONG" Multiplicity="0..1" />
+    <End Role="ChiTietHopDong" Type="QlTourDuLichModel.Store.ChiTietHopDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOPDONG">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="ChiTietHopDong">
+        <PropertyRef Name="MaHopDong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietHopDong_TOUR">
+    <End Role="TOUR" Type="QlTourDuLichModel.Store.TOUR" Multiplicity="0..1" />
+    <End Role="ChiTietHopDong" Type="QlTourDuLichModel.Store.ChiTietHopDong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOUR">
+        <PropertyRef Name="MaTour" />
+      </Principal>
+      <Dependent Role="ChiTietHopDong">
+        <PropertyRef Name="MaTour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CTPHIEUNHAP_MaPN">
-    <End Role="PHIEUNHAPTOUR" Type="Self.PHIEUNHAPTOUR" Multiplicity="0..1" />
-    <End Role="CTPHIEUNHAP_TOUR" Type="Self.CTPHIEUNHAP_TOUR" Multiplicity="*" />
+    <End Role="PHIEUNHAPTOUR" Type="QlTourDuLichModel.Store.PHIEUNHAPTOUR" Multiplicity="0..1" />
+    <End Role="CTPHIEUNHAP_TOUR" Type="QlTourDuLichModel.Store.CTPHIEUNHAP_TOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PHIEUNHAPTOUR">
         <PropertyRef Name="MaPN" />
@@ -210,8 +344,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CTPHIEUNHAP_MaTour">
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="0..1" />
-    <End Role="CTPHIEUNHAP_TOUR" Type="Self.CTPHIEUNHAP_TOUR" Multiplicity="*" />
+    <End Role="TOUR" Type="QlTourDuLichModel.Store.TOUR" Multiplicity="0..1" />
+    <End Role="CTPHIEUNHAP_TOUR" Type="QlTourDuLichModel.Store.CTPHIEUNHAP_TOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TOUR">
         <PropertyRef Name="MaTour" />
@@ -222,8 +356,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DIADIEM_DIADANH">
-    <End Role="DIADANH" Type="Self.DIADANH" Multiplicity="0..1" />
-    <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="*" />
+    <End Role="DIADANH" Type="QlTourDuLichModel.Store.DIADANH" Multiplicity="0..1" />
+    <End Role="DIADIEM" Type="QlTourDuLichModel.Store.DIADIEM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DIADANH">
         <PropertyRef Name="MaDiaDanh" />
@@ -234,8 +368,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_HD_MaKH">
-    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-    <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="*" />
+    <End Role="KHACHHANG" Type="QlTourDuLichModel.Store.KHACHHANG" Multiplicity="0..1" />
+    <End Role="HOPDONG" Type="QlTourDuLichModel.Store.HOPDONG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KHACHHANG">
         <PropertyRef Name="MaKH" />
@@ -245,21 +379,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HOPDONG_TOUR">
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="0..1" />
-    <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TOUR">
-        <PropertyRef Name="MaTour" />
-      </Principal>
-      <Dependent Role="HOPDONG">
-        <PropertyRef Name="MaTour" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_HT_NDen">
-    <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
-    <End Role="HANHTRINH" Type="Self.HANHTRINH" Multiplicity="*" />
+    <End Role="DIADIEM" Type="QlTourDuLichModel.Store.DIADIEM" Multiplicity="0..1" />
+    <End Role="HANHTRINH" Type="QlTourDuLichModel.Store.HANHTRINH" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DIADIEM">
         <PropertyRef Name="MaDiaDiem" />
@@ -270,8 +392,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_HT_NDi">
-    <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
-    <End Role="HANHTRINH" Type="Self.HANHTRINH" Multiplicity="*" />
+    <End Role="DIADIEM" Type="QlTourDuLichModel.Store.DIADIEM" Multiplicity="0..1" />
+    <End Role="HANHTRINH" Type="QlTourDuLichModel.Store.HANHTRINH" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DIADIEM">
         <PropertyRef Name="MaDiaDiem" />
@@ -282,8 +404,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_KS_DD">
-    <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
-    <End Role="KHACHSAN" Type="Self.KHACHSAN" Multiplicity="*" />
+    <End Role="DIADIEM" Type="QlTourDuLichModel.Store.DIADIEM" Multiplicity="0..1" />
+    <End Role="KHACHSAN" Type="QlTourDuLichModel.Store.KHACHSAN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DIADIEM">
         <PropertyRef Name="MaDiaDiem" />
@@ -294,8 +416,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_KS_LKS">
-    <End Role="LOAIKHACHSAN" Type="Self.LOAIKHACHSAN" Multiplicity="0..1" />
-    <End Role="KHACHSAN" Type="Self.KHACHSAN" Multiplicity="*" />
+    <End Role="LOAIKHACHSAN" Type="QlTourDuLichModel.Store.LOAIKHACHSAN" Multiplicity="0..1" />
+    <End Role="KHACHSAN" Type="QlTourDuLichModel.Store.KHACHSAN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LOAIKHACHSAN">
         <PropertyRef Name="MaLoaiKS" />
@@ -306,8 +428,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PNT_MANV">
-    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
-    <End Role="PHIEUNHAPTOUR" Type="Self.PHIEUNHAPTOUR" Multiplicity="*" />
+    <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
+    <End Role="PHIEUNHAPTOUR" Type="QlTourDuLichModel.Store.PHIEUNHAPTOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NGUOIDUNG">
         <PropertyRef Name="MaNV" />
@@ -318,8 +440,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PQ_MH">
-    <End Role="MANHINH" Type="Self.MANHINH" Multiplicity="1" />
-    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <End Role="MANHINH" Type="QlTourDuLichModel.Store.MANHINH" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="QlTourDuLichModel.Store.PHANQUYEN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MANHINH">
         <PropertyRef Name="MaMH" />
@@ -330,8 +452,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PQ_MN">
-    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
-    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="QlTourDuLichModel.Store.PHANQUYEN" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NHOMNGUOIDUNG">
         <PropertyRef Name="MaNhom" />
@@ -342,8 +464,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_QLNND_NND">
-    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="0..1" />
-    <End Role="QUANLINHOMNGUOIDUNG" Type="Self.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
+    <End Role="NHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.NHOMNGUOIDUNG" Multiplicity="0..1" />
+    <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NHOMNGUOIDUNG">
         <PropertyRef Name="MaNhom" />
@@ -354,8 +476,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
-    <End Role="NGUOIDUNG" Type="Self.NGUOIDUNG" Multiplicity="0..1" />
-    <End Role="QUANLINHOMNGUOIDUNG" Type="Self.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
+    <End Role="NGUOIDUNG" Type="QlTourDuLichModel.Store.NGUOIDUNG" Multiplicity="0..1" />
+    <End Role="QUANLINHOMNGUOIDUNG" Type="QlTourDuLichModel.Store.QUANLINHOMNGUOIDUNG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NGUOIDUNG">
         <PropertyRef Name="MaNV" />
@@ -366,8 +488,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TOUR_HDV">
-    <End Role="HUONGDANVIEN" Type="Self.HUONGDANVIEN" Multiplicity="0..1" />
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="*" />
+    <End Role="HUONGDANVIEN" Type="QlTourDuLichModel.Store.HUONGDANVIEN" Multiplicity="0..1" />
+    <End Role="TOUR" Type="QlTourDuLichModel.Store.TOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="HUONGDANVIEN">
         <PropertyRef Name="MaHDV" />
@@ -378,8 +500,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TOUR_HT">
-    <End Role="HANHTRINH" Type="Self.HANHTRINH" Multiplicity="0..1" />
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="*" />
+    <End Role="HANHTRINH" Type="QlTourDuLichModel.Store.HANHTRINH" Multiplicity="0..1" />
+    <End Role="TOUR" Type="QlTourDuLichModel.Store.TOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="HANHTRINH">
         <PropertyRef Name="MaHanhTrinh" />
@@ -390,8 +512,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TOUR_KHACHSAN">
-    <End Role="KHACHSAN" Type="Self.KHACHSAN" Multiplicity="0..1" />
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="*" />
+    <End Role="KHACHSAN" Type="QlTourDuLichModel.Store.KHACHSAN" Multiplicity="0..1" />
+    <End Role="TOUR" Type="QlTourDuLichModel.Store.TOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KHACHSAN">
         <PropertyRef Name="MaKS" />
@@ -402,8 +524,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TOUR_LOAI">
-    <End Role="LOAITOUR" Type="Self.LOAITOUR" Multiplicity="0..1" />
-    <End Role="TOUR" Type="Self.TOUR" Multiplicity="*" />
+    <End Role="LOAITOUR" Type="QlTourDuLichModel.Store.LOAITOUR" Multiplicity="0..1" />
+    <End Role="TOUR" Type="QlTourDuLichModel.Store.TOUR" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LOAITOUR">
         <PropertyRef Name="MaLoaiTour" />
@@ -414,8 +536,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="PK_KH_LOAI">
-    <End Role="LOAIKHACHHANG" Type="Self.LOAIKHACHHANG" Multiplicity="0..1" />
-    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+    <End Role="LOAIKHACHHANG" Type="QlTourDuLichModel.Store.LOAIKHACHHANG" Multiplicity="0..1" />
+    <End Role="KHACHHANG" Type="QlTourDuLichModel.Store.KHACHHANG" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LOAIKHACHHANG">
         <PropertyRef Name="MaLoaiKH" />
@@ -425,101 +547,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QlTourDuLichModelStoreContainer">
-    <EntitySet Name="CTPHIEUNHAP_TOUR" EntityType="Self.CTPHIEUNHAP_TOUR" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DIADANH" EntityType="Self.DIADANH" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DIADIEM" EntityType="Self.DIADIEM" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HANHTRINH" EntityType="Self.HANHTRINH" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HOPDONG" EntityType="Self.HOPDONG" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HUONGDANVIEN" EntityType="Self.HUONGDANVIEN" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="KHACHSAN" EntityType="Self.KHACHSAN" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LOAIKHACHHANG" EntityType="Self.LOAIKHACHHANG" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LOAIKHACHSAN" EntityType="Self.LOAIKHACHSAN" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LOAITOUR" EntityType="Self.LOAITOUR" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="MANHINH" EntityType="Self.MANHINH" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="NHOMNGUOIDUNG" EntityType="Self.NHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PHANQUYEN" EntityType="Self.PHANQUYEN" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PHIEUNHAPTOUR" EntityType="Self.PHIEUNHAPTOUR" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="QUANLINHOMNGUOIDUNG" EntityType="Self.QUANLINHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TOUR" EntityType="Self.TOUR" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_CTPHIEUNHAP_MaPN" Association="Self.FK_CTPHIEUNHAP_MaPN">
-      <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOUR" />
-      <End Role="CTPHIEUNHAP_TOUR" EntitySet="CTPHIEUNHAP_TOUR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CTPHIEUNHAP_MaTour" Association="Self.FK_CTPHIEUNHAP_MaTour">
-      <End Role="TOUR" EntitySet="TOUR" />
-      <End Role="CTPHIEUNHAP_TOUR" EntitySet="CTPHIEUNHAP_TOUR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DIADIEM_DIADANH" Association="Self.FK_DIADIEM_DIADANH">
-      <End Role="DIADANH" EntitySet="DIADANH" />
-      <End Role="DIADIEM" EntitySet="DIADIEM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HD_MaKH" Association="Self.FK_HD_MaKH">
-      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
-      <End Role="HOPDONG" EntitySet="HOPDONG" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HOPDONG_TOUR" Association="Self.FK_HOPDONG_TOUR">
-      <End Role="TOUR" EntitySet="TOUR" />
-      <End Role="HOPDONG" EntitySet="HOPDONG" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HT_NDen" Association="Self.FK_HT_NDen">
-      <End Role="DIADIEM" EntitySet="DIADIEM" />
-      <End Role="HANHTRINH" EntitySet="HANHTRINH" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HT_NDi" Association="Self.FK_HT_NDi">
-      <End Role="DIADIEM" EntitySet="DIADIEM" />
-      <End Role="HANHTRINH" EntitySet="HANHTRINH" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KS_DD" Association="Self.FK_KS_DD">
-      <End Role="DIADIEM" EntitySet="DIADIEM" />
-      <End Role="KHACHSAN" EntitySet="KHACHSAN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KS_LKS" Association="Self.FK_KS_LKS">
-      <End Role="LOAIKHACHSAN" EntitySet="LOAIKHACHSAN" />
-      <End Role="KHACHSAN" EntitySet="KHACHSAN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PNT_MANV" Association="Self.FK_PNT_MANV">
-      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-      <End Role="PHIEUNHAPTOUR" EntitySet="PHIEUNHAPTOUR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PQ_MH" Association="Self.FK_PQ_MH">
-      <End Role="MANHINH" EntitySet="MANHINH" />
-      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PQ_MN" Association="Self.FK_PQ_MN">
-      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
-      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
-    </AssociationSet>
-    <AssociationSet Name="FK_QLNND_NND" Association="Self.FK_QLNND_NND">
-      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
-      <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
-    </AssociationSet>
-    <AssociationSet Name="FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG" Association="Self.FK_QUANLINHOMNGUOIDUNG_NGUOIDUNG">
-      <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
-      <End Role="QUANLINHOMNGUOIDUNG" EntitySet="QUANLINHOMNGUOIDUNG" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TOUR_HDV" Association="Self.FK_TOUR_HDV">
-      <End Role="HUONGDANVIEN" EntitySet="HUONGDANVIEN" />
-      <End Role="TOUR" EntitySet="TOUR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TOUR_HT" Association="Self.FK_TOUR_HT">
-      <End Role="HANHTRINH" EntitySet="HANHTRINH" />
-      <End Role="TOUR" EntitySet="TOUR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TOUR_KHACHSAN" Association="Self.FK_TOUR_KHACHSAN">
-      <End Role="KHACHSAN" EntitySet="KHACHSAN" />
-      <End Role="TOUR" EntitySet="TOUR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TOUR_LOAI" Association="Self.FK_TOUR_LOAI">
-      <End Role="LOAITOUR" EntitySet="LOAITOUR" />
-      <End Role="TOUR" EntitySet="TOUR" />
-    </AssociationSet>
-    <AssociationSet Name="PK_KH_LOAI" Association="Self.PK_KH_LOAI">
-      <End Role="LOAIKHACHHANG" EntitySet="LOAIKHACHHANG" />
-      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

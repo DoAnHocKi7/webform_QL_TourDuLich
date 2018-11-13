@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QlTourDuLichModelStoreContainer" CdmEntityContainer="QlTourDuLichEntities">
+    <EntitySetMapping Name="ChiTietHopDongs">
+      <EntityTypeMapping TypeName="QlTourDuLichModel.ChiTietHopDong">
+        <MappingFragment StoreEntitySet="ChiTietHopDong">
+          <ScalarProperty Name="MaCT_HopDong" ColumnName="MaCT_HopDong" />
+          <ScalarProperty Name="MaHopDong" ColumnName="MaHopDong" />
+          <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+          <ScalarProperty Name="SLTreEm" ColumnName="SLTreEm" />
+          <ScalarProperty Name="SLNguoiLon" ColumnName="SLNguoiLon" />
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CTPHIEUNHAP_TOUR">
       <EntityTypeMapping TypeName="QlTourDuLichModel.CTPHIEUNHAP_TOUR">
         <MappingFragment StoreEntitySet="CTPHIEUNHAP_TOUR">
@@ -46,9 +58,6 @@
           <ScalarProperty Name="ThoiGianDat" ColumnName="ThoiGianDat" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
           <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
-          <ScalarProperty Name="MaTour" ColumnName="MaTour" />
-          <ScalarProperty Name="SLTreEm" ColumnName="SLTreEm" />
-          <ScalarProperty Name="SLNguoiLon" ColumnName="SLNguoiLon" />
           <ScalarProperty Name="TongTien" ColumnName="TongTien" />
         </MappingFragment>
       </EntityTypeMapping>

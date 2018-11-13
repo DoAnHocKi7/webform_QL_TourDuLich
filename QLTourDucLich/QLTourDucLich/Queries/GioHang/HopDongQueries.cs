@@ -17,11 +17,10 @@ namespace QLTourDucLich.Queries.GioHang
             {
                 var result = (from hd in entity.HOPDONGs
                               where hd.MaHD == maHopDong
-                              //join ct in entity.ChiTietHopDongs
-                              //on hd.MaHD equals ct.MaHopDong
+                              join ct in entity.ChiTietHopDongs
+                              on hd.MaHD equals ct.MaHopDong
                               join t in entity.TOURs
-                              //on ct.MaTour equals t.MaTour
-                              on hd.MaTour equals t.MaTour
+                              on ct.MaTour equals t.MaTour
                               join ht in entity.HANHTRINHs
                               on t.MaHanhTrinh equals ht.MaHanhTrinh
                               join dden in entity.DIADIEMs
@@ -37,12 +36,9 @@ namespace QLTourDucLich.Queries.GioHang
                                   DiemDen=dden.TenDiaDiem,
                                   NgayDi=t.NgayKhoiHanh,
                                   NgayDen=t.NgayKetThuc,
-                                  //NguoiLon=ct.SLNguoiLon,
-                                  //TreEm=ct.SLTreEm,
-                                  //ThanhTien=ct.ThanhTien,
-                                  NguoiLon=hd.SLNguoiLon,
-                                  TreEm=hd.SLTreEm,
-                                  ThanhTien=hd.TongTien
+                                  NguoiLon=ct.SLNguoiLon,
+                                  TreEm=ct.SLTreEm,
+                                  ThanhTien=ct.ThanhTien,
                               }).ToList();
                 return result;
             }
