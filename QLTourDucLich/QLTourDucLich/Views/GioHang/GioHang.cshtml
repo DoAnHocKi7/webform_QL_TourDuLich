@@ -1,5 +1,5 @@
-﻿@using QLTourDucLich.Models
-@model List<SPDaMua>
+﻿@using QLTourDucLich.ViewModel.Tour
+@model TourChiTietViewModel
 <link href="~/Content/GioHang.css" rel="stylesheet" />
 
 @{
@@ -22,26 +22,27 @@
                         <th>Thành Tiền</th>
                     </tr>
                 </thead>
-                @foreach (var item in Model)
-                {
+                
                     <tbody>
 
                         <tr>
                             <td>
-                                <img  src="@Url.Content("~/Images/" + @item.hinhanh)"  width="100" height="80" ></td>
-                            <td>@item.matour</td>
-                            <td>@item.tentour</td>
-                            <td style="color: blue">@String.Format("{0:0,0 VNĐ}", @item.dongia)</td>
+                                <img src="@Url.Content("~/Images/" + Model.AnhDiaDiem)" width="100" height="80">
+                            </td>
+                            <td>@Model.Tour.MaTour</td>
+                            <td>@Model.Tour.TenTour</td>
+                            <td style="color: blue">@String.Format("{0:0,0 VNĐ}", Model.Tour.GiaNguoiLon)</td>
                             <td style="padding: 4px">
                                 @*Chỉnh Sữa Gio Hàng *@
-                                @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { matour = item.matour }))
+                                @using (Html.BeginForm("CapNhapGioHang", "GioHang", new { matour = Model.Tour.MaTour }))
                                 {
-                                    <label>Người Lớn:</label>   <input name="songuoilon" id="slnguoilon"   value="@item.slnguoilon" onkeypress="return chanchu(event);"  /> <br />
-                             
+                                    <label>Người Lớn:</label> <input name="songuoilon" id="slnguoilon" value="1" onkeypress="return chanchu(event);" /> <br />
+
                                     <div style="padding: 2px 0px 0px 32px;">
                                         <label>Trẻ Em</label>
-                                        <input name="sotreem"   value="@item.sltreem" onkeypress="return chanchu(event);" /></div>  
-                          
+                                        <input name="sotreem" value="0" onkeypress="return chanchu(event);" />
+                                    </div>
+
                                     <div style="padding: 2px 0px 0px 150px;">
                                         <button type="submit">
                                             <img src="~/Images/floppy-512.png" width="20" height="20" />
@@ -52,21 +53,21 @@
 
 
                             @*Xóa Gio Hàng *@
-                            <td style="color: orange">@String.Format("{0:0,0 VNĐ}", @item.thanhtien)
-                                <a href="@Url.Action("XoaGioHang", "GioHang", new { @matour = item.matour })">
-                                    <img src="~/Images/010_trash-2-512.png" style="margin-left: 20px" width="20" height="20" />
-                                </a>
+                            <td style="color: orange">
+                                @String.Format("{0:0,0 VNĐ}", Model.Tour.GiaNguoiLon)
+                            <a href="@Url.Action("XoaGioHang", "GioHang", new { @matour = Model.Tour.MaTour })">
+                                <img src="~/Images/010_trash-2-512.png" style="margin-left: 20px" width="20" height="20" />
+                            </a>
 
 
 
-                            </td>
+                        </td>
 
 
-                        </tr>
+                    </tr>
 
-                    </tbody>
+                </tbody>
 
-                }
 
             </table>
             @if (Session["GioHang"] != null && Session["Login"] == null)
@@ -74,14 +75,16 @@
 
                 <a href="@Url.Action("NhapThongTin", "ThongTinKhachHang")">
                     <div style="text-align: center">
-                        <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div>
+                        <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button>
+                    </div>
                 </a>
             }
             @if (Session["GioHang"] != null && Session["Login"] != null)
             {
                 <a href="@Url.Action("DaCoThongTin", "GioHang")">
                     <div style="text-align: center">
-                        <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button></div>
+                        <button type="button" class="btn btn-success">Xác Nhận Giỏ Hàng</button>
+                    </div>
                 </a>
             }
 
@@ -114,8 +117,6 @@
             alert("Số lượng nhập vào phải lớn hơn 1");
             $("#slnguoilon").val(1);
         }
-       
-
     });
 
 

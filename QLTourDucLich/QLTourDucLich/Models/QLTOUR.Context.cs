@@ -25,7 +25,6 @@ namespace QLTourDucLich.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<ChiTietHopDong> ChiTietHopDongs { get; set; }
         public DbSet<CTPHIEUNHAP_TOUR> CTPHIEUNHAP_TOUR { get; set; }
         public DbSet<DIADANH> DIADANHs { get; set; }
         public DbSet<DIADIEM> DIADIEMs { get; set; }

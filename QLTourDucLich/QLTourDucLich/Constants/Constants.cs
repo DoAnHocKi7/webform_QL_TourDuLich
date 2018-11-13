@@ -12,5 +12,7 @@ namespace QLTourDucLich.Constants
         public const string LOGIN = "username";
 
         public const string DANGNHAPLANCUOI = "DangNhapLanCuoi";
+
+        public const string TOURDADAT = "GIOHANG";
     }
 }

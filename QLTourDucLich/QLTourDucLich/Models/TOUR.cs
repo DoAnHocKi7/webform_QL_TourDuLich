@@ -16,8 +16,8 @@ namespace QLTourDucLich.Models
     {
         public TOUR()
         {
-            this.ChiTietHopDongs = new HashSet<ChiTietHopDong>();
             this.CTPHIEUNHAP_TOUR = new HashSet<CTPHIEUNHAP_TOUR>();
+            this.HOPDONGs = new HashSet<HOPDONG>();
         }
     
         public string MaTour { get; set; }
@@ -34,9 +34,9 @@ namespace QLTourDucLich.Models
         public string AnhDaiDien { get; set; }
         public Nullable<int> SoLuongDuKhach { get; set; }
     
-        public virtual ICollection<ChiTietHopDong> ChiTietHopDongs { get; set; }
         public virtual ICollection<CTPHIEUNHAP_TOUR> CTPHIEUNHAP_TOUR { get; set; }
         public virtual HANHTRINH HANHTRINH { get; set; }
+        public virtual ICollection<HOPDONG> HOPDONGs { get; set; }
         public virtual HUONGDANVIEN HUONGDANVIEN { get; set; }
         public virtual KHACHSAN KHACHSAN { get; set; }
         public virtual LOAITOUR LOAITOUR { get; set; }
