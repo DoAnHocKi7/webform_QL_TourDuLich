@@ -1,5 +1,7 @@
-﻿    @{
-    Layout = null;
+﻿@{
+                /**/
+
+                Layout = null;
 }
 
 <!DOCTYPE html>
@@ -48,9 +50,13 @@
                         <li>
                             <a href="#">TOUR</a>
                         </li>
+                        <li>
+                            <a href="@Url.Action("TraCuuDonHang","GioHang")">TRA CỨU</a>
+                        </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">THÔNG TIN
-                            <span class="caret"></span>
+                            <a href="#" class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                THÔNG TIN
+                                <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="dropdown-tt">
                                 <a class="dropdown-item" href="#">Cẩm nang du lịch</a>
@@ -67,16 +73,17 @@
                         <li class="phone-call">
                             <p>
                                 Hà Nội:
-                            <strong>024 7109 9999</strong>
+                                <strong>024 7109 9999</strong>
                             </p>
                             <p>
                                 HCM:
-                            <strong>028 7109 9998</strong>
+                                <strong>028 7109 9998</strong>
                             </p>
                         </li>
                         <li class="line">
                             <a href="#">
-                                <span class="glyphicon glyphicon-earphone"></span>24/7</a>
+                                <span class="glyphicon glyphicon-earphone"></span>24/7
+                            </a>
                         </li>
                         <li class="phanhoi">
                             <a href="#">
@@ -89,52 +96,54 @@
                             </a>
                         </li>
                         <li>
-                            <a href='@Url.Action("GioHang", "GioHang")' >
+                            <a href='@Url.Action("GioHang", "GioHang")'>
                                 @Html.Action("GioHangPartial", "GioHang")
                             </a>
                         </li>
                         <li>
-                       
-                                    <div class="dropdown">
-                                
-                               
-                               
-                                    @if (Session["TaiKhoan"] == null)
-                                    {
-                                        <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">TÀI KHOẢN<span class="caret"> </span>
-                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
+
+                            <div class="dropdown">
+
+
+
+                                @if (Session["TaiKhoan"] == null)
+                                {
+                                    <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        TÀI KHOẢN<span class="caret"> </span>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="DKTK" id="dropdown-tk">
                                         <a href="@Url.Action("DangKy", "NguoiDung")" class="dropdown-item">Đăng ký</a><br>
-                                        <a href="@Url.Action("DangNhap", "NguoiDung")"  class="dropdown-item">Đăng nhập</a>
+                                        <a href="@Url.Action("DangNhap", "NguoiDung")" class="dropdown-item">Đăng nhập</a>
                                         <hr>
                                         <hr>
                                         <a class="dropdown-item" href="#">Khách sạn yêu thích</a>
-                                            </div>
-                                    }
-                                    else
-                                    {
-                                        <a href="#" class="dropdown-toggle" id="has_login" role="button" data-toggle="dropdown" aria-expanded="false"><img style="width:25px;height:25px" src="~/Images/account.png" /> 
-                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="has_login" id="dropdown-dn">
-                                                    <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6> 
-                                                   <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
-                                         </div>
-                                    }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a href="#" class="dropdown-toggle" id="has_login" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        <img style="width:25px;height:25px" src="~/Images/account.png" />
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="has_login" id="dropdown-dn">
+                                        <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6>
+                                        <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
+                                    </div>
+                                }
 
 
-                                </div>
-                            </li>
-                              </ul>
                             </div>
-                      
-                        
-                       
-
-              
+                        </li>
+                    </ul>
                 </div>
+
+
+
+
+
             </div>
         </div>
-    
+    </div>
+
     @RenderBody()
     <div class="container">
         <div class="row">
@@ -145,20 +154,20 @@
                 <hr>
                 <p style="line-height: 35px">
                     <a href="#">An Giang</a>,
-        <a href="#">Bà Rịa Vũng Tàu</a>,
-        <a href="#">Bắc Giang</a>, Bắc Kạn, Bạc Liêu,
-        <a href="#">Bắc Ninh</a> , Bến Tre,
-        <a href="#">Bình Định</a> , Bình Dương, Bình Phước, Bình Thuận,
-        <a href="#">Cà Mau</a> , Cần Thơ,
-        <a href="#">Cao Bằng</a> , Đà Nẵng, Đắk Nông, Đắk Lắk, Điện Biên,
-        <a href="#">Đồng Nai</a> , Đồng Tháp, Gia Lai, Hà Giang, Hà Nam, Hà Nội,
-        <a href="#">Hà Tĩnh</a> , Hải Dương, Hải Phòng, Hậu Giang, Hồ Chí Minh,
-        <a href="#">Hoà Bình</a> , Hưng Yên, Khánh Hòa, Kiên Giang, Kon Tum, Lai Châu,
-        <a href="#">Lâm Đồng</a> , Lạng Sơn, Lào Cai, Long An, Nam Định, Nghệ An,
-        <a href="#">Ninh Bình</a> , Ninh Thuận, Phú Thọ, Phú Yên, Quảng Bình, Quảng Nam, Quảng Ngãi,
-        <a href="#">Quảng Ninh</a> , Quảng Trị, Sóc Trăng, Sơn La, Tây Ninh, Thái Bình, Thái Nguyên,
-        <a href="#">Thanh Hoá</a> , Thừa Thiên Huế, Tiền Giang, Trà Vinh, Tuyên Quang,
-        <a href="#">Vĩnh Long</a> , Vĩnh Phúc, Yên Bái.
+                    <a href="#">Bà Rịa Vũng Tàu</a>,
+                    <a href="#">Bắc Giang</a>, Bắc Kạn, Bạc Liêu,
+                    <a href="#">Bắc Ninh</a> , Bến Tre,
+                    <a href="#">Bình Định</a> , Bình Dương, Bình Phước, Bình Thuận,
+                    <a href="#">Cà Mau</a> , Cần Thơ,
+                    <a href="#">Cao Bằng</a> , Đà Nẵng, Đắk Nông, Đắk Lắk, Điện Biên,
+                    <a href="#">Đồng Nai</a> , Đồng Tháp, Gia Lai, Hà Giang, Hà Nam, Hà Nội,
+                    <a href="#">Hà Tĩnh</a> , Hải Dương, Hải Phòng, Hậu Giang, Hồ Chí Minh,
+                    <a href="#">Hoà Bình</a> , Hưng Yên, Khánh Hòa, Kiên Giang, Kon Tum, Lai Châu,
+                    <a href="#">Lâm Đồng</a> , Lạng Sơn, Lào Cai, Long An, Nam Định, Nghệ An,
+                    <a href="#">Ninh Bình</a> , Ninh Thuận, Phú Thọ, Phú Yên, Quảng Bình, Quảng Nam, Quảng Ngãi,
+                    <a href="#">Quảng Ninh</a> , Quảng Trị, Sóc Trăng, Sơn La, Tây Ninh, Thái Bình, Thái Nguyên,
+                    <a href="#">Thanh Hoá</a> , Thừa Thiên Huế, Tiền Giang, Trà Vinh, Tuyên Quang,
+                    <a href="#">Vĩnh Long</a> , Vĩnh Phúc, Yên Bái.
                 </p>
             </div>
 
@@ -194,7 +203,7 @@
                         <td width="20%">
                             <p>
                                 Hà Nội: 024 7109 9999/
-                        <p>
+                            <p>
                             <p>Hồ Chí Minh: 028 7109 9998</p>
                             <p>Email: admin@mytour.vn</p>
                             <p>Văn phòng Hà Nội: Tầng 4, tòa nhà GP Invest, 170</p>
@@ -216,7 +225,7 @@
                             <p>Quy định về xác nhận thông tin đặt phòng</p>
                             <p>Chính sách về hủy đặt phòng và hoàn trả tiền</p>
                             <p>Chính sách bảo mật thông tin</p>
-                   
+
                             <p>Đã thông báo Bộ Công Thương</p>
                             <h5>
                                 <b>QUY ĐỊNH CHO SÀN GDTMĐT - DỊCH VỤ ĐẶT PHÒNG VÀ </b>
@@ -228,7 +237,7 @@
                             <p>Chính sách bảo mật</p>
                             <p>Quy trình giải quyết tranh chấp, khiếu nại</p>
                             <p>Đã đăng ký Bộ Công Thương</p>
-                            
+
                         </td>
                         <td width="20%">
                             <p>A B C D E F G H I J K L M N O P Q R</p>
@@ -248,23 +257,23 @@
                             <h5>
                                 <b>KẾT NỐI VỚI MYTOUR.VN</b>
                             </h5>
-                            
+
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-     <script src="~/Libary/lib/tab_control.js"></script>
+    <script src="~/Libary/lib/tab_control.js"></script>
     <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
-     <script type="text/javascript" src="/Libary/lib/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/Libary/lib/bootstrap-datepicker.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            var date_input = $('input[name="ngaydi"]'); //our date input has the name "date"
+            var date_input = $('.picker-control'); //our date input has the name "date"
             var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
             date_input.datepicker({
-                format: 'dd/mm/yyyy',
+                format: 'mm/dd/yyyy',
                 container: container,
                 todayHighlight: true,
                 autoclose: true,

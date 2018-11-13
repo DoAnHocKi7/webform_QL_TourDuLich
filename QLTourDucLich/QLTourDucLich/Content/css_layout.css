@@ -148,7 +148,7 @@ border: 1px solid #e7e8e9;
 }
 .radio {
     padding-top: 12px;
-    width: 96%;
+    width: 100%;
     margin: auto;
     display: block;
     overflow: hidden;
@@ -196,7 +196,7 @@ ul li{
     border-radius: 4px;
 }
 .radio .date-time{
-    padding-right: 15px!important;
+    /*padding-right: 15px!important;*/
 }
 
 .radio .place,.radio .date-time{

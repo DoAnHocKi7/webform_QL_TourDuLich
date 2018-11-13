@@ -94,7 +94,6 @@ D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.WebPages.xml
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.WebPages.Deployment.xml
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.WebPages.Razor.xml
-D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csprojAssemblyReference.cache
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csproj.CoreCompileInputs.cache
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csproj.CopyComplete
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.dll
@@ -102,3 +101,6 @@ D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTou
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\Rotativa.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.Helpers.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.Helpers.xml
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csprojAssemblyReference.cache
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\WebComponent.dll
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\WebComponent.pdb

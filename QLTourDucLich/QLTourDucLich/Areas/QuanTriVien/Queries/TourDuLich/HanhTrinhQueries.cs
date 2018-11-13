@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace QLTourDucLich.Areas.QuanTriVien.Queries.Tour
+namespace QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich
 {
     public class HanhTrinhQueries
     {

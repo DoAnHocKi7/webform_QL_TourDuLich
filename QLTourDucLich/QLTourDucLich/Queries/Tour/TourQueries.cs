@@ -1,18 +1,21 @@
 ﻿using QLTourDucLich.Areas.QuanTriVien.ViewModel;
 using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour;
 using QLTourDucLich.Models;
+using QLTourDucLich.ViewModel.Tour;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Web.Mvc;
+using WebComponent;
 
-namespace QLTourDucLich.Areas.QuanTriVien.Queries.Tour
+namespace QLTourDucLich.Queries.Tour
 {
     public class TourQueries
     {
         QlTourDuLichEntities entity = new QlTourDuLichEntities();
+
         public List<TourViewModel> LayDanhSachTour()
         {
             var res = (from t in entity.TOURs
@@ -71,6 +74,40 @@ namespace QLTourDucLich.Areas.QuanTriVien.Queries.Tour
 
 
             return res.ToList<TourViewModel>();
+        }
+
+        public static List<TourChiTietViewModel> TimTour(TimKiemTourViewModel model)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            var res = (from t in entity.TOURs
+                           //join ks in entity.KHACHSANs
+                           //on t.MaKS equals ks.MaKS
+                       join ht in entity.HANHTRINHs
+                       on t.MaHanhTrinh equals ht.MaHanhTrinh
+                       join dd1 in entity.DIADIEMs
+                       on ht.NoiDen equals dd1.MaDiaDiem
+                       join dd2 in entity.DIADIEMs
+                       on ht.NoiDi equals dd2.MaDiaDiem
+                       where t.NgayKhoiHanh.Value.Year == model.NgayDi.Year
+                       && t.NgayKhoiHanh.Value.Month == model.NgayDi.Month
+                       && t.NgayKhoiHanh.Value.Day == model.NgayDi.Day
+                       select new TourChiTietViewModel()
+                       {
+                           Tour = new TourViewModel()
+                           {
+                               MaTour = t.MaTour,
+                               NgayKH = t.NgayKhoiHanh,
+                               NgayKT = t.NgayKetThuc,
+                               //TenKhachSan = ks.TenKS,
+                               DiemDen = dd1.TenDiaDiem,
+                               DiemDi = dd2.TenDiaDiem,
+                               GiaNguoiLon = t.GiaNguoiLon,
+                               GiaTreEm = t.GiaTreEm
+                           },
+                           AnhDiaDiem = t.AnhDaiDien
+                       });
+
+            return res.ToList();
         }
 
         public static TourChiTietViewModel TimTour(string maTour)

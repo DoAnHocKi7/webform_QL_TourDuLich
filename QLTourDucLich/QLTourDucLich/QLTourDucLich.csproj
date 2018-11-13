@@ -144,17 +144,21 @@
     <Compile Include="Areas\QuanTriVien\Queries\TaiKhoan\CustomAuthorizeAttribute.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\TaiKhoan\TaiKhoanQueries.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\Thong Ke\ThongKeQueries.cs" />
-    <Compile Include="Areas\QuanTriVien\Queries\Tour\DiaDiemQueries.cs" />
-    <Compile Include="Areas\QuanTriVien\Queries\Tour\HanhTrinhQueries.cs" />
-    <Compile Include="Areas\QuanTriVien\Queries\Tour\KhachSanQueries.cs" />
-    <Compile Include="Areas\QuanTriVien\Queries\Tour\NhanVienQueries.cs" />
-    <Compile Include="Areas\QuanTriVien\Queries\Tour\TourQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\DiaDiemQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\HanhTrinhQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\KhachSanQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\NhanVienQueries.cs" />
+    <Compile Include="Queries\GioHang\HopDongQueries.cs" />
+    <Compile Include="Queries\NguoiDung\KhachHangQueries.cs" />
+    <Compile Include="Queries\Tour\TourQueries.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\TaiKhoan\DangNhapViewModel.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\ThongKe\ThongKeViewModel.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\Tour\DiaDiemViewModel.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\Tour\HanhTrinhViewModel.cs" />
     <Compile Include="Areas\QuanTriVien\ViewModel\Tour\KhachSanViewModel.cs" />
-    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\TourViewModel.cs" />
+    <Compile Include="ViewModel\GioHang\ChiTietHopDongViewModel.cs" />
+    <Compile Include="ViewModel\NguoiDung\KhachHangViewModel.cs" />
+    <Compile Include="ViewModel\Tour\TourViewModel.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
@@ -246,6 +250,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\FormThongKeViewModel.cs" />
     <Compile Include="ViewModel\KHACHHANGViewModel.cs" />
+    <Compile Include="ViewModel\Tour\TimKiemTourViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\QuanTriVien\Scripts\Tour\CRUDTour.js" />
@@ -832,6 +837,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\Tour\index.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -858,6 +864,7 @@
     <Content Include="Views\GioHang\DaCoThongTin.cshtml" />
     <Content Include="Views\TimKiem\TimKiemTour.cshtml" />
     <Content Include="Views\GioHang\XemHoaDon.cshtml" />
+    <Content Include="Views\GioHang\TraCuuDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -868,6 +875,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebComponent\WebComponent.csproj">
+      <Project>{d1f2c73f-f489-4ccc-8bb1-a2b3981df31d}</Project>
+      <Name>WebComponent</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

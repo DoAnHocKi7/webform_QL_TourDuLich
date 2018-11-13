@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLTourDucLich", "QLTourDucLich\QLTourDucLich.csproj", "{26913FA5-3D8C-4A6A-8A67-98912E68B021}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLTourDucLich.Tests", "QLTourDucLich.Tests\QLTourDucLich.Tests.csproj", "{760F430C-3F8E-4474-B4D4-AA905860BCD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebComponent", "WebComponent\WebComponent.csproj", "{D1F2C73F-F489-4CCC-8BB1-A2B3981DF31D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,8 +23,15 @@ Global
 		{760F430C-3F8E-4474-B4D4-AA905860BCD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{760F430C-3F8E-4474-B4D4-AA905860BCD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{760F430C-3F8E-4474-B4D4-AA905860BCD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F2C73F-F489-4CCC-8BB1-A2B3981DF31D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F2C73F-F489-4CCC-8BB1-A2B3981DF31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F2C73F-F489-4CCC-8BB1-A2B3981DF31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F2C73F-F489-4CCC-8BB1-A2B3981DF31D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {303F7ECA-6358-4BCE-BC02-1603EB68F15B}
 	EndGlobalSection
 EndGlobal

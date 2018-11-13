@@ -1,4 +1,4 @@
-﻿using QLTourDucLich.Areas.QuanTriVien.Queries.Tour;
+﻿using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using QLTourDucLich.ViewModel.Tour;
+using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
+using QLTourDucLich.Queries.Tour;
 
 namespace QLTourDucLich.Controllers
 {
@@ -20,11 +23,14 @@ namespace QLTourDucLich.Controllers
 
             int pageIndex = 1;
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            ViewBag.Tours = ql.TOURs.ToList().OrderBy(t => t.GiaNguoiLon).ToPagedList(pageIndex, pageSize);
 
+            ViewBag.MaDiaDiemDi = DiaDiemQueries.LoadDiaDiem(); ;
+            ViewBag.MaDiaDiemDen = DiaDiemQueries.TimDiemDen2(int.Parse(ViewBag.MaDiaDiemDi.SelectedValue.ToString()));
 
-            return View(ql.TOURs.ToList().OrderBy(t => t.GiaNguoiLon).ToPagedList(pageIndex, pageSize));
+            return View(new TimKiemTourViewModel());
         }
-        
+
 
     }
 }

@@ -1,12 +1,12 @@
-﻿using QLTourDucLich.Areas.QuanTriVien.Queries.Tour;
-using QLTourDucLich.Constants;
+﻿using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
+using QLTourDucLich.Queries.Tour;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-namespace QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour
+using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour;
+namespace QLTourDucLich.ViewModel.Tour
 {
 
     public class TourViewModel
@@ -121,9 +121,9 @@ namespace QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour
 
         public TourViewModel Tour { get; set; }
 
-        public SelectList DiemDis { get; set; } 
+        public SelectList DiemDis { get; set; }
 
-        public SelectList DiemDens { get; set; } 
+        public SelectList DiemDens { get; set; }
 
         public SelectList KhachSans { get; set; }
 
@@ -133,7 +133,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour
 
         public ThaoTacTourViewModel()
         {
-            DiemDis= DiaDiemQueries.LoadDiaDiem();
+            DiemDis = DiaDiemQueries.LoadDiaDiem();
             //DiemDis.SelectedValue = DiemDis.FirstOrDefault().Value;
             int? maDiemDi = int.Parse(DiemDis.SelectedValue.ToString());
             DiemDens = DiaDiemQueries.TimDiemDen2(maDiemDi);//

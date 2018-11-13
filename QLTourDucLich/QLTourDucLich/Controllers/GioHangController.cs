@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLTourDucLich.Models;
+using QLTourDucLich.Queries.GioHang;
+using QLTourDucLich.Queries.NguoiDung;
 using Rotativa;
 
 namespace QLTourDucLich.Controllers
@@ -36,6 +38,7 @@ namespace QLTourDucLich.Controllers
             }
             return giohang;
         }
+
         // vừa vào cứ bắt sự kiện thêm vào giỏ hàng chạy trước
         public ActionResult ThemGioHang(string matour, string strURL)
         {
@@ -88,6 +91,7 @@ namespace QLTourDucLich.Controllers
             return RedirectToAction("GioHang");
 
         }
+
         public ActionResult GioHang()
         {
             if (Session["GioHang"] == null)
@@ -100,6 +104,7 @@ namespace QLTourDucLich.Controllers
             GIOHANG = LayGioHang();
             return View(lstGioHang);
         }
+
         //Tổng tiền của từng sản phẩm
         public decimal? TongTien()
         {
@@ -195,7 +200,6 @@ namespace QLTourDucLich.Controllers
             return View(hd);
         }
 
-
         public ActionResult DaCoThongTin()
         {
             try
@@ -250,5 +254,20 @@ namespace QLTourDucLich.Controllers
             return new Rotativa.ActionAsPdf("XemHoaDon");
         }
 
+        public ActionResult TraCuuDonHang()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TraCuuDonHang(string maHopDong)
+        {
+            if (maHopDong != null)
+            {
+                ViewBag.KhachHangDat = KhachHangQueries.TimKhachHang(maHopDong);
+                ViewBag.TimKiemHopDong = HopDongQueries.TimHopDong(maHopDong);
+            }
+            return View();
+        }
     }
 }

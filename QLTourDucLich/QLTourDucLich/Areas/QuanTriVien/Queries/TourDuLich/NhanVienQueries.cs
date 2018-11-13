@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QLTourDucLich.Areas.QuanTriVien.Queries.Tour
+namespace QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich
 {
     public class NhanVienQueries
     {

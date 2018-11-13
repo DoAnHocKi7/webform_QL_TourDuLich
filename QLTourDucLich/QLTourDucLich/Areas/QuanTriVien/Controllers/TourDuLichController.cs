@@ -1,4 +1,4 @@
-﻿using QLTourDucLich.Areas.QuanTriVien.Queries.Tour;
+﻿using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
 using QLTourDucLich.Areas.QuanTriVien.ViewModel;
 using QLTourDucLich.Models;
 using System;
@@ -11,6 +11,8 @@ using Rotativa;
 using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour;
 using QLTourDucLich.Areas.QuanTriVien.Queries.Thong_Ke;
 using QLTourDucLich.Areas.QuanTriVien.Queries.TaiKhoan;
+using QLTourDucLich.Queries.Tour;
+using QLTourDucLich.ViewModel.Tour;
 
 namespace QLTourDucLich.Areas.QuanTriVien.Controllers
 {
@@ -79,10 +81,10 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
             if (!(ModelState.IsValid && HanhTrinhQueries.ThemHanhTrinh(model.MaNoiDi, model.MaNoiDen)))
             {
                 TempData["KetQua"] = "thêm hành trình này thất bại";
-                return RedirectToAction("Them");
+                return RedirectToAction("ThemTour");
             }
             TempData["KetQua"] = "thêm hành trình này thành công";
-            return RedirectToAction("Them");
+            return RedirectToAction("ThemTour");
         }
 
         //
