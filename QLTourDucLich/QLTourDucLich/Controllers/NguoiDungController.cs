@@ -4,7 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLTourDucLich.Models;
+using QLTourDucLich.Queries.NguoiDung;
 using QLTourDucLich.ViewModel.NguoiDung;
+using Facebook;
+using Newtonsoft.Json;
+using System.Configuration;
 
 namespace QLTourDucLich.Controllers
 {
@@ -35,59 +39,71 @@ namespace QLTourDucLich.Controllers
                 {
                     KHACHHANG khachhang = new KHACHHANG()
                     {
-                        MaKH=model.MaKH,
+                        MaKH = model.MaKH,
                         TenKH = model.TenKH,
-                        NgSinh=model.NgaySinh,
-                        Email=model.Email,
-                        SDTKH=model.Phone,
-                        Password=model.MatKhau
+                        NgSinh = model.NgaySinh,
+                        Email = model.Email,
+                        SDTKH = model.Phone,
+                        Password = model.MatKhau
                     };
-                  ql.KHACHHANGs.Add(khachhang);
-                  ql.SaveChanges();
-                  ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Ký Thành  Công";
-                  Session["TaiKhoan"] = khachhang.TenKH;
-                  return RedirectToAction("Index", "TrangChu");
+                    ql.KHACHHANGs.Add(khachhang);
+                    ql.SaveChanges();
+                    ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Ký Thành  Công";
+                    Session["TaiKhoan"] = khachhang.TenKH;
+                    return RedirectToAction("Index", "TrangChu");
                 }
                 catch
                 {
-                    
+
                 }
 
-            }  
+            }
             return View();
         }
 
         [HttpGet]
         public ActionResult DangNhap()
         {
-            return View();
+            KhachHangDangNhapViewModel model = new KhachHangDangNhapViewModel();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult DangNhap(FormCollection f)
+        public ActionResult DangNhap(KhachHangDangNhapViewModel model)
         {
-            string email = f["txtEmail"].ToString();
-            string matkhau = f["txtMatKhau"].ToString();
-            KHACHHANG kh = ql.KHACHHANGs.SingleOrDefault(t => t.Email == email && t.Password == matkhau);
-            if (kh != null)
+            if (ModelState.IsValid)
             {
-                ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Nhập Thành Công";
-                Session["TaiKhoan"] = kh.TenKH;
-                Session["Login"] = kh;
-                return RedirectToAction("Index", "TrangChu");
+                KhachHangViewModel khachHang = KhachHangQueries.DangNhap(model);
+                if (khachHang != null)
+                {
+                    ViewBag.ThongBao = "Đăng nhập thành công";
+                    Session[Constants.Constants.LOGIN_KHACHHANG] = khachHang.TenKH;
+                    Session["Login"] = model;
+                    return RedirectToAction("Index", "TrangChu");
+
+                }
             }
-            else
-            {
-                ViewBag.ThongBao = "Đăng Nhập Thất Bại";
-            }
+            ViewBag.ThongBao = "Đăng nhập thất bại";
             return View();
         }
 
         public ActionResult DangXuat()
         {
-            Session["TaiKhoan"] = null;
+            Session[Constants.Constants.LOGIN_KHACHHANG] = null;
             return RedirectToAction("Index", "TrangChu");
-        }  
+        }
+
+        private Uri RediredtUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
 
     }
 }

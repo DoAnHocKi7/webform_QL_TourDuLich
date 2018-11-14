@@ -25,5 +25,17 @@ namespace QLTourDucLich.Queries.NguoiDung
                 TenKH = result.TenKH
             };
         }
+
+        public static KhachHangViewModel DangNhap(KhachHangDangNhapViewModel model)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            var result =entity.KHACHHANGs.FirstOrDefault(t => (t.Email == model.TenDangNhap.Trim() || t.SDTKH == model.TenDangNhap.Trim())
+                                                            &&t.Password==model.MatKhau.Trim());
+            if (result == null)
+            {
+                return null;
+            }
+            return new KhachHangViewModel() { TenKH = result.TenKH, SoDT = result.SDTKH, DiaChi = result.DCKH };
+        }
     }
 }

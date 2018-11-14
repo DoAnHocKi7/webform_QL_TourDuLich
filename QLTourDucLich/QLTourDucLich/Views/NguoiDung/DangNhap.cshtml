@@ -2,27 +2,36 @@
     ViewBag.Title = "DangNhap";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
+@using QLTourDucLich.ViewModel.NguoiDung
+@model KhachHangDangNhapViewModel
 <link href="~/Content/Login.css" rel="stylesheet" />
-
 <div class="container">
     <div class="row">
-        <div class="Login col-md-3">
-             <h3 style="margin: 5px 5px 5px 80px;color:seagreen">Đăng Nhập</h3>
-                @using (Html.BeginForm())
-                {
-                    <span class="txtEmail">Email:</span>
-                    @Html.TextBox("txtEmail");
-                    <br />
-                    <br />
-                    <span>Mật Khẩu:</span>
-                    <input type="password" name="txtMatKhau" />
-                    <br />
-                    <button type="sumbit" class="btn btn-success" style="margin: 5px 5px 5px 100px">Đăng Nhập</button>
-                }
+        <div class="Login col-xs-7 col-sm-6 col-md-4">
+            <h3 style="color:seagreen">Đăng Nhập</h3>
+            @if (ViewBag.ThongBao != null)
+            {
+                <span style="color:orangered">@ViewBag.ThongBao</span>
+            }
+            @using (Html.BeginForm("DangNhap", "NguoiDung", FormMethod.Post, new { @class = "row" }))
+            {
+                @Html.ValidationSummary(true)
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    @Html.LabelFor(m => m.TenDangNhap)
+                    @Html.TextBoxFor(m => m.TenDangNhap, new { @class = "form-control", @required = true })
+                    @Html.ValidationMessageFor(m => m.TenDangNhap)
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    @Html.LabelFor(m => m.MatKhau)
+                    @Html.TextBoxFor(m => m.MatKhau, new { @class = "form-control", @required = true, placeholder = "Password", @type = "password" })
+                    @Html.ValidationMessageFor(m => m.MatKhau)
+                </div>
+                <div style="width:100%" class="form-group col-xs-12 col-sm-6 col-md-12">
+                    <input name="DangNhap" value="Đăng nhập" type="submit" class="btn btn-primary info" id="login" style="background: #39c700;border: none;" />
+                    <input name="DangNhapBangFacebook" value="Đăng nhập bằng Facebook" type="submit" class="btn btn-primary info" style="display: block;float: right;" />
+                </div>
+
+            }
         </div>
-       
-
     </div>
-
 </div>
-

@@ -9,8 +9,10 @@ namespace QLTourDucLich.Constants
     {
         public const string TRUONGBATBUOC = "Trường này là bắt buộc";
 
-        public const string LOGIN = "username";
+        public const string LOGIN_QUANTRIVIEN = "username";
 
         public const string DANGNHAPLANCUOI = "DangNhapLanCuoi";
+
+        public const string LOGIN_KHACHHANG = "TaiKhoan";
     }
 }
