@@ -12,7 +12,7 @@
 }
 
 @using QLTourDucLich.ViewModel.Tour
-@model QLTourDucLich.ViewModel.Tour.TimKiemTourViewModel
+@model TimKiemTourViewModel
 <!-- <div class="left-content pull-left"> -->
 <div class="container-fluid">
 
@@ -70,7 +70,6 @@
                         @Html.DropDownListFor(m => m.NoiDen, (SelectList)ViewBag.MaDiaDiemDen, new { @class = "form-control" })
                     </div>
 
-
                     <div style="overflow:  hidden;" class="date-time form-group col-12 col-sm-3 col-md-3">
                         <div class="input-group" style="width: 100%;float: right;">
                             <div class="input-group-addon">
@@ -80,8 +79,6 @@
                             @Html.ValidationMessageFor(m => m.NgayDi)
                         </div>
                     </div>
-
-
 
                     <div class="form-submit form-group col-12 col-sm-3 col-md-3">
                         <button type="submit">
@@ -108,44 +105,27 @@
         </div>
     </div>
 
-
     <div class="container">
         <div class="row">
             @foreach (var item in ViewBag.Tours)
             {
-                <a href='@Url.Action("ChiTietTour", "Tour", new { @matour = item.MaTour })'>
+                <a href='@Url.Action("ChiTietTour", "Tour", new { @matour = item.Tour.MaTour })'>
                     <div class='col-sm-4 col-md-3'>
                         <div class='panel panel-primary'>
                             <div class='panel-heading'>
-                                <h4>@item.TenTour</h4>
+                                <h4>@item.Tour.DiemDi - @item.Tour.DiemDen</h4>
                             </div>
                             <div class='panel-body' style="text-align: center">
-                                <img src="@Url.Content("~/Images/" + item.AnhDaiDien)" width="200" height="150">
+                                <img src="@Url.Content("~/Images/" + item.AnhDiaDiem)" width="200" height="150">
                             </div>
 
                             <div class='panel-footer'>
-                                @item.MoTa
-
+                              Giá:  @item.Tour.GiaNguoiLon
                             </div>
-
                         </div>
                     </div>
                 </a>
             }
-            <div class="container">
-                <div class="row">
-                    <div class="pagination">
-                        <span style="color: blue">
-                            Page @(ViewBag.Tours.PageCount < ViewBag.Tours.PageNumber ? 0 : ViewBag.Tours.PageNumber)
-                            of @ViewBag.Tours.PageCount
-                        </span>
-                        @Html.PagedListPager((PagedList.IPagedList<QLTourDucLich.Models.TOUR>)ViewBag.Tours, page => Url.Action("Index", new { page = page }))
-
-
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 
@@ -153,12 +133,10 @@
         <div class="row">
             <div class="pagination">
                 <span style="color: blue">
-                    Page @(ViewBag.Tours.PageCount < ViewBag.Tours.PageNumber ? 0 : ViewBag.Tours.PageNumber)
+                    Trang @(ViewBag.Tours.PageCount < ViewBag.Tours.PageNumber ? 0 : ViewBag.Tours.PageNumber)
                     of @ViewBag.Tours.PageCount
                 </span>
-                @Html.PagedListPager((PagedList.IPagedList<QLTourDucLich.Models.TOUR>)ViewBag.Tours, page => Url.Action("Index", new { page = page }))
-
-
+                @Html.PagedListPager((PagedList.IPagedList<QLTourDucLich.ViewModel.Tour.TourChiTietViewModel>)ViewBag.Tours, page => Url.Action("Index", new { page = page }))
             </div>
         </div>
 

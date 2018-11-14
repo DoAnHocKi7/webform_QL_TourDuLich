@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLTourDucLich.Models;
-using QLTourDucLich.ViewModel;
+using QLTourDucLich.ViewModel.NguoiDung;
 
 namespace QLTourDucLich.Controllers
 {
@@ -17,56 +17,46 @@ namespace QLTourDucLich.Controllers
         {
             return View();
         }
-        #region Đăng Ký
+
         [HttpGet]
         public ActionResult DangKy()
         {
-         
             return View();
         }
+
         [HttpPost]
-        public ActionResult DangKy(KHACHHANGViewModel KH)
+        public ActionResult DangKy(KhachHangDangKyViewModel model)
         {
             Random rd = new Random();
-            KH.MaKH = rd.Next(2000).ToString();
+            model.MaKH = rd.Next(2000).ToString();
             if (ModelState.IsValid)
             {
-
-
                 try
                 {
                     KHACHHANG khachhang = new KHACHHANG()
                     {
-                        MaKH=KH.MaKH,
-                        TenKH = KH.TenKH,
-                        NgSinh=KH.NgaySinh,
-                        Email=KH.Email,
-                        SDTKH=KH.Phone,
-                        Password=KH.MatKhau
-
-
-
+                        MaKH=model.MaKH,
+                        TenKH = model.TenKH,
+                        NgSinh=model.NgaySinh,
+                        Email=model.Email,
+                        SDTKH=model.Phone,
+                        Password=model.MatKhau
                     };
                   ql.KHACHHANGs.Add(khachhang);
                   ql.SaveChanges();
                   ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Ký Thành  Công";
                   Session["TaiKhoan"] = khachhang.TenKH;
                   return RedirectToAction("Index", "TrangChu");
-
                 }
                 catch
                 {
-
+                    
                 }
-             
 
-            }
-            
+            }  
             return View();
         }
-        #endregion
 
-        #region Đăng Nhập
         [HttpGet]
         public ActionResult DangNhap()
         {
@@ -85,27 +75,19 @@ namespace QLTourDucLich.Controllers
                 Session["TaiKhoan"] = kh.TenKH;
                 Session["Login"] = kh;
                 return RedirectToAction("Index", "TrangChu");
-
             }
             else
             {
                 ViewBag.ThongBao = "Đăng Nhập Thất Bại";
             }
             return View();
-
-
         }
 
-
-
-
-        #endregion
         public ActionResult DangXuat()
         {
             Session["TaiKhoan"] = null;
             return RedirectToAction("Index", "TrangChu");
         }  
-
 
     }
 }

@@ -5,9 +5,9 @@ using System.Web;
 using QLTourDucLich.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace QLTourDucLich.ViewModel
+namespace QLTourDucLich.ViewModel.NguoiDung
 {
-    public class KHACHHANGViewModel
+    public class KhachHangDangKyViewModel
     {
         public string MaKH { get; set; }
 
