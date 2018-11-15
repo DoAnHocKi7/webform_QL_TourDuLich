@@ -4,6 +4,7 @@
                 Layout = null;
 }
 @using QLTourDucLich.Constants
+@using QLTourDucLich.ViewModel.NguoiDung
 <!DOCTYPE html>
 
 <html>
@@ -103,7 +104,7 @@
                         <li>
 
                             <div class="dropdown">
-                                @if (Session["TaiKhoan"] == null)
+                                @if (Session[Constants.LOGIN_KHACHHANG] == null)
                                 {
                                     <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">
                                         TÀI KHOẢN<span class="caret"> </span>
@@ -129,13 +130,12 @@
                                             <img style="width:40px;height:40px" src="@Session[Constants.HINH_LOGIN] " />
                                         }
                                     </a>
+                                    string tenKH = ((KhachHangViewModel)Session[Constants.LOGIN_KHACHHANG]).TenKH;
                                     <div class="dropdown-menu" aria-labelledby="has_login" id="dropdown-dn">
-                                        <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6>
+                                        <p style="color:blue">Welcome To:</p><h6 style="color:red">  @tenKH</h6>
                                         <a href="@Url.Action("DangXuat", "NguoiDung")" class="dropdown-item">Đăng Xuất</a><br>
                                     </div>
                                 }
-
-
                             </div>
                         </li>
                     </ul>
@@ -283,8 +283,6 @@
                 todayHighlight: true,
                 autoclose: true,
             });
-
-
         });
         $(document).ready(function () {
             var date_input = $('input[name="ngayden"]'); //our date input has the name "date"

@@ -29,9 +29,10 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThongKeTheoThoiGian(int thang,int nam)
+        public ActionResult ThongKeTheoThoiGian(DateTime time)
         {
-            List<ThongKeTheoTourViewModel> dataPoints = ThongKeQueries.ThongKeTheoTG(thang,nam);
+            List<ThongKeTheoThoiGianViewModel> dataPoints = ThongKeQueries.ThongKeTheoTG(time.Month,time.Year);
+            ViewBag.ThoiGian = time.Month + "/" + time.Year;
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View();
         }

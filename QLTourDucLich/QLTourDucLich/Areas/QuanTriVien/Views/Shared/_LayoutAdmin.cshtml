@@ -77,16 +77,15 @@
                 </div>
                 <div class="brand">
                     <a href="/">
-                      Website Du lịch <span class="hidden-xs text-muted">ASP.NET MVC</span>
+                        Website Du lịch <span class="hidden-xs text-muted">ASP.NET MVC</span>
                     </a>
                 </div>
-
             </div>
         </div>
     </nav>
     <!-- /header -->
     <!-- sidebar -->
-    <div id="sidebar" class="sidebar-toggle">
+    <div id="sidebar" class="sidebar-toggle" style="display:none">
         <ul class="nav nav-sidebar">
             <li>
                 <a href="/">
@@ -95,7 +94,6 @@
                 </a>
             </li>
             <li role="separator" class="divider"></li>
-
             <!-- chart types -->
             <li data-toggle="collapse" href="#charttypes" aria-expanded="true" aria-controls="chart-types">
                 <a href="#">
@@ -103,54 +101,30 @@
                     <span>Thống kê</span>
                 </a>
             </li>
-
             <li>
                 <ul id="charttypes" class="sub-menu collapse ">
                     <li>
-                        @Html.ActionLink("Thống kê theo điểm đến","Index","ThongKe")
+                        @Html.ActionLink("Thống kê theo điểm đến", "Index", "ThongKe")
                     </li>
-                    @*<li><a href="/charttypes/line/">Line Chart</a></li>
-                    <li><a href="/charttypes/stepline/">Step Line Chart</a></li>*@
-
+                    <li>@Html.ActionLink("Doanh số theo tháng", "ThongKeTheoThoiGian", "ThongKe")</li>
                 </ul>
             </li>
             <!-- /chart types -->
-
             <li role="separator" class="divider"></li>
-
             <!--  features -->
             <li data-toggle="collapse" href="#features" aria-expanded="false" aria-controls="features">
                 <a href="#">
                     <i class="fa fa-flask" aria-hidden="true"></i>
-                    <span>Lọc</span></span>
+                    <span>Lọc</span>
                 </a>
             </li>
-
-            @*<li>
-                <ul id="features" class="sub-menu collapse ">
-                    <li><a href="/features/zoomingpanning/">Zooming &amp; Panning</a></li>
-                    <li><a href="/features/exportchart/">Export Chart as Image</a></li>
-                    <li><a href="/features/eventhandling/">Events</a></li>
-                    <li><a href="/features/logaxis/">Logarithmic Axis</a></li>
-                    <li><a href="/features/reverseaxis/">Reverse Axis</a></li>
-                    <li><a href="/features/datetime/">Date Time Axis</a></li>
-                    <li><a href="/features/striplines/">StripLines</a></li>
-                    <li><a href="/features/multipleyaxis/">Multiple Y Axis</a></li>
-                    <li><a href="/features/multiserieschart/">Multiseries Charts</a></li>
-                </ul>
-            </li>*@
-            <!--  /features -->
-
             <li role="separator" class="divider"></li>
-
-            <!--  how to  -->
             <li data-toggle="collapse" href="#howto" aria-expanded="false" aria-controls="how-to">
                 <a href="#">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                     <span>Liên hệ</span>
                 </a>
             </li>
-
             <li>
                 <ul id="howto" class="sub-menu collapse ">
                     <li><a href="/howto/enabledisableds/">Hide / Show DataSeries</a></li>
@@ -166,7 +140,6 @@
                 </ul>
             </li>
             <!--  /how to  -->
-
             <li role="separator" class="divider"></li>
         </ul>
     </div>
@@ -182,10 +155,21 @@
         </div>
         <!-- /footer -->
     </div>
-    <!-- /page-content-wrapper -->
-    <!-- Visual Studio Browser Link -->
 
+    <script type="text/javascript" src="~/Libary/lib/bootstrap-datepicker.min.js"></script>
+    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
 
-    <span style="position: absolute; left: 0px; top: -20000px; padding: 0px; margin: 0px; border: none; white-space: pre; line-height: normal; font-family: &quot;Trebuchet MS&quot;, Helvetica, sans-serif; font-size: 13px; font-weight: bold; display: none;">Mpgyi</span>
+    <script>
+        $(document).ready(function () {
+            var date_input = $('.picker-control'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            });
+        });
+    </script>
 </body>
 </html>

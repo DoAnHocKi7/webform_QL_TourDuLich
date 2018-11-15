@@ -4,33 +4,27 @@
 }
 @model QLTourDucLich.ViewModel.FormThongKeViewModel
 
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<h2>Thống kê theo thời gian</h2>
-<div id="chartContainer"></div>
-
-@using (Html.BeginForm("ThongKeTheoThoiGian", "ThongKe", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 100px;" }))
+@using (Html.BeginForm("ThongKeTheoThoiGian", "ThongKe", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 250px;" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-<div class="form-group col-12 col-sm-6 col-md-6">
-    @Html.Label("Tháng:")
-    @*@Html.TextBoxFor(m=>m.Thang, new { @class = "form-control",@requỉed=true })*@
-</div>
-<div class="form-group col-12 col-sm-6 col-md-6">
-    @Html.Label("Năm:")
-    @Html.TextBox("năm", null, new { @class = "form-control", @requỉed = true })
-</div>
-    <div style="width:100%" class="form-group col-12 col-sm-6 col-md-12">
-        <input name="edit" value="Thống kê" type="submit" style="display: block;float: right;" class="btn btn-primary info" id="login" />
+    <div class="form-group col-12 col-sm-6 col-md-3">
+        @Html.Label("Thời gian thống kê")
+        @Html.TextBox("time", null, new { @Value = DateTime.Now.ToShortDateString(), @class = "form-control short-picker-control", @required = true })
+    </div>
+    <div class="form-group col-12 col-sm-6 col-md-12">
+        <input name="edit" value="Thống kê" type="submit" class="btn btn-primary info" id="login" />
     </div>
 }
-
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<h2>Thống kê theo thời gian</h2>
+<div id="chartContainer"></div>
 
 <script type="text/javascript">
     window.onload = function () {
         var chart = new CanvasJS.Chart("chartContainer", {
             title: {
-                text: "Desktop Search Engine Market Share, Jul-2016"
+                text: "Thống kê theo thời gian @ViewBag.ThoiGian"
             },
             animationEnabled: true,
             legend: {
@@ -49,18 +43,25 @@
                     startAngle: -20,
                     showInLegend: true,
                     toolTipContent: "{legendText} {y}%",
-                    dataPoints: [
-                        { y: 72.48, legendText: "Google", label: "Google" },
-                        { y: 10.39, legendText: "Bing", label: "Bing" },
-                        { y: 7.78, legendText: "Yahoo!", label: "Yahoo!" },
-                        { y: 7.14, legendText: "Baidu", label: "Baidu" },
-                        { y: 0.22, legendText: "Ask", label: "Ask" },
-                        { y: 0.15, legendText: "AOL", label: "AOL" },
-                        { y: 1.84, legendText: "Others", label: "Others" }
-                    ]
+                    dataPoints: @Html.Raw(ViewBag.DataPoints)
                 }
             ]
         });
         chart.render();
     };
+</script>
+
+<script>
+    $(document).ready(function () {
+        var date_input1 = $('.short-picker-control'); //our date input has the name "date"
+        var container1 = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input1.datepicker({
+            format: "mm/yyyy",
+            startView: "months",
+            minViewMode: "months",
+            //container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+    });
 </script>

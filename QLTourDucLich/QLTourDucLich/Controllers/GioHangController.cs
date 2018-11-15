@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using QLTourDucLich.Models;
+﻿using QLTourDucLich.Models;
 using QLTourDucLich.Queries.GioHang;
 using QLTourDucLich.Queries.NguoiDung;
 using QLTourDucLich.ViewModel.NguoiDung;
-using Rotativa;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using QLTourDucLich.Constants;
 
 namespace QLTourDucLich.Controllers
 {
@@ -16,6 +15,8 @@ namespace QLTourDucLich.Controllers
         public static List<SPDaMua> GIOHANG;
 
         public static KhachHangViewModel CUSOTMER;
+
+        public static string MAHD;
         //
         // GET: /GioHang/
         QlTourDuLichEntities ql = new QlTourDuLichEntities();
@@ -23,8 +24,7 @@ namespace QLTourDucLich.Controllers
         {
             return View();
         }
-        #region Gio Hang
-        // Lấy sản phẩm hiện tại có trong giỏ hàng
+
         public List<SPDaMua> LayGioHang()
         {
             //gán bằng cái list sao đó ép kiểu session về list 
@@ -35,7 +35,6 @@ namespace QLTourDucLich.Controllers
                 giohang = new List<SPDaMua>();
                 // vì đây session là biến toàn cục nên một lần gởi tạo là đủ 
                 Session["GioHang"] = giohang;
-
             }
             return giohang;
         }
@@ -57,9 +56,7 @@ namespace QLTourDucLich.Controllers
                 Response.Write("Sản Phẩm Đã Tồn Tại Trong Giỏ Hàng");
                 // return Redirect(strURL);
             }
-
             return RedirectToAction("Index", "TrangChu");
-
         }
 
         // Cập nhập số lượng giỏ hàng
@@ -75,9 +72,9 @@ namespace QLTourDucLich.Controllers
             }
             return RedirectToAction("GioHang");
         }
+
         public ActionResult XoaGioHang(string matour)
         {
-
             List<SPDaMua> lstGioHang = LayGioHang();
             SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
@@ -99,11 +96,14 @@ namespace QLTourDucLich.Controllers
             {
                 RedirectToAction("Index", "TrangChu");
             }
-
-
             List<SPDaMua> lstGioHang = LayGioHang();
             GIOHANG = LayGioHang();
-            return View(lstGioHang);
+            ViewBag.GioHang = lstGioHang;
+            if (Session[Constants.Constants.LOGIN_KHACHHANG] != null)
+            {
+                ViewBag.KhachHangDaLogin = Session[Constants.Constants.LOGIN_KHACHHANG];
+            }
+            return View(new KhachHangViewModel());
         }
 
         //Tổng tiền của từng sản phẩm
@@ -114,11 +114,8 @@ namespace QLTourDucLich.Controllers
             if (lstGioHang != null)
             {
                 thanhtien = lstGioHang.Sum(t => t.thanhtien);
-
-
             }
             return thanhtien;
-
         }
 
         //Tổng số lượng có trong giỏ hàng
@@ -146,21 +143,16 @@ namespace QLTourDucLich.Controllers
             ViewBag.soluong = Soluong();
             return PartialView();
         }
-        #endregion
 
-        #region Dat Hang
         // sử dụng được cho tất cả các hàm
         HOPDONG hd;
         public ActionResult DatHang(FormCollection f)
         {
-
             try
             {
                 Random rd = new Random();
                 int ma = rd.Next(2000);
-
                 hd = new HOPDONG();
-
                 List<SPDaMua> spdm = LayGioHang();
                 // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
                 KHACHHANG kh = new KHACHHANG();
@@ -187,11 +179,8 @@ namespace QLTourDucLich.Controllers
                     ctHD.SLTreEm = item.sltreem;
                     ctHD.ThanhTien = item.thanhtien;
                     ql.ChiTietHopDongs.Add(ctHD);
-
-
                 }
                 ql.SaveChanges();
-
                 Session.Remove("GioHang");
             }
             catch
@@ -207,14 +196,10 @@ namespace QLTourDucLich.Controllers
             {
                 Random rd = new Random();
                 int ma = rd.Next(2000);
-
                 hd = new HOPDONG();
-
                 List<SPDaMua> spdm = LayGioHang();
-                KhachHangViewModel kh = (KhachHangViewModel)Session["Login"];
+                KhachHangViewModel kh = (KhachHangViewModel)Session[Constants.Constants.LOGIN_KHACHHANG];
                 CUSOTMER = kh;
-
-
                 hd.MaHD = rd.Next(2000).ToString();
                 hd.MaKH = kh.MaKH;
                 hd.ThoiGianDat = DateTime.Now;
@@ -234,6 +219,7 @@ namespace QLTourDucLich.Controllers
                 }
                 ql.SaveChanges();
                 Session.Remove("GioHang");
+                MAHD = hd.MaHD;
             }
             catch
             {
@@ -241,11 +227,11 @@ namespace QLTourDucLich.Controllers
             }
             return View(hd);
         }
-        #endregion
 
         public ActionResult XemHoaDon()
         {
             ViewBag.KhachHang = CUSOTMER;
+            ViewBag.MaHD = MAHD;
             return View(GIOHANG);
         }
 

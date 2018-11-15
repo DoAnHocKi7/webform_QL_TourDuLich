@@ -38,7 +38,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.Queries.Thong_Ke
             return null;
         }
 
-        public static List<ThongKeTheoTourViewModel> ThongKeTheoTG(int thang, int nam)
+        public static List<ThongKeTheoThoiGianViewModel> ThongKeTheoTG(int thang, int nam)
         {
             QlTourDuLichEntities entity = new QlTourDuLichEntities();
             try
@@ -53,21 +53,35 @@ namespace QLTourDucLich.Areas.QuanTriVien.Queries.Thong_Ke
                               on t.MaHanhTrinh equals ht.MaHanhTrinh
                               join dd in entity.DIADIEMs
                               on ht.NoiDen equals dd.MaDiaDiem
-                              group new { dd, ct } by new { dd.TenDiaDiem, dd.MaDiaDiem } into grp
-                              select new ThongKeTheoTourViewModel()
+                              join ddi in entity.DIADIEMs
+                              on ht.NoiDi equals ddi.MaDiaDiem
+                              //group new { dd, ct } by new { dd.TenDiaDiem, dd.MaDiaDiem } into grp
+                              //select new ThongKeTheoThoiGianViewModel()
+                              //{
+                              //    TienDaBan = grp.Sum(t => t.ct.ThanhTien),
+                              //    MaDiemDen = grp.Key.MaDiaDiem,
+                              //    TenTour = grp.Key.TenDiaDiem+grp.Key
+                              //});
+                              select new TourDaBanViewModel()
                               {
-                                  TienDaBan = grp.Sum(t => t.ct.ThanhTien),
-                                  MaDiemDen = grp.Key.MaDiaDiem,
-                                  TenDiemDen = grp.Key.TenDiaDiem
+                                  NoiDi=ddi.TenDiaDiem,
+                                  NoiDen=dd.TenDiaDiem,
+                                  ThanhTien=ct.ThanhTien
                               });
-                return result.ToList();
+                decimal? sum = result.Sum(t => t.ThanhTien);
+                var thongKe = result.GroupBy(t => new { t.NoiDi, t.NoiDen }).Select(x => new ThongKeTheoThoiGianViewModel()
+                {
+                    TenTour = x.Key.NoiDi + " - " + x.Key.NoiDen,
+                    ChuThich = "Tour " + x.Key.NoiDi + " - " + x.Key.NoiDen,
+                    TienDaBan = Math.Round(((x.Sum(y => y.ThanhTien) / sum) * 100).Value,2)
+                });
+                return thongKe.ToList();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 entity.Dispose();
             }
             return null;
-
         }
     }
 }

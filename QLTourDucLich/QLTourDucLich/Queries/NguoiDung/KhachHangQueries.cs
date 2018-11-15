@@ -37,6 +37,7 @@ namespace QLTourDucLich.Queries.NguoiDung
             }
             return new KhachHangViewModel()
             {
+                MaKH = result.MaKH,
                 TenKH = result.TenKH,
                 SoDT = result.SDTKH,
                 DiaChi = result.DCKH,
@@ -51,7 +52,7 @@ namespace QLTourDucLich.Queries.NguoiDung
             return entity.KHACHHANGs.FirstOrDefault(t => t.MaKH == idKH) != null;
         }
 
-        public static bool DangKy(KhachHangViewModel model)
+        public static bool DangKyBangFacebook(KhachHangViewModel model)
         {
             QlTourDuLichEntities entity = new QlTourDuLichEntities();
             KHACHHANG khachhang = new KHACHHANG()
@@ -73,6 +74,51 @@ namespace QLTourDucLich.Queries.NguoiDung
                 entity.Dispose();
             }
             return false;
+        }
+
+        public static KhachHangViewModel TimKhachHangTheoMa(string maKH)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            var result = entity.KHACHHANGs.FirstOrDefault(t => t.MaKH == maKH);
+            if (result == null)
+            {
+                return null;
+            }
+            return new KhachHangViewModel()
+            {
+                DiaChi = result.DCKH,
+                MaKH=result.MaKH,
+                Email=result.Email,
+                SoDT = result.SDTKH,
+                TenKH = result.TenKH
+            };
+        }
+
+        public static bool SuaThongTinKhachHang(KhachHangViewModel model)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            var result = entity.KHACHHANGs.FirstOrDefault(t => t.MaKH == model.MaKH);
+            if (result != null)
+            {
+                result.TenKH = model.TenKH;
+                result.SDTKH = model.SoDT;
+                result.DCKH = model.DiaChi;
+                try
+                {
+                    entity.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    entity.Dispose();
+                }            
+            }
+            return false;
+        }
+
+        public static bool XuLyThongTinFacebook(KhachHangViewModel model)
+        {
+            return true;
         }
     }
 }

@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#Tour_MaDiaDiemDi').change(function () {
         var value = $('#Tour_MaDiaDiemDi').find(':selected').val();
         $.ajax({
-            url: '/QuanTriVien/Tour/TimDiemDen',
+            url: '/QuanTriVien/TourDuLich/TimDiemDen',
             type: 'post',
             dataType: 'json',
             data: { maNoiDi: value },

@@ -1,4 +1,4 @@
-﻿@model QLTourDucLich.ViewModel.KhachHangDangKyViewModel
+﻿@model QLTourDucLich.ViewModel.NguoiDung.KhachHangDangKyViewModel
 <link href="~/Content/DangKy.css" rel="stylesheet" />
 @{
     ViewBag.Title = "DangKy";
@@ -51,11 +51,7 @@
                         @Html.ValidationMessageFor(model => model.Phone)
                     </div>
                     <button type="sumbit" class="btn btn-success" style="margin:5px 5px 5px 40px">Đăng Kí</button>
-
-
-
                 </fieldset>
-
             }
             <div>
                 @Html.ActionLink("Quay Lại Trang Chủ", "Index", "TrangChu")
@@ -65,7 +61,7 @@
 
         </div>
         <div class="col-md-4">
-            www
+            
 
         </div>
 

@@ -246,7 +246,11 @@ ul li{
             width: 94%;
             margin: auto;
   }
-  
+
+.Login {
+    float: none;
+    margin: auto;
+}
   .plus-minus-input .input-group-field {
     text-align: center;
     margin-left: 0.5rem;

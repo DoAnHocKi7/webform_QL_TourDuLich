@@ -151,6 +151,7 @@
     <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\HanhTrinhQueries.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\KhachSanQueries.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\NhanVienQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\ThongKe\ThongKeTheoThoiGianViewModel.cs" />
     <Compile Include="Models\ChiTietHopDong.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -243,6 +244,7 @@
     <Compile Include="ViewModel\GioHang\ChiTietHopDongViewModel.cs" />
     <Compile Include="ViewModel\NguoiDung\KhachHangDangNhapViewModel.cs" />
     <Compile Include="ViewModel\NguoiDung\KhachHangViewModel.cs" />
+    <Compile Include="ViewModel\NguoiDung\ThongTinBoSungKhachHangViewModel.cs" />
     <Compile Include="ViewModel\Tour\TourViewModel.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Controllers\GioHangController.cs" />

@@ -25,6 +25,7 @@ namespace QLTourDucLich.ViewModel.NguoiDung
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+
         [Display(Name = "Phone:")]
         [Required(ErrorMessage = "{0} Không được để trống")]
         [MinLength(11, ErrorMessage = "Số Điện Thoại 11 ký tự")]
