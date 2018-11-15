@@ -26,14 +26,14 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
             {
                 if (TaiKhoanQueries.KiemTraDangNhap(model))
                 {
-                    Session[Constants.Constants.LOGIN] = model.Username;
-                    if (Response.Cookies[Constants.Constants.LOGIN] != null)
+                    Session[Constants.Constants.LOGIN_QUANTRIVIEN] = model.Username;
+                    if (Response.Cookies[Constants.Constants.LOGIN_QUANTRIVIEN] != null)
                     {
-                        Response.Cookies.Remove(Constants.Constants.LOGIN);
+                        Response.Cookies.Remove(Constants.Constants.LOGIN_QUANTRIVIEN);
                     }
-                    Response.Cookies[Constants.Constants.LOGIN].Value = model.Username;
-                    Response.Cookies[Constants.Constants.LOGIN][Constants.Constants.DANGNHAPLANCUOI] = DateTime.Now.ToString();
-                    Response.Cookies[Constants.Constants.LOGIN].Expires = DateTime.Now.AddDays(15);
+                    Response.Cookies[Constants.Constants.LOGIN_QUANTRIVIEN].Value = model.Username;
+                    Response.Cookies[Constants.Constants.LOGIN_QUANTRIVIEN][Constants.Constants.DANGNHAPLANCUOI] = DateTime.Now.ToString();
+                    Response.Cookies[Constants.Constants.LOGIN_QUANTRIVIEN].Expires = DateTime.Now.AddDays(15);
                     return RedirectToAction("Index", "TourDuLich");
                 }
             }

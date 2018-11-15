@@ -151,32 +151,9 @@
     <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\HanhTrinhQueries.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\KhachSanQueries.cs" />
     <Compile Include="Areas\QuanTriVien\Queries\TourDuLich\NhanVienQueries.cs" />
-    <Compile Include="Queries\GioHang\HopDongQueries.cs" />
-    <Compile Include="Queries\NguoiDung\KhachHangQueries.cs" />
-    <Compile Include="Queries\Tour\TourQueries.cs" />
-    <Compile Include="Areas\QuanTriVien\ViewModel\TaiKhoan\DangNhapViewModel.cs" />
-    <Compile Include="Areas\QuanTriVien\ViewModel\ThongKe\ThongKeViewModel.cs" />
-    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\DiaDiemViewModel.cs" />
-    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\HanhTrinhViewModel.cs" />
-    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\KhachSanViewModel.cs" />
-    <Compile Include="ViewModel\GioHang\ChiTietHopDongViewModel.cs" />
-    <Compile Include="ViewModel\NguoiDung\KhachHangDangNhapViewModel.cs" />
-    <Compile Include="ViewModel\NguoiDung\KhachHangViewModel.cs" />
-    <Compile Include="ViewModel\Tour\TourViewModel.cs" />
-    <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Controllers\GioHangController.cs" />
-    <Compile Include="Controllers\NguoiDungController.cs" />
-    <Compile Include="Controllers\ThongTinKhachHangController.cs" />
-    <Compile Include="Controllers\TimKiemController.cs" />
-    <Compile Include="Controllers\TourController.cs" />
-    <Compile Include="Controllers\TrangChuController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Models\ChiTietHopDong.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChiTietT.cs" />
     <Compile Include="Models\CTPHIEUNHAP_TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
@@ -243,13 +220,42 @@
     <Compile Include="Models\QUANLINHOMNGUOIDUNG.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SPDaMua.cs" />
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QlTour.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QlTour.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TOUR.cs">
       <DependentUpon>QlTour.tt</DependentUpon>
     </Compile>
+    <Compile Include="Queries\GioHang\HopDongQueries.cs" />
+    <Compile Include="Queries\NguoiDung\KhachHangQueries.cs" />
+    <Compile Include="Queries\Tour\TourQueries.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\TaiKhoan\DangNhapViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\ThongKe\ThongKeViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\DiaDiemViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\HanhTrinhViewModel.cs" />
+    <Compile Include="Areas\QuanTriVien\ViewModel\Tour\KhachSanViewModel.cs" />
+    <Compile Include="ViewModel\GioHang\ChiTietHopDongViewModel.cs" />
+    <Compile Include="ViewModel\NguoiDung\KhachHangDangNhapViewModel.cs" />
+    <Compile Include="ViewModel\NguoiDung\KhachHangViewModel.cs" />
+    <Compile Include="ViewModel\Tour\TourViewModel.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\ThongTinKhachHangController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
+    <Compile Include="Controllers\TourController.cs" />
+    <Compile Include="Controllers\TrangChuController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietT.cs" />
+    <Compile Include="Models\SPDaMua.cs" />
     <Compile Include="Models\TourDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\FormThongKeViewModel.cs" />
@@ -786,23 +792,6 @@
     <Content Include="Libary\lib\bootstrap-3.3.7\package.json" />
     <Content Include="Libary\lib\bootstrap-3.3.7\README.md" />
     <Content Include="Libary\lib\bootstrap-3.3.7\_config.yml" />
-    <EntityDeploy Include="Models\QlTour.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QlTour.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\QlTour.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QlTour.edmx</DependentUpon>
-      <LastGenOutput>QlTour.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\QlTour.edmx.diagram">
-      <DependentUpon>QlTour.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\QlTour.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QlTour.edmx</DependentUpon>
-      <LastGenOutput>QlTour.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -821,7 +810,24 @@
     <Content Include="Areas\QuanTriVien\Views\Web.config" />
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="Areas\QuanTriVien\Views\ThongKe\ThongKeTheoThoiGian.cshtml" />
+    <EntityDeploy Include="Models\QlTour.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QlTour.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QlTour.edmx.diagram">
+      <DependentUpon>QlTour.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Models\QlTour.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QlTour.edmx</DependentUpon>
+      <LastGenOutput>QlTour.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QlTour.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QlTour.edmx</DependentUpon>
+      <LastGenOutput>QlTour.cs</LastGenOutput>
+    </Content>
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -109,3 +109,5 @@ D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug\QLTourDucLich.Tests.csproj.CopyComplete
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug\QLTourDucLich.Tests.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\obj\Debug\QLTourDucLich.Tests.pdb
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\Facebook.dll
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich.Tests\bin\Debug\Facebook.xml

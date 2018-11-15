@@ -104,3 +104,5 @@ D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\System.Web.
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\obj\Debug\QLTourDucLich.csprojAssemblyReference.cache
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\WebComponent.dll
 D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\WebComponent.pdb
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\Facebook.dll
+D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\QLTourDucLich\bin\Facebook.xml

@@ -14,5 +14,7 @@ namespace QLTourDucLich.Constants
         public const string DANGNHAPLANCUOI = "DangNhapLanCuoi";
 
         public const string LOGIN_KHACHHANG = "TaiKhoan";
+
+        public const string HINH_LOGIN = "HinhLogin";
     }
 }

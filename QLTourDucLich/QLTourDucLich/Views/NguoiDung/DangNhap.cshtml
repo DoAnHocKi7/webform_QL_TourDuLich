@@ -28,7 +28,9 @@
                 </div>
                 <div style="width:100%" class="form-group col-xs-12 col-sm-6 col-md-12">
                     <input name="DangNhap" value="Đăng nhập" type="submit" class="btn btn-primary info" id="login" style="background: #39c700;border: none;" />
-                    <input name="DangNhapBangFacebook" value="Đăng nhập bằng Facebook" type="submit" class="btn btn-primary info" style="display: block;float: right;" />
+                    @*<input name="DangNhapBangFacebook" value="Đăng nhập bằng Facebook" type="submit" class="btn btn-primary info" style="display: block;float: right;" />*@
+                    @Html.ActionLink("Đăng nhập bằng Facebook", "Facebook", "NguoiDung",new { @class = "btn btn-primary info",style = "display: block;float: right;" })
+
                 </div>
 
             }

@@ -3,7 +3,7 @@
 
                 Layout = null;
 }
-
+@using QLTourDucLich.Constants
 <!DOCTYPE html>
 
 <html>
@@ -103,9 +103,6 @@
                         <li>
 
                             <div class="dropdown">
-
-
-
                                 @if (Session["TaiKhoan"] == null)
                                 {
                                     <a href="#" class="dropdown-toggle" id="DKTK" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -122,7 +119,15 @@
                                 else
                                 {
                                     <a href="#" class="dropdown-toggle" id="has_login" role="button" data-toggle="dropdown" aria-expanded="false">
-                                        <img style="width:25px;height:25px" src="~/Images/account.png" />
+                                        @if (Session[Constants.HINH_LOGIN] == null)
+                                        {
+                                            <img style="width:25px;height:25px" src="~/Images/account.png" />
+
+                                        }
+                                        else
+                                        {
+                                            <img style="width:40px;height:40px" src="@Session[Constants.HINH_LOGIN] " />
+                                        }
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="has_login" id="dropdown-dn">
                                         <p style="color:blue">Welcome To:</p><h6 style="color:red">  @Session["TaiKhoan"].ToString()</h6>

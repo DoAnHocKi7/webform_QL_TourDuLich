@@ -9,6 +9,7 @@ using QLTourDucLich.ViewModel.NguoiDung;
 using Facebook;
 using Newtonsoft.Json;
 using System.Configuration;
+using System.Web.Security;
 
 namespace QLTourDucLich.Controllers
 {
@@ -78,7 +79,7 @@ namespace QLTourDucLich.Controllers
                 {
                     ViewBag.ThongBao = "Đăng nhập thành công";
                     Session[Constants.Constants.LOGIN_KHACHHANG] = khachHang.TenKH;
-                    Session["Login"] = model;
+                    Session["Login"] = khachHang;
                     return RedirectToAction("Index", "TrangChu");
 
                 }
@@ -90,6 +91,7 @@ namespace QLTourDucLich.Controllers
         public ActionResult DangXuat()
         {
             Session[Constants.Constants.LOGIN_KHACHHANG] = null;
+            Session[Constants.Constants.HINH_LOGIN] = null;
             return RedirectToAction("Index", "TrangChu");
         }
 
@@ -103,6 +105,50 @@ namespace QLTourDucLich.Controllers
                 uriBuilder.Path = Url.Action("FacebookCallback");
                 return uriBuilder.Uri;
             }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Facebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FacebookAppID"],
+                client_secret = ConfigurationManager.AppSettings["FacebookAppSecret"],
+                redirect_uri = RediredtUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email"
+            });
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FacebookAppID"],
+                client_secret = ConfigurationManager.AppSettings["FacebookAppSecret"],
+                redirect_uri = RediredtUri.AbsoluteUri,
+                code = code
+            });
+            var accessToken = result.access_token;
+            fb.AccessToken = accessToken;
+            dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range,birthday,address");
+            Session[Constants.Constants.LOGIN_KHACHHANG] = me.first_name + " " + me.last_name;
+            if (!KhachHangQueries.KiemTraTaiKhoanFacebook(me.id))
+            {
+                KhachHangViewModel model = new KhachHangViewModel()
+                {
+                    DiaChi = me.address,
+                    Email = me.email,
+                    GioiTinh = me.gender,
+                    MaKH = me.id
+                };
+                KhachHangQueries.DangKy(model);
+            }
+            Session[Constants.Constants.HINH_LOGIN] = me.picture.data.url;
+            return RedirectToAction("Index", "TrangChu");
         }
 
     }

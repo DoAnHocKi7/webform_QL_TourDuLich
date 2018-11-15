@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using QLTourDucLich.Models;
 using QLTourDucLich.Queries.GioHang;
 using QLTourDucLich.Queries.NguoiDung;
+using QLTourDucLich.ViewModel.NguoiDung;
 using Rotativa;
 
 namespace QLTourDucLich.Controllers
@@ -14,7 +15,7 @@ namespace QLTourDucLich.Controllers
     {
         public static List<SPDaMua> GIOHANG;
 
-        public static KHACHHANG CUSOTMER;
+        public static KhachHangViewModel CUSOTMER;
         //
         // GET: /GioHang/
         QlTourDuLichEntities ql = new QlTourDuLichEntities();
@@ -210,8 +211,7 @@ namespace QLTourDucLich.Controllers
                 hd = new HOPDONG();
 
                 List<SPDaMua> spdm = LayGioHang();
-                // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
-                KHACHHANG kh = (KHACHHANG)Session["Login"];
+                KhachHangViewModel kh = (KhachHangViewModel)Session["Login"];
                 CUSOTMER = kh;
 
 

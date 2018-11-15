@@ -10,7 +10,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.Queries.TaiKhoan
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            return httpContext.Session[Constants.Constants.LOGIN] != null;
+            return httpContext.Session[Constants.Constants.LOGIN_QUANTRIVIEN] != null;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
