@@ -12,18 +12,22 @@ namespace QLTourDucLich.Queries.NguoiDung
         public static KhachHangViewModel TimKhachHang(string maHopDong)
         {
             QlTourDuLichEntities entity = new QlTourDuLichEntities();
-            string maKH = entity.HOPDONGs.FirstOrDefault(t => t.MaHD == maHopDong).MaKH;
-            var result = entity.KHACHHANGs.FirstOrDefault(t => t.MaKH == maKH);
-            if (result == null)
+            try
             {
-                return null;
+                string maKH = entity.HOPDONGs.FirstOrDefault(t => t.MaHD == maHopDong).MaKH;
+                var result = entity.KHACHHANGs.FirstOrDefault(t => t.MaKH == maKH);
+                return new KhachHangViewModel()
+                {
+                    DiaChi = result.DCKH,
+                    SoDT = result.SDTKH,
+                    TenKH = result.TenKH
+                };
             }
-            return new KhachHangViewModel()
+            catch (Exception)
             {
-                DiaChi = result.DCKH,
-                SoDT = result.SDTKH,
-                TenKH = result.TenKH
-            };
+                entity.Dispose();
+            }
+            return null;
         }
 
         public static KhachHangViewModel DangNhap(KhachHangDangNhapViewModel model)
@@ -87,8 +91,8 @@ namespace QLTourDucLich.Queries.NguoiDung
             return new KhachHangViewModel()
             {
                 DiaChi = result.DCKH,
-                MaKH=result.MaKH,
-                Email=result.Email,
+                MaKH = result.MaKH,
+                Email = result.Email,
                 SoDT = result.SDTKH,
                 TenKH = result.TenKH
             };
@@ -111,7 +115,7 @@ namespace QLTourDucLich.Queries.NguoiDung
                 catch (Exception)
                 {
                     entity.Dispose();
-                }            
+                }
             }
             return false;
         }

@@ -16,7 +16,6 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
 
         public ActionResult Index()
         {
-
             List<ThongKeTheoTourViewModel> dataPoints = ThongKeQueries.LayDuLieuThongKe();
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View();

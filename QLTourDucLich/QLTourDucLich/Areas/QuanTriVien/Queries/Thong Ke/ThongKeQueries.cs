@@ -55,13 +55,6 @@ namespace QLTourDucLich.Areas.QuanTriVien.Queries.Thong_Ke
                               on ht.NoiDen equals dd.MaDiaDiem
                               join ddi in entity.DIADIEMs
                               on ht.NoiDi equals ddi.MaDiaDiem
-                              //group new { dd, ct } by new { dd.TenDiaDiem, dd.MaDiaDiem } into grp
-                              //select new ThongKeTheoThoiGianViewModel()
-                              //{
-                              //    TienDaBan = grp.Sum(t => t.ct.ThanhTien),
-                              //    MaDiemDen = grp.Key.MaDiaDiem,
-                              //    TenTour = grp.Key.TenDiaDiem+grp.Key
-                              //});
                               select new TourDaBanViewModel()
                               {
                                   NoiDi=ddi.TenDiaDiem,

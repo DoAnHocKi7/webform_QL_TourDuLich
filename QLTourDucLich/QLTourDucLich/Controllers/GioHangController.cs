@@ -138,7 +138,6 @@ namespace QLTourDucLich.Controllers
             if (Soluong() == 0)
             {
                 return PartialView();
-
             }
             ViewBag.soluong = Soluong();
             return PartialView();
@@ -154,7 +153,6 @@ namespace QLTourDucLich.Controllers
                 int ma = rd.Next(2000);
                 hd = new HOPDONG();
                 List<SPDaMua> spdm = LayGioHang();
-                // nếu vào hàm try khởi tạo thì giá trị chỉ chạy trong vòng try
                 KHACHHANG kh = new KHACHHANG();
                 kh.MaKH = ma.ToString();
                 kh.TenKH = f["customer_name"].ToString();
@@ -203,7 +201,7 @@ namespace QLTourDucLich.Controllers
                 hd.MaHD = rd.Next(2000).ToString();
                 hd.MaKH = kh.MaKH;
                 hd.ThoiGianDat = DateTime.Now;
-                hd.TongTien = TongTien() - (TongTien() * Convert.ToDecimal(0.05));
+                hd.TongTien = spdm.Sum(t => t.thanhtien);
                 ql.HOPDONGs.Add(hd);
                 ql.SaveChanges();
                 foreach (var item in spdm)
