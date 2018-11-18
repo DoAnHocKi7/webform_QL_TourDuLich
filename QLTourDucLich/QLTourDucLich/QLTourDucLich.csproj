@@ -260,7 +260,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ChiTietT.cs" />
     <Compile Include="Models\SPDaMua.cs" />
     <Compile Include="Models\TourDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -885,6 +884,7 @@
     <Content Include="Views\TimKiem\TimKiemTour.cshtml" />
     <Content Include="Views\GioHang\XemHoaDon.cshtml" />
     <Content Include="Views\GioHang\TraCuuDonHang.cshtml" />
+    <Content Include="Views\Shared\TourDeXuat_PartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

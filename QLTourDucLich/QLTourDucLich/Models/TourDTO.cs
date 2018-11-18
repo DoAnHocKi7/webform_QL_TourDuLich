@@ -7,7 +7,6 @@ namespace QLTourDucLich.Models
 {
     public class TourDTO
     {
-        QlTourDuLichEntities ql = new QlTourDuLichEntities();
         public string MaTour { get; set; }
         public string TenTour { get; set; }
         public DateTime? Ngaykh { get; set; }

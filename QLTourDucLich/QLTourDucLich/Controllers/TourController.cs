@@ -9,6 +9,8 @@ using PagedList.Mvc;
 using QLTourDucLich.Queries.Tour;
 using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
 using QLTourDucLich.ViewModel.Tour;
+using QLTourDucLich.Constants;
+using QLTourDucLich.ViewModel.NguoiDung;
 
 namespace QLTourDucLich.Controllers
 {
@@ -16,15 +18,22 @@ namespace QLTourDucLich.Controllers
     {
         //
         // GET: /Tour/
-        QlTourDuLichEntities ql = new QlTourDuLichEntities();
 
         public ViewResult ChiTietTour(string matour)
         {
-
-            ChiTietT tour = new ChiTietT(matour);
-            List<ChiTietT> listtour = new List<ChiTietT>();
-            listtour.Add(tour);
-            return View(listtour);
+            var model = TourQueries.TimTour(matour);
+            if (Session[Constants.Constants.LOGIN_KHACHHANG] == null)
+            {
+                ViewData["KetQuaLoc"] = TourQueries.LocNoiDung(model.Tour.GiaNguoiLon.Value-500000, 
+                                                            model.Tour.GiaNguoiLon.Value + 500000, 2)
+                                .Concat(TourQueries.LocNoiDung(model.Tour.LoaiTour, 2)).ToList();
+            }
+            else
+            {
+                string maKH = ((KhachHangViewModel)Session[Constants.Constants.LOGIN_KHACHHANG]).MaKH;
+                ViewData["KetQuaLoc"] = TourQueries.Loc_CollaborativeFiltering(maKH, matour, 4);
+            }
+            return View(model);
         }
 
         // [HttpPost]

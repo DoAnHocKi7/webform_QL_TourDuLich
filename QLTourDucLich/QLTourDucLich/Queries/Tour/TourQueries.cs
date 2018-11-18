@@ -296,7 +296,6 @@ namespace QLTourDucLich.Queries.Tour
             return null;
         }
 
-        //da dung, da test
         public static List<string> LayDSKhachHangDatTour(string maTour)
         {
             QlTourDuLichEntities entity = new QlTourDuLichEntities();
@@ -317,32 +316,6 @@ namespace QLTourDucLich.Queries.Tour
                 return null;
             }
         }
-
-        //da dung, da test
-        //public static List<TourKhachHangDatViewModel> LayDSTourKhachHangDat(string maKH)
-        //{
-        //    QlTourDuLichEntities entity = new QlTourDuLichEntities();
-        //    try
-        // {
-        //var result = (from hd in entity.HOPDONGs
-        //              where hd.MaKH == maKH
-        //              join ct in entity.ChiTietHopDongs
-        //              on hd.MaHD equals ct.MaHopDong
-        //              group new { ct } by new { ct.MaTour } into grp
-        //              select new TourKhachHangDatViewModel()
-        //              {
-        //                  MaTour = grp.Key.MaTour,
-        //                  SoLanDat = grp.Count()
-        //              });
-
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        entity.Dispose();
-        //        return null;
-        //    }
-        //}
 
         public static List<TourKhachHangDatViewModel> LayDSDatTour(string maKH)
         {
@@ -385,31 +358,7 @@ namespace QLTourDucLich.Queries.Tour
             return result;
         }
 
-        //public static int Tim_Sim_Thieu_CollaborativeFiltering(string maTour,List<TourKhachHangDatViewModel> dsDatKHChinh,
-        //                                                                                                    List<string> dsKhachHangCongTac)
-        //{
-        //    //var dsKhachHangDat = LayDSKhachHangDatTour(maTour);
-        //    //var dsDatKHChinh1 = LayDSDatTour(maKH);
-        //    Dictionary<string, List<TourKhachHangDatViewModel>> maTranDatKHPhu =
-        //                                                   new Dictionary<string, List<TourKhachHangDatViewModel>>();
-        //    /*-------------------Lấy ma trận những người liên quan------------------*/
-        //    foreach (var item in dsKhachHangCongTac)
-        //    {
-        //        maTranDatKHPhu.Add(item, LayDSDatTour(item));
-        //    }
-        //    Dictionary<string, double> lst_R = new Dictionary<string, double>();
-        //    foreach (var item in maTranDatKHPhu)
-        //    {
-        //        lst_R.Add(item.Key, Tinh_Sim_CollaborativeFiltering(dsDatKHChinh, item.Value));
-        //    }
-        //    /*--------------------------------------------------------------*/
-        //    double max_R = lst_R.Values.ToList().Max();
-        //    string KHcongTacToiUu = lst_R.FirstOrDefault(t => t.Value == max_R).Key;
-        //    int ketQua = maTranDatKHPhu.FirstOrDefault(t => t.Key == KHcongTacToiUu).Value.FirstOrDefault(t => t.MaTour == maTour).SoLanDat.Value;
-        //    return ketQua;
-        //}
-
-        public static double Tinh_Sim_CollaborativeFiltering(List<TourKhachHangDatViewModel> userChinh,
+        protected static double Tinh_Sim_CollaborativeFiltering(List<TourKhachHangDatViewModel> userChinh,
                                                List<TourKhachHangDatViewModel> userPhu)
         {
             double average_Chinh = userChinh.Where(t => t.SoLanDat > 0).Sum(t => t.SoLanDat.Value) * 1.0 / userChinh.Count;
@@ -433,26 +382,136 @@ namespace QLTourDucLich.Queries.Tour
             return 0;
         }
 
-        public static List<string> Loc_CollaborativeFiltering(string maKH,string maTourChon, int soLuongChon)
+        public static List<TourChiTietViewModel> Loc_CollaborativeFiltering(string maKH, string maTourChon, int soLuongChon)
         {
-            Dictionary<string, double> ketQuaChiSoR = new Dictionary<string, double>();
             var dsDatKHChinh = LayDSDatTour(maKH);
-
             var bestCustomer = TimKhachHangTotNhat(dsDatKHChinh, LayDSKhachHangDatTour(maTourChon));
-
+            //Lay Ds rate bang duc lo
+            Dictionary<string, double> ketQuaChiSoR = new Dictionary<string, double>();
             foreach (var item in dsDatKHChinh)
             {
+                double sim;
                 if (item.SoLanDat == 0)
                 {
-                    //ketQuaChiSoR.Add(item.MaTour, Tim_Sim_Thieu_CollaborativeFiltering(item.MaTour, dsDatKHChinh, LayDSKhachHangDatTour(maTourChon)));
-                    ketQuaChiSoR.Add(item.MaTour, bestCustomer.FirstOrDefault(t => t.MaTour == item.MaTour).SoLanDat.Value);
+                    sim = bestCustomer.FirstOrDefault(t => t.MaTour == item.MaTour).SoLanDat.Value;
+                }
+                else
+                {
+                    sim = item.SoLanDat.Value;
+                }
+                ketQuaChiSoR.Add(item.MaTour, sim);
+            }
+            //------------------------
+            var res = ketQuaChiSoR.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
+            int chiSoTourDangChon = res.FindIndex(t => t == maTourChon);
+            res.RemoveAt(chiSoTourDangChon);
+            var collection = res.Take(soLuongChon).ToList();
+            //Lay Chi tiet Tour
+            List<TourChiTietViewModel> ketQua = new List<TourChiTietViewModel>();
+            if (collection.Count > 0)
+            {
+                foreach (var item in collection)
+                {
+                    ketQua.Add(TimTour(item));
                 }
             }
-            //var kqLoc = ketQuaChiSoR.OrderByDescending(t => t.Value).Take(soLuongChon);
-            var res = ketQuaChiSoR.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
-            res.RemoveAt(res.FindIndex(t => t == maTourChon));
-            return res.Take(soLuongChon).ToList();
-            //return kqLoc.Select(t => t.Key).ToList();
+            return ketQua;
+        }
+
+        public static List<TourChiTietViewModel> LocNoiDung(string maLoai, int soLuongChon)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            try
+            {
+                var res = (from t in entity.TOURs
+                           where t.MaLoaiTour == maLoai
+                           join ks in entity.KHACHSANs
+                           on t.MaKS equals ks.MaKS
+                           join ht in entity.HANHTRINHs
+                           on t.MaHanhTrinh equals ht.MaHanhTrinh
+                           join dd1 in entity.DIADIEMs
+                           on ht.NoiDen equals dd1.MaDiaDiem
+                           join dd2 in entity.DIADIEMs
+                           on ht.NoiDi equals dd2.MaDiaDiem
+                           join hdv in entity.HUONGDANVIENs
+                           on t.MaHDV equals hdv.MaHDV
+                           select new TourChiTietViewModel()
+                           {
+                               Tour = new TourViewModel()
+                               {
+                                   MaTour = t.MaTour,
+                                   LoaiTour = t.MaLoaiTour,
+                                   NgayKH = t.NgayKhoiHanh,
+                                   NgayKT = t.NgayKetThuc,
+                                   TenKhachSan = ks.TenKS,
+                                   DiemDen = dd1.TenDiaDiem,
+                                   DiemDi = dd2.TenDiaDiem,
+                                   GiaNguoiLon = t.GiaNguoiLon,
+                                   GiaTreEm = t.GiaTreEm,
+                                   TenTour = t.TenTour,
+                                   TenHDV = hdv.TenHDV
+                               },
+                               AnhDiaDiem = t.AnhDaiDien,
+                               GiaKhachSan = ks.GiaTien,
+                               TGDen = t.NgayKetThuc,
+                               TGDi = t.NgayKetThuc,
+                               MaKS = ks.MaKS,
+                           });
+                return res.Take(soLuongChon).ToList();
+            }
+            catch (Exception)
+            {
+                entity.Dispose();
+            }
+            return null;
+        }
+
+        public static List<TourChiTietViewModel> LocNoiDung(decimal giaBD, decimal giaKT, int soLuongChon)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            try
+            {
+                var res = (from t in entity.TOURs
+                           where t.GiaNguoiLon.Value >= giaBD && t.GiaNguoiLon.Value <= giaKT
+                           join ks in entity.KHACHSANs
+                           on t.MaKS equals ks.MaKS
+                           join ht in entity.HANHTRINHs
+                           on t.MaHanhTrinh equals ht.MaHanhTrinh
+                           join dd1 in entity.DIADIEMs
+                           on ht.NoiDen equals dd1.MaDiaDiem
+                           join dd2 in entity.DIADIEMs
+                           on ht.NoiDi equals dd2.MaDiaDiem
+                           join hdv in entity.HUONGDANVIENs
+                           on t.MaHDV equals hdv.MaHDV
+                           select new TourChiTietViewModel()
+                           {
+                               Tour = new TourViewModel()
+                               {
+                                   MaTour = t.MaTour,
+                                   LoaiTour = t.MaLoaiTour,
+                                   NgayKH = t.NgayKhoiHanh,
+                                   NgayKT = t.NgayKetThuc,
+                                   TenKhachSan = ks.TenKS,
+                                   DiemDen = dd1.TenDiaDiem,
+                                   DiemDi = dd2.TenDiaDiem,
+                                   GiaNguoiLon = t.GiaNguoiLon,
+                                   GiaTreEm = t.GiaTreEm,
+                                   TenTour = t.TenTour,
+                                   TenHDV = hdv.TenHDV
+                               },
+                               AnhDiaDiem = t.AnhDaiDien,
+                               GiaKhachSan = ks.GiaTien,
+                               TGDen = t.NgayKetThuc,
+                               TGDi = t.NgayKetThuc,
+                               MaKS = ks.MaKS,
+                           });
+                return res.Take(soLuongChon).ToList();
+            }
+            catch (Exception)
+            {
+                entity.Dispose();
+            }
+            return null;
         }
 
     }
