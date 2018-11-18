@@ -23,8 +23,7 @@ namespace QLTourDucLich.Areas.QuanTriVien.Controllers
 
         public ActionResult ThongKeTheoThoiGian()
         {
-            FormThongKeViewModel model = new FormThongKeViewModel();
-            return View(model);
+            return View();
         }
 
         [HttpPost]

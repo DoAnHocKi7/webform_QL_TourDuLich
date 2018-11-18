@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Web.Mvc;
-using WebComponent;
 
 namespace QLTourDucLich.Queries.Tour
 {
@@ -295,6 +294,165 @@ namespace QLTourDucLich.Queries.Tour
                 entity.Dispose();
             }
             return null;
+        }
+
+        //da dung, da test
+        public static List<string> LayDSKhachHangDatTour(string maTour)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            try
+            {
+                var result = (from ct in entity.ChiTietHopDongs
+                              where ct.MaTour == maTour
+                              join hd in entity.HOPDONGs
+                              on ct.MaHopDong equals hd.MaHD
+                              group new { hd } by new { hd.MaKH } into grp
+                              select grp.Key.MaKH
+                              );
+                return result.ToList();
+            }
+            catch (Exception)
+            {
+                entity.Dispose();
+                return null;
+            }
+        }
+
+        //da dung, da test
+        //public static List<TourKhachHangDatViewModel> LayDSTourKhachHangDat(string maKH)
+        //{
+        //    QlTourDuLichEntities entity = new QlTourDuLichEntities();
+        //    try
+        // {
+        //var result = (from hd in entity.HOPDONGs
+        //              where hd.MaKH == maKH
+        //              join ct in entity.ChiTietHopDongs
+        //              on hd.MaHD equals ct.MaHopDong
+        //              group new { ct } by new { ct.MaTour } into grp
+        //              select new TourKhachHangDatViewModel()
+        //              {
+        //                  MaTour = grp.Key.MaTour,
+        //                  SoLanDat = grp.Count()
+        //              });
+
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        entity.Dispose();
+        //        return null;
+        //    }
+        //}
+
+        public static List<TourKhachHangDatViewModel> LayDSDatTour(string maKH)
+        {
+            QlTourDuLichEntities entity = new QlTourDuLichEntities();
+            List<TourKhachHangDatViewModel> lst = new List<TourKhachHangDatViewModel>();
+            var result = entity.InKHMuaTour(maKH).ToList();
+            if (result.Count > 0)
+            {
+                foreach (var item in result)
+                {
+                    lst.Add(new TourKhachHangDatViewModel()
+                    {
+                        MaTour = item.MaTour,
+                        SoLanDat = item.SoLuongDat
+                    });
+                }
+            }
+            return lst;
+        }
+
+        protected static List<TourKhachHangDatViewModel> TimKhachHangTotNhat(List<TourKhachHangDatViewModel> dsDatKHChinh,
+                                                                                                            List<string> dsKhachHangCongTac)
+        {
+            Dictionary<string, List<TourKhachHangDatViewModel>> maTranDatKHPhu =
+                                               new Dictionary<string, List<TourKhachHangDatViewModel>>();
+            /*-------------------Lấy ma trận những người liên quan------------------*/
+            foreach (var item in dsKhachHangCongTac)
+            {
+                maTranDatKHPhu.Add(item, LayDSDatTour(item));
+            }
+            Dictionary<string, double> lst_R = new Dictionary<string, double>();
+            foreach (var item in maTranDatKHPhu)
+            {
+                lst_R.Add(item.Key, Tinh_Sim_CollaborativeFiltering(dsDatKHChinh, item.Value));
+            }
+            /*--------------------------------------------------------------*/
+            double max_R = lst_R.Values.ToList().Max();
+            string KHcongTacToiUu = lst_R.FirstOrDefault(t => t.Value == max_R).Key;
+            var result = maTranDatKHPhu.FirstOrDefault(t => t.Key == KHcongTacToiUu).Value;
+            return result;
+        }
+
+        //public static int Tim_Sim_Thieu_CollaborativeFiltering(string maTour,List<TourKhachHangDatViewModel> dsDatKHChinh,
+        //                                                                                                    List<string> dsKhachHangCongTac)
+        //{
+        //    //var dsKhachHangDat = LayDSKhachHangDatTour(maTour);
+        //    //var dsDatKHChinh1 = LayDSDatTour(maKH);
+        //    Dictionary<string, List<TourKhachHangDatViewModel>> maTranDatKHPhu =
+        //                                                   new Dictionary<string, List<TourKhachHangDatViewModel>>();
+        //    /*-------------------Lấy ma trận những người liên quan------------------*/
+        //    foreach (var item in dsKhachHangCongTac)
+        //    {
+        //        maTranDatKHPhu.Add(item, LayDSDatTour(item));
+        //    }
+        //    Dictionary<string, double> lst_R = new Dictionary<string, double>();
+        //    foreach (var item in maTranDatKHPhu)
+        //    {
+        //        lst_R.Add(item.Key, Tinh_Sim_CollaborativeFiltering(dsDatKHChinh, item.Value));
+        //    }
+        //    /*--------------------------------------------------------------*/
+        //    double max_R = lst_R.Values.ToList().Max();
+        //    string KHcongTacToiUu = lst_R.FirstOrDefault(t => t.Value == max_R).Key;
+        //    int ketQua = maTranDatKHPhu.FirstOrDefault(t => t.Key == KHcongTacToiUu).Value.FirstOrDefault(t => t.MaTour == maTour).SoLanDat.Value;
+        //    return ketQua;
+        //}
+
+        public static double Tinh_Sim_CollaborativeFiltering(List<TourKhachHangDatViewModel> userChinh,
+                                               List<TourKhachHangDatViewModel> userPhu)
+        {
+            double average_Chinh = userChinh.Where(t => t.SoLanDat > 0).Sum(t => t.SoLanDat.Value) * 1.0 / userChinh.Count;
+            double average_Phu = userPhu.Where(t => t.SoLanDat > 0).Sum(t => t.SoLanDat.Value) * 1.0 / userPhu.Count;
+            double tuSo = 0;
+            double mauSo = 0;
+            double thuaSo1 = 0;
+            double thuaSo2 = 0;
+            int length = userChinh.Count;
+            for (int i = 0; i < length; i++)
+            {
+                tuSo += (userChinh[i].SoLanDat.Value - average_Chinh) * (userPhu[i].SoLanDat.Value - average_Phu);
+                thuaSo1 += Math.Pow(userChinh[i].SoLanDat.Value - average_Chinh, 2);
+                thuaSo2 += Math.Pow(userPhu[i].SoLanDat.Value - average_Phu, 2);
+            }
+            mauSo = Math.Sqrt(thuaSo1) * Math.Sqrt(thuaSo2);
+            if (mauSo != 0)
+            {
+                return tuSo / mauSo;
+            }
+            return 0;
+        }
+
+        public static List<string> Loc_CollaborativeFiltering(string maKH,string maTourChon, int soLuongChon)
+        {
+            Dictionary<string, double> ketQuaChiSoR = new Dictionary<string, double>();
+            var dsDatKHChinh = LayDSDatTour(maKH);
+
+            var bestCustomer = TimKhachHangTotNhat(dsDatKHChinh, LayDSKhachHangDatTour(maTourChon));
+
+            foreach (var item in dsDatKHChinh)
+            {
+                if (item.SoLanDat == 0)
+                {
+                    //ketQuaChiSoR.Add(item.MaTour, Tim_Sim_Thieu_CollaborativeFiltering(item.MaTour, dsDatKHChinh, LayDSKhachHangDatTour(maTourChon)));
+                    ketQuaChiSoR.Add(item.MaTour, bestCustomer.FirstOrDefault(t => t.MaTour == item.MaTour).SoLanDat.Value);
+                }
+            }
+            //var kqLoc = ketQuaChiSoR.OrderByDescending(t => t.Value).Take(soLuongChon);
+            var res = ketQuaChiSoR.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
+            res.RemoveAt(res.FindIndex(t => t == maTourChon));
+            return res.Take(soLuongChon).ToList();
+            //return kqLoc.Select(t => t.Key).ToList();
         }
 
     }

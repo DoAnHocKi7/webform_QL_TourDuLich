@@ -1,5 +1,0 @@
-D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\WebComponent\bin\Debug\WebComponent.dll
-D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\WebComponent\bin\Debug\WebComponent.pdb
-D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\WebComponent\obj\Debug\WebComponent.csproj.CoreCompileInputs.cache
-D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\WebComponent\obj\Debug\WebComponent.dll
-D:\win_MoiNhat\webform_QL_TourDuLich\QLTourDucLich\WebComponent\obj\Debug\WebComponent.pdb

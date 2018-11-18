@@ -28,6 +28,13 @@ namespace QLTourDucLich.Controllers
             ViewBag.MaDiaDiemDi = DiaDiemQueries.LoadDiaDiem(); ;
             ViewBag.MaDiaDiemDen = DiaDiemQueries.TimDiemDen2(int.Parse(ViewBag.MaDiaDiemDi.SelectedValue.ToString()));
 
+            //var res = TourQueries.LayDSKhachHangDatTour("11");
+            //var result = TourQueries.LayDSTourKhachHangDat("1885");
+          // int duDoan= TourQueries.TimChiSoThieu_CollaborativeFiltering("15", "1885");
+            List<string> lst = new List<string>();
+            lst = TourQueries.Loc_CollaborativeFiltering("1885", "15", 3);
+
+
             return View(new TimKiemTourViewModel());
         }
 

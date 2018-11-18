@@ -225,6 +225,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InKHMuaTour" FunctionName="QlTourDuLichModel.Store.InKHMuaTour">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QlTourDuLichModel.InKHMuaTour_Result">
+          <ScalarProperty Name="SoLuongDat" ColumnName="SoLuongDat" />
+          <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QlTourDuLichModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QlTourDuLichModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QlTourDuLichModel.Store.sp_dropdiagram" />

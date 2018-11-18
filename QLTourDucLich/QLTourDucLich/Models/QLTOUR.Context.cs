@@ -49,6 +49,15 @@ namespace QLTourDucLich.Models
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TOUR> TOURs { get; set; }
     
+        public virtual ObjectResult<InKHMuaTour_Result> InKHMuaTour(string maKhachHang)
+        {
+            var maKhachHangParameter = maKhachHang != null ?
+                new ObjectParameter("MaKhachHang", maKhachHang) :
+                new ObjectParameter("MaKhachHang", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InKHMuaTour_Result>("InKHMuaTour", maKhachHangParameter);
+        }
+    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
