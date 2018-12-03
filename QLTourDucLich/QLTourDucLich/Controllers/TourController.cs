@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
 using QLTourDucLich.Models;
-using PagedList;
-using PagedList.Mvc;
 using QLTourDucLich.Queries.Tour;
-using QLTourDucLich.Areas.QuanTriVien.Queries.TourDuLich;
-using QLTourDucLich.ViewModel.Tour;
-using QLTourDucLich.Constants;
+using QLTourDucLich.ViewModel.GioHang;
 using QLTourDucLich.ViewModel.NguoiDung;
+using QLTourDucLich.ViewModel.Tour;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace QLTourDucLich.Controllers
 {
@@ -19,20 +14,11 @@ namespace QLTourDucLich.Controllers
         //
         // GET: /Tour/
 
-        public ViewResult ChiTietTour(string matour)
+        public ViewResult ChiTietTour(string maTour)
         {
-            var model = TourQueries.TimTour(matour);
-            if (Session[Constants.Constants.LOGIN_KHACHHANG] == null)
-            {
-                ViewData["KetQuaLoc"] = TourQueries.LocNoiDung(model.Tour.GiaNguoiLon.Value-500000, 
-                                                            model.Tour.GiaNguoiLon.Value + 500000, 2)
-                                .Concat(TourQueries.LocNoiDung(model.Tour.LoaiTour, 2)).ToList();
-            }
-            else
-            {
-                string maKH = ((KhachHangViewModel)Session[Constants.Constants.LOGIN_KHACHHANG]).MaKH;
-                ViewData["KetQuaLoc"] = TourQueries.Loc_CollaborativeFiltering(maKH, matour, 4);
-            }
+            var model = TourQueries.TimTour(maTour);
+            List<TourDaDatViewModel> gioHang =(List<TourDaDatViewModel>) Session[Constants.Constants.GIOHANG];
+            ViewData["KetQuaLoc"] = TourQueries.Loc_CollaborativeFiltering(gioHang, maTour, 4);
             return View(model);
         }
 
@@ -62,7 +48,7 @@ namespace QLTourDucLich.Controllers
         public ActionResult ChuyenHuongTimKiem(double hanhDong)
         {
             var paraTimKiem = (TimKiemTourViewModel)TempData["ThongTinTimKiem"];
-            paraTimKiem.NgayDi = paraTimKiem.NgayDi .AddDays(hanhDong);
+            paraTimKiem.NgayDi = paraTimKiem.NgayDi.AddDays(hanhDong);
             TempData["TourTimDuoc"] = TourQueries.TimTour(paraTimKiem);
             return RedirectToAction("Index", "TrangChu");
         }

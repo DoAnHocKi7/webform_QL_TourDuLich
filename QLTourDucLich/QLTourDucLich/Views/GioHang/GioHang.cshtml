@@ -1,9 +1,9 @@
-﻿@using QLTourDucLich.Models
+﻿@using QLTourDucLich.ViewModel.GioHang
 @using QLTourDucLich.ViewModel.NguoiDung
 @{
     /**/
 
-    List<SPDaMua> lstSanPham = (List<SPDaMua>)ViewBag.GioHang;
+    List<TourDaDatViewModel> lstSanPham = (List<TourDaDatViewModel>)ViewBag.GioHang;
 }
 @model KhachHangViewModel
 @using QLTourDucLich.Constants
@@ -13,7 +13,7 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 <div class="container">
-    @if (((List<SPDaMua>)Session["GioHang"]).Count != 0)
+    @if (((List<TourDaDatViewModel>)Session["GioHang"]).Count != 0)
     {
     <div class="row">
         @if (Session[Constants.LOGIN_KHACHHANG] != null)

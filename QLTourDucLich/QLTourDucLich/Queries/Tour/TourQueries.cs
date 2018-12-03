@@ -1,6 +1,7 @@
 ﻿using QLTourDucLich.Areas.QuanTriVien.ViewModel;
 using QLTourDucLich.Areas.QuanTriVien.ViewModel.Tour;
 using QLTourDucLich.Models;
+using QLTourDucLich.ViewModel.GioHang;
 using QLTourDucLich.ViewModel.Tour;
 using System;
 using System.Collections.Generic;
@@ -317,62 +318,122 @@ namespace QLTourDucLich.Queries.Tour
             }
         }
 
-        public static List<TourKhachHangDatViewModel> LayDSDatTour(string maKH)
+        public static List<TourDaDatViewModel> LayDSTourGioHang(List<TourDaDatViewModel> gioHang)
+        {
+            QlTourDuLichEntities entities = new QlTourDuLichEntities();
+            var foods = entities.TOURs.Select(t => t.MaTour).ToList().OrderBy(t => t);
+            List<TourDaDatViewModel> res = new List<TourDaDatViewModel>();
+            TourDaDatViewModel tour;
+
+            if (gioHang == null)
+            {
+                foreach (var item in foods)
+                {
+                    tour = new TourDaDatViewModel() { matour = item, soluong = 0 };
+                    res.Add(tour);
+                }
+            }
+            else
+            {
+                foreach (var item in foods)
+                {
+                    var tourChon = gioHang.FirstOrDefault(t => t.matour == item);
+                    if (tourChon != null)
+                    {
+                        tour = new TourDaDatViewModel() { matour = item, soluong = tourChon.soluong };
+                    }
+                    else
+                    {
+                        tour = new TourDaDatViewModel() { matour = item, soluong = 0 };
+                    }
+                    res.Add(tour);
+                }
+
+            }
+            return res;
+        }
+
+        public static List<string> TimHD(string idTour)
         {
             QlTourDuLichEntities entity = new QlTourDuLichEntities();
-            List<TourKhachHangDatViewModel> lst = new List<TourKhachHangDatViewModel>();
-            var result = entity.InKHMuaTour(maKH).ToList();
+            try
+            {
+                var result = (from ct in entity.ChiTietHopDongs
+                              where ct.MaTour == idTour
+                              group new { ct } by new { ct.MaHopDong } into grp
+                              select grp.Key.MaHopDong
+                              );
+                return result.ToList();
+            }
+            catch (Exception)
+            {
+                entity.Dispose();
+                return null;
+            }
+        }
+
+        public static List<TourDaDatViewModel> LayDSTourDaDat(string idHD)
+        {
+            QlTourDuLichEntities entities = new QlTourDuLichEntities();
+            List<TourDaDatViewModel> lst = new List<TourDaDatViewModel>();
+            var result = entities.InHopDong(idHD).ToList();
             if (result.Count > 0)
             {
                 foreach (var item in result)
                 {
-                    lst.Add(new TourKhachHangDatViewModel()
+                    lst.Add(new TourDaDatViewModel()
                     {
-                        MaTour = item.MaTour,
-                        SoLanDat = item.SoLuongDat
+                        matour = item.MaTour,
+                        soluong = item.SoLuongDat
                     });
                 }
             }
             return lst;
         }
 
-        protected static List<TourKhachHangDatViewModel> TimKhachHangTotNhat(List<TourKhachHangDatViewModel> dsDatKHChinh,
-                                                                                                            List<string> dsKhachHangCongTac)
+        protected static List<TourDaDatViewModel> TimHoaDonTotNhat(List<TourDaDatViewModel> choosingFoods,
+                                                                                             List<string> hoaDonLst)
         {
-            Dictionary<string, List<TourKhachHangDatViewModel>> maTranDatKHPhu =
-                                               new Dictionary<string, List<TourKhachHangDatViewModel>>();
-            /*-------------------Lấy ma trận những người liên quan------------------*/
-            foreach (var item in dsKhachHangCongTac)
+            Dictionary<string, List<TourDaDatViewModel>> matrix =
+                                               new Dictionary<string, List<TourDaDatViewModel>>();
+            foreach (var item in hoaDonLst)
             {
-                maTranDatKHPhu.Add(item, LayDSDatTour(item));
+                matrix.Add(item, LayDSTourDaDat(item));
             }
             Dictionary<string, double> lst_R = new Dictionary<string, double>();
-            foreach (var item in maTranDatKHPhu)
+            foreach (var item in matrix)
             {
-                lst_R.Add(item.Key, Tinh_Sim_CollaborativeFiltering(dsDatKHChinh, item.Value));
+                lst_R.Add(item.Key, Tinh_Sim_CollaborativeFiltering(choosingFoods, item.Value));
             }
-            /*--------------------------------------------------------------*/
-            double max_R = lst_R.Values.ToList().Max();
-            string KHcongTacToiUu = lst_R.FirstOrDefault(t => t.Value == max_R).Key;
-            var result = maTranDatKHPhu.FirstOrDefault(t => t.Key == KHcongTacToiUu).Value;
-            return result;
+            try
+            {
+                double max_R = lst_R.Values.ToList().Max();
+                string bestHD = lst_R.FirstOrDefault(t => t.Value == max_R).Key;
+                var result = matrix.FirstOrDefault(t => t.Key == bestHD).Value;
+                return result;
+
+            }
+            catch (Exception)
+            {
+                return null;//mon chua duoc ban lan nao
+            }
         }
 
-        protected static double Tinh_Sim_CollaborativeFiltering(List<TourKhachHangDatViewModel> userChinh,
-                                               List<TourKhachHangDatViewModel> userPhu)
+        protected static double Tinh_Sim_CollaborativeFiltering(List<TourDaDatViewModel> choosingFoods,
+                                       List<TourDaDatViewModel> collabrator)
         {
-            double average_Chinh = userChinh.Where(t => t.SoLanDat > 0).Sum(t => t.SoLanDat.Value) * 1.0 / userChinh.Count;
-            double average_Phu = userPhu.Where(t => t.SoLanDat > 0).Sum(t => t.SoLanDat.Value) * 1.0 / userPhu.Count;
+            double average_Main = choosingFoods.Where(t => t.soluong > 0).Sum(t => t.soluong) * 1.0 / choosingFoods.Count;
+            double average_Temp = collabrator.Where(t => t.soluong > 0).Sum(t => t.soluong) * 1.0 / collabrator.Count;
             double tuSo = 0;
             double mauSo = 0;
             double thuaSo1 = 0;
             double thuaSo2 = 0;
-            int length = userChinh.Count;
+            int length = choosingFoods.Count;
             for (int i = 0; i < length; i++)
             {
-                tuSo += (userChinh[i].SoLanDat.Value - average_Chinh) * (userPhu[i].SoLanDat.Value - average_Phu);
-                thuaSo1 += Math.Pow(userChinh[i].SoLanDat.Value - average_Chinh, 2);
-                thuaSo2 += Math.Pow(userPhu[i].SoLanDat.Value - average_Phu, 2);
+                tuSo += (choosingFoods[i].soluong - average_Main) * (collabrator[i].soluong - average_Temp);
+                thuaSo1 += Math.Pow(choosingFoods[i].soluong - average_Main, 2);
+                thuaSo2 += Math.Pow(collabrator[i].soluong - average_Temp, 2);
             }
             mauSo = Math.Sqrt(thuaSo1) * Math.Sqrt(thuaSo2);
             if (mauSo != 0)
@@ -382,40 +443,44 @@ namespace QLTourDucLich.Queries.Tour
             return 0;
         }
 
-        public static List<TourChiTietViewModel> Loc_CollaborativeFiltering(string maKH, string maTourChon, int soLuongChon)
+        public static List<TourChiTietViewModel> Loc_CollaborativeFiltering(List<TourDaDatViewModel> cart, string maTourChon, int soLuongChon)
         {
-            var dsDatKHChinh = LayDSDatTour(maKH);
-            var bestCustomer = TimKhachHangTotNhat(dsDatKHChinh, LayDSKhachHangDatTour(maTourChon));
-            //Lay Ds rate bang duc lo
-            Dictionary<string, double> ketQuaChiSoR = new Dictionary<string, double>();
-            foreach (var item in dsDatKHChinh)
+            var dsTourGioHang = LayDSTourGioHang(cart);
+            var bestCustomer = TimHoaDonTotNhat(dsTourGioHang, TimHD(maTourChon));
+            if (bestCustomer != null)
             {
-                double sim;
-                if (item.SoLanDat == 0)
+                //Lay Ds rate bang duc lo
+                Dictionary<string, double> ketQuaChiSoR = new Dictionary<string, double>();
+                foreach (var item in dsTourGioHang)
                 {
-                    sim = bestCustomer.FirstOrDefault(t => t.MaTour == item.MaTour).SoLanDat.Value;
+                    double sim;
+                    if (item.soluong == 0)
+                    {
+                        sim = bestCustomer.FirstOrDefault(t => t.matour == item.matour).soluong;
+                    }
+                    else
+                    {
+                        sim = item.soluong;
+                    }
+                    ketQuaChiSoR.Add(item.matour, sim);
                 }
-                else
+                //------------------------
+                var res = ketQuaChiSoR.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
+                int chiSoTourDangChon = res.FindIndex(t => t == maTourChon);
+                res.RemoveAt(chiSoTourDangChon);
+                var collection = res.Take(soLuongChon).ToList();
+                //Lay Chi tiet Tour
+                List<TourChiTietViewModel> ketQua = new List<TourChiTietViewModel>();
+                if (collection.Count > 0)
                 {
-                    sim = item.SoLanDat.Value;
+                    foreach (var item in collection)
+                    {
+                        ketQua.Add(TourQueries.TimTour(item));
+                    }
                 }
-                ketQuaChiSoR.Add(item.MaTour, sim);
+                return ketQua;
             }
-            //------------------------
-            var res = ketQuaChiSoR.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
-            int chiSoTourDangChon = res.FindIndex(t => t == maTourChon);
-            res.RemoveAt(chiSoTourDangChon);
-            var collection = res.Take(soLuongChon).ToList();
-            //Lay Chi tiet Tour
-            List<TourChiTietViewModel> ketQua = new List<TourChiTietViewModel>();
-            if (collection.Count > 0)
-            {
-                foreach (var item in collection)
-                {
-                    ketQua.Add(TimTour(item));
-                }
-            }
-            return ketQua;
+            return null;
         }
 
         public static List<TourChiTietViewModel> LocNoiDung(string maLoai, int soLuongChon)

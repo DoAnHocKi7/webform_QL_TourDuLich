@@ -7,12 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using QLTourDucLich.Constants;
+using QLTourDucLich.ViewModel.GioHang;
 
 namespace QLTourDucLich.Controllers
 {
     public class GioHangController : Controller
     {
-        public static List<SPDaMua> GIOHANG;
+        public static List<TourDaDatViewModel> GIOHANG;
 
         public static KhachHangViewModel CUSOTMER;
 
@@ -25,14 +26,14 @@ namespace QLTourDucLich.Controllers
             return View();
         }
 
-        public List<SPDaMua> LayGioHang()
+        public List<TourDaDatViewModel> LayGioHang()
         {
             //gán bằng cái list sao đó ép kiểu session về list 
             // ép về cái list để đếm số lượng sản phẩm trong mảng
-            List<SPDaMua> giohang = Session["GioHang"] as List<SPDaMua>;
+            List<TourDaDatViewModel> giohang = Session["GioHang"] as List<TourDaDatViewModel>;
             if (giohang == null)
             {
-                giohang = new List<SPDaMua>();
+                giohang = new List<TourDaDatViewModel>();
                 // vì đây session là biến toàn cục nên một lần gởi tạo là đủ 
                 Session["GioHang"] = giohang;
             }
@@ -43,12 +44,12 @@ namespace QLTourDucLich.Controllers
         public ActionResult ThemGioHang(string matour, string strURL)
         {
 
-            List<SPDaMua> lstGioHang = LayGioHang();
+            List<TourDaDatViewModel> lstGioHang = LayGioHang();
             // Kiểm tra hàng này đã tồn tại trong list chưa
-            SPDaMua sanpham = lstGioHang.Find(t => t.matour == matour);
+            TourDaDatViewModel sanpham = lstGioHang.Find(t => t.matour == matour);
             if (sanpham == null)
             {
-                sanpham = new SPDaMua(matour);
+                sanpham = new TourDaDatViewModel(matour);
                 lstGioHang.Add(sanpham);
             }
             else
@@ -62,8 +63,8 @@ namespace QLTourDucLich.Controllers
         // Cập nhập số lượng giỏ hàng
         public ActionResult CapNhapGioHang(string matour, FormCollection f)
         {
-            List<SPDaMua> lstGioHang = LayGioHang();
-            SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+            List<TourDaDatViewModel> lstGioHang = LayGioHang();
+            TourDaDatViewModel sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
             {
                 sanpham.slnguoilon = int.Parse(f["songuoilon"].ToString());
@@ -75,8 +76,8 @@ namespace QLTourDucLich.Controllers
 
         public ActionResult XoaGioHang(string matour)
         {
-            List<SPDaMua> lstGioHang = LayGioHang();
-            SPDaMua sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
+            List<TourDaDatViewModel> lstGioHang = LayGioHang();
+            TourDaDatViewModel sanpham = lstGioHang.SingleOrDefault(t => t.matour == matour);
             if (sanpham != null)
             {
                 lstGioHang.RemoveAll(t => t.matour == matour);
@@ -96,7 +97,7 @@ namespace QLTourDucLich.Controllers
             {
                 RedirectToAction("Index", "TrangChu");
             }
-            List<SPDaMua> lstGioHang = LayGioHang();
+            List<TourDaDatViewModel> lstGioHang = LayGioHang();
             GIOHANG = LayGioHang();
             ViewBag.GioHang = lstGioHang;
             if (Session[Constants.Constants.LOGIN_KHACHHANG] != null)
@@ -110,7 +111,7 @@ namespace QLTourDucLich.Controllers
         public decimal? TongTien()
         {
             decimal? thanhtien = 0;
-            List<SPDaMua> lstGioHang = Session["GioHang"] as List<SPDaMua>;
+            List<TourDaDatViewModel> lstGioHang = Session["GioHang"] as List<TourDaDatViewModel>;
             if (lstGioHang != null)
             {
                 thanhtien = lstGioHang.Sum(t => t.thanhtien);
@@ -122,7 +123,7 @@ namespace QLTourDucLich.Controllers
         public int Soluong()
         {
             int soluong = 0;
-            List<SPDaMua> lstGioHang = Session["GioHang"] as List<SPDaMua>;
+            List<TourDaDatViewModel> lstGioHang = Session["GioHang"] as List<TourDaDatViewModel>;
             if (lstGioHang != null)
             {
                 soluong = lstGioHang.Sum(t => t.soluong);
@@ -152,7 +153,7 @@ namespace QLTourDucLich.Controllers
                 Random rd = new Random();
                 int ma = rd.Next(2000);
                 hd = new HOPDONG();
-                List<SPDaMua> spdm = LayGioHang();
+                List<TourDaDatViewModel> spdm = LayGioHang();
                 KHACHHANG kh = new KHACHHANG();
                 kh.MaKH = ma.ToString();
                 kh.TenKH = f["customer_name"].ToString();
@@ -195,7 +196,7 @@ namespace QLTourDucLich.Controllers
                 Random rd = new Random();
                 int ma = rd.Next(2000);
                 hd = new HOPDONG();
-                List<SPDaMua> spdm = LayGioHang();
+                List<TourDaDatViewModel> spdm = LayGioHang();
                 KhachHangViewModel kh = (KhachHangViewModel)Session[Constants.Constants.LOGIN_KHACHHANG];
                 CUSOTMER = kh;
                 hd.MaHD = rd.Next(2000).ToString();
