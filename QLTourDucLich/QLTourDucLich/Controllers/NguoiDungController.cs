@@ -4,7 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QLTourDucLich.Models;
-using QLTourDucLich.ViewModel;
+using QLTourDucLich.Queries.NguoiDung;
+using QLTourDucLich.ViewModel.NguoiDung;
+using Facebook;
+using Newtonsoft.Json;
+using System.Configuration;
+using System.Web.Security;
 
 namespace QLTourDucLich.Controllers
 {
@@ -17,95 +22,161 @@ namespace QLTourDucLich.Controllers
         {
             return View();
         }
-        #region Đăng Ký
+
         [HttpGet]
         public ActionResult DangKy()
         {
-         
             return View();
         }
+
         [HttpPost]
-        public ActionResult DangKy(KHACHHANGViewModel KH)
+        public ActionResult DangKy(KhachHangDangKyViewModel model)
         {
             Random rd = new Random();
-            KH.MaKH = rd.Next(2000).ToString();
+            model.MaKH = rd.Next(2000).ToString();
             if (ModelState.IsValid)
             {
-
-
                 try
                 {
                     KHACHHANG khachhang = new KHACHHANG()
                     {
-                        MaKH=KH.MaKH,
-                        TenKH = KH.TenKH,
-                        NgSinh=KH.NgaySinh,
-                        Email=KH.Email,
-                        SDTKH=KH.Phone,
-                        Password=KH.MatKhau
-
-
-
+                        MaKH = model.MaKH,
+                        TenKH = model.TenKH,
+                        NgSinh = model.NgaySinh,
+                        Email = model.Email,
+                        SDTKH = model.Phone,
+                        Password = model.MatKhau
                     };
-                  ql.KHACHHANGs.Add(khachhang);
-                  ql.SaveChanges();
-                  ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Ký Thành  Công";
-                  Session["TaiKhoan"] = khachhang.TenKH;
-                  return RedirectToAction("Index", "TrangChu");
-
+                    ql.KHACHHANGs.Add(khachhang);
+                    ql.SaveChanges();
+                    ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Ký Thành  Công";
+                    Session["TaiKhoan"] = khachhang.TenKH;
+                    return RedirectToAction("Index", "TrangChu");
                 }
                 catch
                 {
 
                 }
-             
 
             }
-            
             return View();
         }
-        #endregion
 
-        #region Đăng Nhập
         [HttpGet]
         public ActionResult DangNhap()
         {
-            return View();
+            KhachHangDangNhapViewModel model = new KhachHangDangNhapViewModel();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult DangNhap(FormCollection f)
+        public ActionResult DangNhap(KhachHangDangNhapViewModel model)
         {
-            string email = f["txtEmail"].ToString();
-            string matkhau = f["txtMatKhau"].ToString();
-            KHACHHANG kh = ql.KHACHHANGs.SingleOrDefault(t => t.Email == email && t.Password == matkhau);
-            if (kh != null)
+            if (ModelState.IsValid)
             {
-                ViewBag.ThongBao = "Chúc Mừng Bạn Đăng Nhập Thành Công";
-                Session["TaiKhoan"] = kh.TenKH;
-                Session["Login"] = kh;
-                return RedirectToAction("Index", "TrangChu");
+                KhachHangViewModel khachHang = KhachHangQueries.DangNhap(model);
+                if (khachHang != null)
+                {
+                    ViewBag.ThongBao = "Đăng nhập thành công";
+                    Session[Constants.Constants.LOGIN_KHACHHANG] = khachHang;
+                    return RedirectToAction("Index", "TrangChu");
+                }
+            }
+            ViewBag.ThongBao = "Đăng nhập thất bại";
+            return View();
+        }
 
+        public ActionResult DangXuat()
+        {
+            Session[Constants.Constants.LOGIN_KHACHHANG] = null;
+            Session[Constants.Constants.HINH_LOGIN] = null;
+            return RedirectToAction("Index", "TrangChu");
+        }
+
+        private Uri RediredtUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult Facebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FacebookAppID"],
+                client_secret = ConfigurationManager.AppSettings["FacebookAppSecret"],
+                redirect_uri = RediredtUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email"
+            });
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        [HttpPost]
+        public ActionResult LuuThongTinFacebook(KhachHangViewModel model)
+        {
+            KhachHangViewModel khachHang = (KhachHangViewModel)Session[Constants.Constants.LOGIN_KHACHHANG];
+            if (ModelState.IsValid)
+            {
+                khachHang.TenKH = model.TenKH;
+                khachHang.SoDT = model.SoDT;
+                khachHang.DiaChi = model.DiaChi;
+                if (!KhachHangQueries.KiemTraTaiKhoanFacebook(khachHang.MaKH))
+                {
+                    KhachHangQueries.DangKyBangFacebook(khachHang);                                
+                }
+                else
+                {
+                    KhachHangQueries.SuaThongTinKhachHang(khachHang);
+                }
+                Session[Constants.Constants.LOGIN_KHACHHANG] = khachHang;
+            }
+            return RedirectToAction("GioHang", "GioHang");
+        }
+
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FacebookAppID"],
+                client_secret = ConfigurationManager.AppSettings["FacebookAppSecret"],
+                redirect_uri = RediredtUri.AbsoluteUri,
+                code = code
+            });
+            var accessToken = result.access_token;
+            fb.AccessToken = accessToken;
+            dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range,birthday,address");
+
+            //Xu lí thong tin Facebook
+            if (!KhachHangQueries.KiemTraTaiKhoanFacebook(me.id))//thua
+            {
+                KhachHangViewModel model = new KhachHangViewModel()
+                {
+                    DiaChi = me.address,
+                    Email = me.email,
+                    GioiTinh = me.gender,
+                    MaKH = me.id,
+                    TenKH = me.first_name + " " + me.last_name
+                };
+                KhachHangQueries.DangKyBangFacebook(model);//thua
+                Session[Constants.Constants.LOGIN_KHACHHANG] = model;
             }
             else
             {
-                ViewBag.ThongBao = "Đăng Nhập Thất Bại";
+                Session[Constants.Constants.LOGIN_KHACHHANG] = KhachHangQueries.TimKhachHangTheoMa(me.id);
             }
-            return View();
-
-
-        }
-
-
-
-
-        #endregion
-        public ActionResult DangXuat()
-        {
-            Session["TaiKhoan"] = null;
+            Session[Constants.Constants.HINH_LOGIN] = me.picture.data.url;
             return RedirectToAction("Index", "TrangChu");
-        }  
-
+        }
 
     }
 }

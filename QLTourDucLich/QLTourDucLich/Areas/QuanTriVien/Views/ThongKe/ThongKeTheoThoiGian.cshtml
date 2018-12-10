@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "ThongKeTheoThoiGian";
+    Layout = "~/Areas/QuanTriVien/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("ThongKeTheoThoiGian", "ThongKe", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 250px;" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="form-group col-12 col-sm-6 col-md-3">
+        @Html.Label("Thời gian thống kê")
+        @Html.TextBox("time", null, new { @Value = DateTime.Now.ToShortDateString(), @class = "form-control short-picker-control", @required = true })
+    </div>
+    <div class="form-group col-12 col-sm-6 col-md-12">
+        <input name="edit" value="Thống kê" type="submit" class="btn btn-primary info" id="login" />
+    </div>
+}
+<script type="text/javascript" src="~/Libary/lib/canvasjs-2.2/canvasjs.min.js"></script>
+<div id="chartContainer"></div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+                text: "Thống kê theo thời gian @ViewBag.ThoiGian"
+            },
+            animationEnabled: true,
+            legend: {
+                verticalAlign: "center",
+                horizontalAlign: "left",
+                fontSize: 20,
+                fontFamily: "Helvetica"
+            },
+            theme: "theme2",
+            data: [
+                {
+                    type: "pie",
+                    indexLabelFontFamily: "Garamond",
+                    indexLabelFontSize: 20,
+                    indexLabel: "{label} {y}%",
+                    startAngle: -20,
+                    showInLegend: true,
+                    toolTipContent: "{legendText} {y}%",
+                    dataPoints: @Html.Raw(ViewBag.DataPoints)
+                }
+            ]
+        });
+        chart.render();
+    };
+</script>
+
+<script>
+    $(document).ready(function () {
+        var date_input1 = $('.short-picker-control'); //our date input has the name "date"
+        var container1 = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input1.datepicker({
+            format: "mm/yyyy",
+            startView: "months",
+            minViewMode: "months",
+            //container: container,
+            todayHighlight: true,
+            autoclose: true,
+        });
+    });
+</script>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "TraCuuDonHang";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+@using QLTourDucLich.ViewModel.GioHang
+<div class="container">
+    <div id="info-customer">
+        <h3 style="color:red">Tra cứu đơn hàng</h3>
+        <div class="form-group" style="overflow:hidden">
+            @using (Html.BeginForm("TraCuuDonHang", "GioHang", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+
+                <div class="form-group col-12 col-sm-3 col-md-3" style="float:none!important">
+                    @Html.Label("maHopDong", "Mã hợp đồng")
+                    @Html.TextBox("maHopDong", null, new { @class = "form-control", @required = true, placeholder = "Mã hợp đồng..." })
+                </div>
+
+                <div class="form-group col-12 col-sm-3 col-md-3">
+                    <button type="submit" class="btn btn-primary">
+                        <span>Tìm kiếm</span>
+                    </button>
+                </div>
+            }
+        </div>
+
+        @if (ViewBag.KhachHangDat != null)
+        {
+            <h3>THÔNG TIN KHÁCH HÀNG</h3>
+            <div>
+                <table>
+                    <tr>
+                        <td>Họ tên:</td>
+                        <td><span>@ViewBag.KhachHangDat.TenKH</span></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td><span>@ViewBag.KhachHangDat.DiaChi</span></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td><span>@ViewBag.KhachHangDat.SoDT</span></td>
+                    </tr>
+                </table>
+            </div>
+        }
+
+        @if (ViewBag.TimKiemHopDong != null && ViewBag.TimKiemHopDong.Count != 0)
+        {
+            <div id="booked-tour">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nơi đi</th>
+                            <th>Nơi đến</th>
+                            <th>Giờ khởi hành</th>
+                            <th>Giờ kết thúc</th>
+                            <th>Số lượng khách</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{decimal? tongTien = ((List<ChiTietHopDongViewModel>)ViewBag.TimKiemHopDong).Sum(t => t.ThanhTien); }
+                        @foreach (var item in ViewBag.TimKiemHopDong)
+                        {
+
+                            <tr>
+                                <td>@item.DiemDi</td>
+                                <td>@item.DiemDen</td>
+                                <td>@item.NgayDi.ToShortDateString()</td>
+                                <td>@item.NgayDen.ToShortDateString()</td>
+                                <td>@(item.NguoiLon + item.TreEm)</td>
+                                <td>@item.ThanhTien</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="total-money"><span>Tổng tiền: <span>@tongTien</span> VND</span></div>
+            </div>
+        }
+        else
+        {
+            <h4 style="color:orangered">Không có hợp đồng này!</h4>
+        }
+    </div>
+</div>

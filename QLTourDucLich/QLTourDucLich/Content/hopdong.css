@@ -1,0 +1,28 @@
+header div div{
+    float: left;
+}
+
+#info-company ul{
+    list-style-type: none;
+}
+
+#info-customer{
+    width: 35%;
+    margin: 20px auto 20px auto;
+}
+
+#total-money{
+    color: red;
+    float: right;
+    font-size: 20px;
+}
+
+#info-customer table tr td{
+    padding-right: 100px;
+    font-size: 15px;
+}
+
+#info-customer table tr td span{
+    font-weight: 500;
+    font-size: 17px;
+}

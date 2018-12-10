@@ -1,70 +1,56 @@
-﻿@using QLTourDucLich.Models;
-@model List<ChiTietT>
+﻿@model QLTourDucLich.ViewModel.Tour.TourChiTietViewModel
 <link href="~/Content/ChiTietTour.css" rel="stylesheet" />
 @{
     ViewBag.Title = "ChiTietTour";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-
-@foreach (var item in Model)
-{
-    <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-9 col-sm-12">
             <div class="page-header">
                 <h3 class="tittle-lg">
-                    @item.tentour
+                    @Model.Tour.DiemDen - @Model.Tour.DiemDi
                 </h3>
-
             </div>
             <div>
-                @* url content dùng để trỏ đến thư mục *@
-                 <img  src="@Url.Content("~/Images/" + @item.anhdaidien)"  width="845" height="500" >
+                <img src="@Url.Content("~/Images/" + Model.AnhDiaDiem)" width="845" height="500">
             </div>
-            
-            <div class="tt_tour" >
-                <div class="col-sm-12 col-md-9">
-                     <div><label>Mã Tour:</label> @item.matour</div>
-                     <div><label>Ngày Khởi Hành:</label>@String.Format("{0:MM/dd/yyyy}",item.ngaykh)</div>
-                     <div><label>Ngày Kết Thúc:</label> @String.Format("{0:MM/dd/yyyy}",item.ngaykt)</div>
-                     <div><label>Nơi Đi:</label>@item.noidi</div>
-                     <div><label>Nơi Đến:</label> @item.noiden</div>
-                 </div>   
-                <div class="col-md-3">
 
-                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @matour = @item.matour, @strURL = Request.Url.ToString() }))
+            <div class="tt_tour">
+                <div class="col-sm-12 col-md-9">
+                    <div><label>Mã Tour:</label> @Model.Tour.MaTour</div>
+                    <div><label>Ngày Khởi Hành:</label>@String.Format("{0:MM/dd/yyyy}", Model.Tour.NgayKH)</div>
+                    <div><label>Ngày Kết Thúc:</label> @String.Format("{0:MM/dd/yyyy}", Model.Tour.NgayKT)</div>
+                    <div><label>Nơi Đi:</label>@Model.Tour.DiemDi</div>
+                    <div><label>Nơi Đến:</label> @Model.Tour.DiemDen</div>
+                </div>
+                <div class="col-md-3">
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @matour = Model.Tour.MaTour, @strURL = Request.Url.ToString() }))
                     {
-                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", @item.giatour)</h4>
+                        <h4 style="color:red"> @String.Format("{0:0,0 vnđ}", Model.Tour.GiaNguoiLon)</h4>
 
                         <input type="submit" class="btn btn-primary" />
                     }
-
                 </div>
             </div>
-
-                   <div class="box">
-                    <div class="box-header" >
-                        <div class="box-title">
-                           <label> GÍA BAO GỒM:</label> <i class="fa fa-chevron-up pull-right"></i>
-                        </div>
-                    </div>
-                    <div class="box-body" style="display: block;">
-                        <p><span style="text-decoration: underline;"><strong>DỊCH VỤ BAO GỒM:</strong></span><br><br>•&nbsp; Xe đưa đón tại khách sạn.<br>•&nbsp; Hướng dẫn viên thuyết minh trên xe và phiên dịch tiếng Anh trong đêm hội (với đoàn khách nước ngoài)<br>•&nbsp; Rượu cần và thịt nướng.<br><br><span style="text-decoration: underline;"><strong>KHÔNG BAO GỒM:</strong></span><br><br>•&nbsp; Các chi phí cá nhân.<br>•&nbsp; Thuế giá trị gia tăng (VAT).</p>
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-title">
+                        <label> GÍA BAO GỒM:</label> <i class="fa fa-chevron-up pull-right"></i>
                     </div>
                 </div>
-   
-         
-         
-           
+                <div class="box-body" style="display: block;">
+                    <p><span style="text-decoration: underline;"><strong>DỊCH VỤ BAO GỒM:</strong></span><br><br>•&nbsp; Xe đưa đón tại khách sạn.<br>•&nbsp; Hướng dẫn viên thuyết minh trên xe và phiên dịch tiếng Anh trong đêm hội (với đoàn khách nước ngoài)<br>•&nbsp; Rượu cần và thịt nướng.<br><br><span style="text-decoration: underline;"><strong>KHÔNG BAO GỒM:</strong></span><br><br>•&nbsp; Các chi phí cá nhân.<br>•&nbsp; Thuế giá trị gia tăng (VAT).</p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3 col-sm-0">
-           
-        </div>
-       
-
-
     </div>
+    @if (ViewData["KetQuaLoc"] != null)
+    {
+        <div class="recommended-tour">
+            <h3>Bạn có thể quan tâm</h3>
+            @Html.Partial("TourDeXuat_PartialView", ViewData["KetQuaLoc"]);
+        </div>
+    }
 </div>
-
-}

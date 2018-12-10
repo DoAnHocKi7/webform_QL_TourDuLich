@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLTourDucLich", "QLTourDucLich\QLTourDucLich.csproj", "{26913FA5-3D8C-4A6A-8A67-98912E68B021}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLTourDucLich.Tests", "QLTourDucLich.Tests\QLTourDucLich.Tests.csproj", "{760F430C-3F8E-4474-B4D4-AA905860BCD4}"
@@ -22,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {303F7ECA-6358-4BCE-BC02-1603EB68F15B}
 	EndGlobalSection
 EndGlobal

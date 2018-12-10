@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+@model List<QLTourDucLich.ViewModel.GioHang.TourDaDatViewModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Libary/lib/bootstrap-3.3.7/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/hopdong.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div style="width: 35%;">
+                <img src="~/Images/mytour.png" alt="" style="float: left">
+            </div>
+            <div id="info-company">
+                <ul>
+                    <li>Công ty du lịch My tour</li>
+                    <li>Địa chỉ công ty: Quận Tân Phú, Thành Phố Hồ Chí Minh, Việt Nam</li>
+                    <li>Trang web: mytourquangbachkha.vn</li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+
+    <div id="content">
+        <div class="container">
+            <div id="info-customer">
+                <h3>THÔNG TIN KHÁCH HÀNG</h3>
+                @if (ViewBag.KhachHang != null)
+                {
+                    <div>
+                        <table>
+                            <tr>
+                                <td>Họ tên:</td>
+                                <td><span>@ViewBag.KhachHang.TenKH</span></td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ:</td>
+                                <td><span>@ViewBag.KhachHang.DiaChi</span></td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại:</td>
+                                <td><span>@ViewBag.KhachHang.SoDT</span></td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                }
+            </div>
+            <h4 style="color:orangered">Mã hợp đồng: @ViewBag.MaHD</h4>
+            <div id="booked-tour">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nơi đi</th>
+                            <th>Nơi đến</th>
+                            <th>Giờ khởi hành</th>
+                            <th>Giờ kết thúc</th>
+                            <th>Số lượng khách</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{decimal? tongTien =Model.Sum(t=>t.thanhtien); }
+                        @foreach (var item in Model)
+                        {
+                            
+                        <tr>
+                            <td>@item.NoiDi</td>
+                            <td>@item.NoiDen</td>
+                            <td>@item.Ngaykh.Value.ToShortDateString()</td>
+                            <td>@item.Ngaykt.Value.ToShortDateString()</td>
+                            <td>@(item.slnguoilon + item.sltreem)</td>
+                            <td>@item.thanhtien</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <div id="total-money"><span>Tổng tiền: <span>@tongTien</span> VND</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

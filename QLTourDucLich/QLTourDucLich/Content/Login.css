@@ -1,7 +1,9 @@
 ﻿.Login {
-     border:2px solid  #e7e8e9;
-    border-radius:4px;
-    padding:16px;
+    border: 2px solid #e7e8e9;
+    border-radius: 4px;
+    padding: 16px;
+    float: none;
+    margin: auto;
 }
 .txtEmail {
     margin-left:25px;

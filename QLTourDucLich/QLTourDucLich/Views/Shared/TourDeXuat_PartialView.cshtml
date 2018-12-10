@@ -1,0 +1,19 @@
+﻿@model List<QLTourDucLich.ViewModel.Tour.TourChiTietViewModel>
+@foreach (var item in Model)
+{
+    <a href='@Url.Action("ChiTietTour", "Tour", new { @matour = item.Tour.MaTour })'>
+        <div class='col-sm-4 col-md-3'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <h4>@item.Tour.DiemDi - @item.Tour.DiemDen</h4>
+                </div>
+                <div class='panel-body' style="text-align: center">
+                    <img src="@Url.Content("~/Images/" + item.AnhDiaDiem)" width="200" height="150">
+                </div>
+                <div class='panel-footer'>
+                    Giá:  @item.Tour.GiaNguoiLon
+                </div>
+            </div>
+        </div>
+    </a>
+}

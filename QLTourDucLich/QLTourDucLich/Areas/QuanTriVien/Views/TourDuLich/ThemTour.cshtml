@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Them";
+    Layout = "~/Areas/QuanTriVien/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@model QLTourDucLich.ViewModel.Tour.ThaoTacTourViewModel
+
+<div class="container">
+    @using (Html.BeginForm("ThemHanhTrinh", "TourDuLiCh", FormMethod.Post, new { @class = "row", @id = "form-action-hanhtrinh", @style = "margin-top: 100px;" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.Label("MaNoiDi", "Nơi đi")
+            @Html.DropDownList("MaNoiDi", (SelectList)ViewBag.MaDiaDiemDi, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.Label("MaNoiDen", "Nơi đến")
+            @Html.DropDownList("MaNoiDen", (SelectList)ViewBag.MaDiaDiemDi, new { @class = "form-control" })
+        </div>
+
+        <input name="edit" value="Thêm hành trình" type="submit" class="btn btn-primary center-block info" id="them-HT" />
+    }
+</div>
+
+<div class="container" id="form-action-tour">
+
+    <p>
+        <h2>Basic Table</h2>
+    </p>
+
+    @using (Html.BeginForm("ThemTour", "TourDuLich", FormMethod.Post, new { @class = "row" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.MaTour)
+            @Html.TextBoxFor(m => m.Tour.MaTour, new { @Value = new Random().Next(1, 100000), @class = "form-control", @readonly = "readonly" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.LoaiTour)
+            @Html.DropDownListFor(m => m.Tour.LoaiTour, (SelectList)ViewBag.MaLoaiTour, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.TenTour)
+            @Html.TextBoxFor(m => m.Tour.TenTour, new { @class = "form-control", @placeholder = "Tên tour ", @required = "true" })
+            @Html.ValidationMessageFor(m => m.Tour.TenTour)
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.DiemDi)
+            @Html.DropDownListFor(m => m.Tour.MaDiaDiemDi, (SelectList)ViewBag.MaDiaDiemDi, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.NgayKT)
+            @Html.TextBoxFor(m => m.Tour.NgayKT, new {@Value=DateTime.Now.ToShortDateString(), @class = "form-control picker-control", @required = "true" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.KhachSan)
+            @Html.DropDownListFor(m => m.KhachSan, (SelectList)ViewBag.MaKS, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.MaHDV)
+            @Html.DropDownListFor(m => m.Tour.MaHDV, (SelectList)ViewBag.HuongDanVien, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.DiemDen)
+            @Html.DropDownListFor(m => m.Tour.MaDiaDiemDen, (SelectList)ViewBag.MaDiaDiemDen, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.NgayKH)
+            @Html.TextBoxFor(m => m.Tour.NgayKH, new { @Value = DateTime.Now.ToShortDateString(), @class = "form-control picker-control", @required = "true" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.GiaTreEm)
+            <div class="staticParent">
+                @Html.TextBoxFor(m => m.Tour.GiaTreEm, new { @class = "form-control child", @required = "required" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Tour.GiaTreEm, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            @Html.LabelFor(m => m.Tour.GiaNguoiLon)
+            <div class="staticParent">
+                @Html.TextBoxFor(m => m.Tour.GiaNguoiLon, new { @class = "form-control child", @required = "required" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Tour.GiaNguoiLon, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-md-3">
+            <label>Upfile</label>
+            <input type="file" />
+        </div>
+        <input name="edit" value="Thêm tour" type="submit" class="btn btn-primary center-block info" />
+    }
+</div>
+
+<script src="~/Areas/QuanTriVien/Scripts/Tour/CRUDTour.js"></script>
+<script>
+    $(function () {
+        $('.staticParent').on('keydown', '.child', function (e) { -1 !== $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) || (/65|67|86|88/.test(e.keyCode) && (e.ctrlKey === true || e.metaKey === true)) && (!0 === e.ctrlKey || !0 === e.metaKey) || 35 <= e.keyCode && 40 >= e.keyCode || (e.shiftKey || 48 > e.keyCode || 57 < e.keyCode) && (96 > e.keyCode || 105 < e.keyCode) && e.preventDefault() });
+    })
+</script>
+
+@if (TempData["KetQua"] != null)
+{
+    <script>
+        alert("Thao tác @Html.Raw(TempData["KetQua"])");
+    </script>
+}
